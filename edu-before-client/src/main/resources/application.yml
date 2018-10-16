@@ -1,0 +1,52 @@
+#
+#server:
+#  port: 8091
+#
+#spring:
+#  application:
+#    name: service-edubefores
+#    # 数据库链接
+#  datasource:
+#    driver-class-name: com.mysql.jdbc.Driver
+#    url: jdbc:mysql://127.0.0.1:3306/edu
+#    username: root
+#    password: root
+#
+#eureka:
+#  client:
+#    serviceUrl:
+#      defaultZone: http://localhost:8090/eureka/
+
+
+##########################################################################
+
+
+
+
+
+server:
+  port: 8092
+#  port: 8093
+#  port: 8094
+
+spring:
+  application:
+    name: service-edubefores
+  # 数据库链接
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://127.0.0.1:3306/edu
+    username: root
+    password: root
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8090/eureka/
+
+
+
+
+
+
+
