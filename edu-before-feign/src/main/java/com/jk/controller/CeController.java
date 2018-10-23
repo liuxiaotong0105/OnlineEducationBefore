@@ -3,9 +3,9 @@ package com.jk.controller;
 import com.jk.modelapi.Ce;
 import com.jk.service.CeService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
 
 /**
  * <pre>项目名称：springCloud
@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
  * 手机号：18511777907&16619767907
  * 备注：生命不息，车轮不止
  */
-@RestController
+@Controller
 public class CeController {
 
     @Autowired
@@ -27,9 +27,9 @@ public class CeController {
         return ceService.queryCe();
     }
 
-
-
-
-
+    @RequestMapping("toIndex")
+    public String toIndex(){
+        return "index";
+    }
 
 }

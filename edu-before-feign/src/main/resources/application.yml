@@ -7,10 +7,16 @@ server:
 spring:
   application:
     name: service-feign
+    thymeleaf:
+      cache: false
+      mode: LEGACYHTML5
+      prefix: classpath:templates/
+      content-type: text/html
+      encoding: UTF-8
     # 数据库链接
     datasource:
       driver-class-name: com.mysql.jdbc.Driver
-      url: jdbc:mysql://127.0.0.1:3306/edu
+      url: jdbc:mysql://192.168.31.8:3306/edu
       username: root
       password: root
 
