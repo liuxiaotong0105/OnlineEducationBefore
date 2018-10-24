@@ -1,6 +1,7 @@
 package com.jk.serviceapi;
 
 import com.jk.modelapi.Ce;
+import com.jk.modelapi.Movie;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -22,7 +23,8 @@ public interface CeServiceApi {
     @RequestMapping(value="queryCe",method = RequestMethod.GET)
     Ce queryCe();
 
-
+    @RequestMapping(value = "addMovie",method = RequestMethod.POST)
+    void addMovie(@RequestBody Movie movie);
 
 
 

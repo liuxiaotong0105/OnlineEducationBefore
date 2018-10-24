@@ -6,7 +6,12 @@
 	<select id="queryCe" resultType="com.jk.modelapi.Ce" >
 		select * from t_ce
 	</select>
-	
+	<insert id="addMovie">
+
+		INSERT into t_movie
+		 (movieId,movieName,movieInfo,moviePrice,movieStatus,movieType,movieUrl,moviePicther,teacherid) VALUES
+			(#{movieId},#{movieName},#{movieInfo},#{moviePrice},0,#{movieType},#{movieUrl},#{movieUrl},#{teacherid})
+	</insert>
 
 
 

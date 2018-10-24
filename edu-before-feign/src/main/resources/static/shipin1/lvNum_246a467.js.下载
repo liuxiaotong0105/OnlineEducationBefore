@@ -1,0 +1,1 @@
+define("widget/roomAnchorLv/lvNum.js",function(e,n,t){var v=e("Event"),a=new v;a.val=0,a.update=function(e){e!==a.val&&a.emit("change",a.val=e)},t.exports=a});

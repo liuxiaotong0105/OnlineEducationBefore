@@ -1,0 +1,788 @@
+
+        seajs.config({
+            moduleVersion: [["p/v-upload-4", "201711031735"]]
+        });
+        
+
+        
+        
+        seajs.use(["jquery", "p/v-upload-4/index",'gallery/underscore/1.6.0/underscore', 'arale/dialog/1.3.1/dialog'], function($, upload, _, Dialog) {
+            
+        	
+        	var d1 = {} ;
+        	// 工具函数
+            var bytesToMB = function(size) {
+                return Math.round(size / 1024 / 1024 * 100) / 100 + "MB";
+            };
+
+            var formatTimeleft = function (time) {
+                time = Math.round(time);
+                var minutes = Math.floor(time / 60);
+                var seconds = time % 60;
+
+                return minutes + "分" + (seconds < 10 ? "0" + seconds : seconds) + "秒";
+            };
+
+            var jqBeforeUpload = $('.video-upload--forupload');
+            var jqUploading = $('.page-video-upload__bd');
+            
+            
+//            var jqUploadFinsh = $('.video-info--uploaded');
+            
+            
+            
+            var infoComplete = $("#info_complete");
+            var uploadInfoComplete = $("#upload_info_complete");
+            var videoInfoForm = $("#video_info_form") ;
+            
+            
+            var jqUploadingProgressLine = $('.progress-line');
+            var jqUploadingProgressLineInner = jqUploadingProgressLine.find('.inner');
+            var jqUploadingProgressLineNote = jqUploadingProgressLine.find('.note');
+            var jqUploadingState = $('.upload-progress__state');
+            var jqUploadingStateSpeed = jqUploadingState.find('.state').eq(0).find('em');
+            var jqUploadingStateUploaded = jqUploadingState.find('.state').eq(1).find('em');
+            var jqUploadingStateTimeLeft = jqUploadingState.find('.state').eq(2).find('em');
+            var jqUploadingMsg = $('#upload_success');
+            var jqUploadingProgress = $('.upload-progress, .upload-progress__state');
+            var jqCancelUploadButton = $('.upload-progress__cancle');
+            
+            
+//            var jqModifyButton = $('.action-bar--uploaded');
+            
+            
+            var jqUploadFuid = $("#fuid");
+            var jqUploadFiletitle = $("#v_title");
+
+            
+            
+            window.fileTitleGlobal = "" ; 
+            upload.on(upload.EVENTS.UPLOAD_STARTED, function(evt, file) {
+                upload.hide();
+                jqBeforeUpload.hide();
+                //jqUploadFinsh.hide();
+                //jqModifyButton.hide();
+                jqUploading.show();
+                videoInfoForm.show();
+
+                jqUploadingProgressLineInner.width(0);
+                jqUploadingProgressLineNote.text('准备中...');
+                jqUploadingStateSpeed.text('0KB/s');
+                jqUploadingStateUploaded.text('0MB/' + bytesToMB(file.size));
+                jqUploadingStateTimeLeft.text('-');
+
+                jqUploadingMsg.hide();
+                jqUploadingProgress.show();
+
+                jqCancelUploadButton.data('fuid', file.fuid);
+                jqUploadFuid.attr('value',file.fuid);
+                $("#hidden_vid").val(file.vid);
+                var title = file.name.split('.');
+                window.fileTitleGlobal = title[0] ;
+                jqUploadFiletitle.val(title[0]);
+                $('#title_tips em').html(parseInt(title[0].length));
+                $("#uploadStatus").val('started');
+                $.ajax({
+                    url:'?r=videomanage/beforesave',
+                    type:'post',
+                    dataType: 'json',
+                    data:{fuid:file.fuid},
+                    success:function(res){
+                    	$("#hidden_vid").val(res.vid);
+                        /*var modWithVid = $('#modWithVid');
+                        
+                        if (res.rs) {
+                            modWithVid.text('修改信息');
+                            modWithVid.next('span').text('进行修改');
+                            modWithVid.attr('href', '?r=videomanage/videoedit&vid='+res.vid);
+                        } else {
+                            modWithVid.text('此处');
+                            modWithVid.next('span').text('查看发布中的列表');
+                            modWithVid.attr('href', '?r=videomanage/publishing');
+                        }*/
+                    }
+                })
+            });
+            upload.on(upload.EVENTS.LOAD_PROGRESS, function(evt, file, bytesLoaded) {
+                var percentage = Math.round(bytesLoaded / file.size * 100);
+                jqUploadingProgressLineInner.width(percentage + '%');
+                jqUploadingProgressLineNote.text('已加载 ' + percentage + '%');
+            });
+            upload.on(upload.EVENTS.LOAD_COMPLETE, function(evt, file) {
+                jqUploadingProgressLineInner.width('100%');
+                jqUploadingProgressLineNote.text('加载完成');
+            });
+            upload.on(upload.EVENTS.UPLOAD_PROGRESS, function(evt, file, bytesLoaded, speed) {
+                var percentage = Math.round(bytesLoaded / file.size * 100);
+                jqUploadingProgressLineInner.width(percentage + '%');
+                jqUploadingProgressLineNote.text('已上传 ' + percentage + '%');
+
+                jqUploadingStateSpeed.text(speed.toFixed(2) + 'KB/s');
+                jqUploadingStateUploaded.text(bytesToMB(bytesLoaded) + '/' + bytesToMB(file.size));
+                jqUploadingStateTimeLeft.text(formatTimeleft(((file.size - bytesLoaded) / 1024) / speed));
+            });
+            upload.on(upload.EVENTS.UPLOAD_COMPLETE, function(evt, file) {
+                jqUploadingProgressLineInner.width('100%');
+                jqUploadingProgressLineNote.text('上传完成');
+                //设置标志位
+                $("#uploadStatus").val('finished');
+                $(".action-bar--tip").hide();
+                var saveStatus = $("#saveStatus").val();
+                
+                if(saveStatus == 'finished'){
+                	setTimeout(function () {
+                		var nickname = $(".u-name").text();
+                    	var info = nickname+"，"+window.fileTitleGlobal+" 已提交，视频转码审核中" ;
+                    	$("#upload_info_complete .status-success").text(info);
+                		uploadInfoComplete.show();
+                		infoComplete.hide();
+                        jqUploadingProgress.hide();
+                    }, 1000);
+                }else{
+                	setTimeout(function () {
+                        jqUploadingMsg.show();
+                        jqUploadingProgress.hide();
+                        
+                        $('.video-focus__preview-sys').show();
+                        $('.preview-loading').show();
+                    }, 1000);
+                	
+                	
+                	setTimeout(function(){
+                		var vid = $("#hidden_vid").val();
+                		$.ajax({
+		                    url:'?r=jsapi/getVideoCover',
+		                    type:'post',
+		                    dataType: 'json',
+		                    data:{vid:vid},
+		                    success:function(res){
+		                    	$('.preview-loading').hide();
+		                    	
+		                    	var html = '' ;
+		                    	for(var index in res.msg.cover){
+		                    		html += '<li onclick="checkCover(this,1);" data-src="'+res.msg.cover[index]+'"><img src="'+res.msg.cover[index]+'"><a>设为封面</a></li>' ;
+		                    		if(index >= 2){
+		                    			break ;
+		                    		}
+		                    	}
+		                    	var coverHtml = '';
+		                    	for(var index in res.msg.cover){
+		                    		coverHtml += '<a class="albumCover__item "  href="javascript:void(0);" data-src="'+res.msg.cover[index]+'"><img class="albumCover__img" src="'+res.msg.cover[index]+'" alt=""><div class="albumCover__border"></div></a>';
+		                    	}
+		                    	$('#albumCover').html(coverHtml);
+		                    	
+		                    	d1 = new Dialog({
+		                            content: $('[data-dom="albumCover"]').html(),
+		                            //content: $('.upload_image').html(),
+		                            closeTpl: ' ',
+		                            width: 780
+		                        });
+		                    	$('.preview-list ul').html(html);
+		                    	$('.preview-list').show();
+		                    }
+		                })
+                	},8000);
+                }
+                
+                
+            });
+            upload.on(upload.EVENTS.UPLOADED, function (evt, file) {
+                alert('视频已存在，*****请尝试修改文件名重新上传*****'); // 上传过了
+            });
+            upload.on(upload.EVENTS.UPLOAD_ERROR, function (evt, file, msg) {
+            	switch(msg){
+	            	case -1:
+	            		$("#uploadPopInfo").html("黑名单用户，不能上传");
+	            		$("#uploadPopBtn1").hide();
+	            		$("#uploadPopBtn2").hide();
+	            		showPop();
+	            		break;
+	            	case -2:
+	            		$("#uploadPopInfo").html("上传需绑定手机");
+	            		$("#uploadPopBtn1").html("去绑定")
+	            		$("#uploadPopBtn1").show();
+	            		$("#uploadPopBtn1").unbind('click').bind('click',function(){
+	            			window.location.href="http://i.huya.com/";
+	            		});
+	            		$("#uploadPopBtn2").html("取消");
+	            		$("#uploadPopBtn2").attr("href","javascript:void(0)");
+	            		$("#uploadPopBtn2").unbind('click').bind('click',function(){
+	            			closePop();
+//	            			$("#upload_target").click();
+	            		});
+	            		$("#uploadPopBtn2").show();
+	            		showPop();
+	            		break;
+	            	case -3:
+	            		//总容量不够
+	            		$("#uploadPopInfo").html("上传文件总大小已超过15G,申请播客可以使用素材库，并享受上传无上限和播客分成计划，是否申请？");
+	            		$("#uploadPopBtn1").html("去申请")
+	            		$("#uploadPopBtn1").show();
+	            		$("#uploadPopBtn1").unbind('click').bind('click',function(){
+	            			window.location.href="http://ahuya.duowan.com/index.php?r=podcast/apply";
+	            		});
+	            		$("#uploadPopBtn2").html("重新上传");
+	            		$("#uploadPopBtn2").attr("href","javascript:void(0)");
+	            		$("#uploadPopBtn2").unbind('click').bind('click',function(){
+	            			closePop();
+	            			$("#upload_target").click();
+	            		});
+	            		$("#uploadPopBtn2").show();
+	            		showPop();
+	            		
+	            		
+	            		break;
+	            	case -4:
+	            		//单个文件超过500M
+	            		$("#uploadPopInfo").html("上传文件超过500M,申请播客可以使用素材库，并享受上传无上限和播客分成计划，是否申请？");
+	            		$("#uploadPopBtn1").html("去申请")
+	            		$("#uploadPopBtn1").show();
+	            		$("#uploadPopBtn1").unbind('click').bind('click',function(){
+	            			window.location.href="http://ahuya.duowan.com/index.php?r=podcast/apply";
+	            		});
+	            		$("#uploadPopBtn2").html("重新上传");
+	            		$("#uploadPopBtn2").attr("href","javascript:void(0)");
+	            		$("#uploadPopBtn2").unbind('click').bind('click',function(){
+	            			closePop();
+	            			$("#upload_target").click();
+	            		});
+	            		
+	            		$("#uploadPopBtn2").show();
+	            		showPop();
+	            		break;
+            		default:
+//            			alert('网络情况不好，请检查是否断网:'+msg);// 上传错误
+//            			var msg = "上传初始化失败(上传视频存在广告等不良信息!)";
+            			var p = /\(([^()]+)\)/g;
+            			while(r=p.exec(msg)){
+//            				console.log(r[1])
+            				msg = r[1];
+            				break ;
+            			};
+	            		$("#uploadPopInfo").html(msg);
+	            		$("#uploadPopBtn1").hide();
+	            		$("#uploadPopBtn2").hide();
+	            		showPop();
+            		
+            	}
+            });
+            
+            upload.on("BEFORE_INIT_SUCCESS_STATUS", function (evt, code) {
+            	switch(code){
+	            	case 0:
+	            		console.log("正常用户");
+	            		break;
+	            	case 1:
+	            		//正常播客
+	            		console.log("正常播客");
+	            		break;
+	            	case 2:
+	            		//接近15G
+	            		console.log("接近15G");
+	            		$("#uploadPopInfo").html("上传文件总大小接近15G,申请播客可以使用素材库，并享受上传无上限和播客分成计划，是否申请？");
+	            		
+	            		$("#uploadPopBtn1").html("去申请")
+	            		$("#uploadPopBtn1").show();
+	            		$("#uploadPopBtn1").unbind('click').bind('click',function(){
+	            			window.location.href="http://ahuya.duowan.com/index.php?r=podcast/apply";
+	            		});
+	            		
+	            		$("#uploadPopBtn2").html("继续上传");
+	            		$("#uploadPopBtn2").attr("href","javascript:void(0)");
+	            		$("#uploadPopBtn2").unbind('click').bind('click',function(){
+	            			closePop();
+	            		});
+	            		
+	            		$("#uploadPopBtn2").show();
+	            		showPop();
+	            		break;
+            	}
+            });
+            
+            upload.on(upload.EVENTS.INVALID_FILE, function (evt, file) {
+                alert('非法文件');// 选择了非法文件，支持的扩展名包括[".wmv", ".avi", ".rm", ".rmvb", ".mpg", ".mpeg", ".3gp", ".mov", ".mp4", ".mkv", ".flv"]
+            });
+            upload.on(upload.EVENTS.IO_ERROR, function (evt, file) {
+                alert('发生了IO错误，可能是文件太大'); // 发生了IO错误，可能是文件太大
+            });
+			
+						//未登录，先点击上传视频，弹出登录框
+			$('#upload_target').click(function(event){
+				if( !dwUDBProxy.isLogin() ){
+					dwUDBProxy.login();
+					event.preventDefault(); 
+					return false;
+				}
+			});
+			
+			if( dwUDBProxy.isLogin() ){
+				upload.init({
+					target: '#upload_target',
+                    client:70,
+                    channelId:'vhuyaunknown',
+                    url:'http://'+window.UPLOAD_DOMAIN+'/index.php',
+				});
+			}
+            // events
+            jqCancelUploadButton.on('click', function (evt) {
+                var fuid = jqCancelUploadButton.data('fuid');
+                if (fuid)
+                {
+                    upload.stop(fuid);
+                    jqBeforeUpload.show();
+                    jqUploading.hide();
+                    upload.show();
+                }
+            });
+
+            jqBeforeUpload.show();
+            jqUploading.hide();
+            
+            
+            $('.preview-more').on('click',function(){
+    			d1.show();
+    		})
+    		
+    		
+    		 $('body').on('click', '.ui-dialog .albumCover__commit', function(){
+		        var cover = $("#selective").val();
+		        var vid = $("#vid").val();
+		        var title = $("#v_title").val();
+		        $("#preview").attr('src',cover);
+		        d1.hide();
+		    });
+		
+		  
+		
+		    $('body').on('click', '.ui-dialog .albumCover__item', function(){
+		        $(this).addClass('on').siblings().removeClass('on');
+		        var src = $(this).attr('data-src');
+		        $("#selective").attr('value',src);
+		    });
+    		
+        });
+
+        
+       
+        
+        $("body").on('click', function(event) {
+            var target = $(event.target);
+            if(target.closest("#gametype-menu").length == 0){
+                $("#gametype-menu").removeClass('u-gametype--active'); 
+            }
+        });
+
+        //简介字数限制
+        $('#video_intro').on('keyup', function(){
+			var intro = $(this).val();
+		    if(parseInt(intro.length) >= 300){
+		    	$(this).val(intro.substr(0,300));
+		    	$('#video_intro_tips em').html(300);
+		    	return ;
+		    }
+			
+		    $('#video_intro_tips em').html(parseInt(intro.length));
+        });
+        
+        var ie = !!window.ActiveXObject;  
+        if(ie){  
+           document.getElementById('v_title').onpropertychange = function(){
+		        	    $("#v_title_alert").hide();
+			   			var intro = $(this).val();
+			   		    if(parseInt(intro.length) >= 50){
+			   		    	$('#title_tips em').html(50);
+			   		    	return ;
+			   		    }
+			   			
+			   		    $('#title_tips em').html(parseInt(intro.length));
+			   		    $("#v_title_alert").hide();
+		    	};  
+		    	
+		    	
+	    	document.getElementById('video_intro').onpropertychange = function(){
+				var intro = $("#video_intro").val();
+			    if(parseInt(intro.length) >= 300){
+			    	$('#video_intro_tips em').html(300);
+			    	return ;
+			    }
+			    $('#video_intro_tips em').html(parseInt(intro.length));
+			};
+        }else{  
+        	document.getElementById('v_title').addEventListener("input",function(){
+        		$("#v_title_alert").hide();
+    			var intro = $(this).val();
+    		    if(parseInt(intro.length) >= 50){
+    		    	$('#title_tips em').html(50);
+    		    	return ;
+    		    }
+    			
+    		    $('#title_tips em').html(parseInt(intro.length));
+    		    $("#v_title_alert").hide();
+        	},false);  
+        	
+        	document.getElementById('video_intro').addEventListener("input",function(){
+        	    var intro = $("#video_intro").val();
+        	    if(parseInt(intro.length) >= 300){
+        	    	$('#video_intro_tips em').html(300);
+        	    	return ;
+        	    }
+        	    $('#video_intro_tips em').html(parseInt(intro.length));
+        	},false); 
+        }  
+
+		$('#v_title').on('keyup', function(){
+			$("#v_title_alert").hide();
+			var intro = $(this).val();
+		    if(parseInt(intro.length) >= 50){
+		    	$('#title_tips em').html(50);
+		    	return ;
+		    }
+			
+			
+		    $('#title_tips em').html(parseInt(intro.length));
+		    $("#v_title_alert").hide();
+		    
+		});
+		
+		$('#v_title').on('blur',function(){
+			$("#v_title_alert").hide();
+			var intro = $(this).val();
+			if(intro == ''){
+				$("#v_title_alert").show();
+			}
+		})
+		
+		
+		$('#source_from').on('keyup', function(){
+			$("#source_type_alert").hide();
+		});
+		
+		
+		
+		$('[name="game_name"]').on('click',function(){
+			$("#game_name_alert").hide();
+        })
+		
+        
+        $('[name="source_type"]').on('click',function(){
+        	var val = $(this).val();
+        	if(val == 2){
+        		$("#source_from").show();
+        	}else{
+        		$("#source_from").hide();
+        		$("#source_from").val('');
+        	}
+        })
+
+      
+
+        $(".save").click(function(){
+        	$("#tags_empty_alert").hide();
+        	$("#v_title_alert").hide();
+        	$("#game_name_alert").hide();
+            var is_submit = false;
+            
+            
+            
+            var sourceType = getRadioValue("source_type");
+    		var sourceFrom = "" ;
+    		if(sourceType == 2){
+    			sourceFrom = $("#source_from").val();
+    		}else{
+    			$("#source_from").val("");
+    			sourceFrom = "";
+    		}
+    		
+    		var game_name = getRadioValue("game_name");
+    		var intro = $('#video_desc').val();
+    		var tags = "" ;
+    		var video_title = $("#v_title").val();
+            var video_intro = $("#video_intro").val();
+            
+            
+            var tagsEmpty = false ;
+            var titleEmpty = false ;
+            //0原创，转载地址允许为空
+            //1转载，转载地址为空
+            //2转载，转载地址不为空
+            var sourceFromEmpty = 0 ;
+            var gameEmpty = false ;
+            
+    		$("#video_tags a").each(function(){
+    			tags += $(this).html().substring(1) + ",";
+    		})
+    		tags = tags.substring(0,tags.length-1);
+    		
+    		if(tags == ''){
+    			$("#tags_empty_alert").show();
+    			tagsEmpty = true ;
+    		}
+
+            if ('' == video_title) { 
+            	$("#v_title_alert").show();
+            	titleEmpty = true ;
+            }
+            
+            if(sourceType == 2){
+            	if(sourceFrom == ''){
+            		sourceFromEmpty = 1;
+            		$("#source_type_alert").show();
+            	}else{
+            		sourceFromEmpty = 2 ;
+            	}
+            }
+
+            if ('undefined' == game_name ){ 
+            	var otherGame = $('.checkbox-tag-others').attr('value');
+            	if(otherGame == '' || undefined == otherGame){
+            		$("#game_name_alert").show();
+                	gameEmpty = true ;
+            	}else{
+            		game_name = otherGame;
+            		$("input[name='other_channel']").val(otherGame);
+            		gameEmpty = false ;
+            	}
+            }else{
+            	gameEmpty = false ;
+            }
+            
+            var tags = "" ;
+            $("#video_tags").find('.u-tag').each(function(){
+            	 tags += $(this).text().split('#')[1]+",";
+            })
+            tags = tags.substring(0,tags.length-1);
+            $("#tags_val").val(tags);
+
+            
+            if(titleEmpty || tagsEmpty || sourceFromEmpty == 1 || gameEmpty){
+            	return ;
+            }
+            
+            if ( video_title.length > 50 ) {
+                alert('标题长度不能超过50字符');
+                return ;
+            }
+            
+            if (video_intro.length > 300) {
+                alert('简介长度不能超过300字符');
+                return ;
+            }
+            
+            if ( 'undefined' != game_name && '' != video_title ) {
+                var options = {
+                        url  : '?r=videomanage/SaveV2',
+                        async: true,
+                        type : 'POST', 
+                        dataType:'json',
+                        success : function(data){
+                            if(data['code'] != '1'){
+                                alert(data['msg']);
+                             }else{
+                            //提交成功后展示信息
+                                $("#video_info_form").hide();
+                                $("#saveStatus").val("finished");
+                                var uploadStatus = $("#uploadStatus").val();
+                                if(uploadStatus == 'finished'){
+                                	$('#upload_success').hide();
+                                	$("#upload_info_complete").show();
+                                	var nickname = $(".u-name").text();
+                                	var info = nickname+"，"+window.fileTitleGlobal+"已提交，视频转码审核中" ;
+                                	$("#upload_info_complete .status-success").text(info);
+                                	
+                                	
+                                	
+                                }else{
+                                	$("#info_complete").show();
+                                }
+                                is_submit = false;
+                            }
+                         },
+                        error : function(){
+                        	 $("#video_info_form").hide();
+                             $("#saveStatus").val("finished");
+                             var uploadStatus = $("#uploadStatus").val();
+                             if(uploadStatus == 'finished'){
+                             	$('#upload_success').hide();
+                             	$("#upload_info_complete").show();
+                             }else{
+                             	$("#info_complete").show();
+                             }
+                             is_submit = false;
+
+                        } 
+                     };
+
+                    if(!is_submit){
+                        is_submit = true;
+                        $('#realauth_form').ajaxSubmit(options);
+                    }
+            };
+        });
+        
+        $(".edit").click(function(){
+            var game_name = $("#show_name").text();
+            var vid = $('#vid').val();
+            if ( '' == vid) {
+                alert('视频不存在');
+                return;
+            };
+            var url = "?r=videomanage/videoedit&vid="+vid;
+            window.open(url);
+        });
+        
+        /*$(window).bind('beforeunload',function(){
+        	var uploadStatus = $("#uploadStatus").val();
+        	if(uploadStatus == 'finished' || uploadStatus != '' ){
+        		return '上传尚未完成，系统可能不会保存您所做的修改';
+        	}
+		});*/
+        
+       /* window.onbeforeunload = function (e) {
+    	  e = e || window.event;
+    	  // 兼容IE8和Firefox 4之前的版本
+    	  var uploadStatus = $("#uploadStatus").val();
+    	  if (e) {
+    		if(uploadStatus != 'finished'){
+    			e.returnValue = '上传尚未完成，系统可能不会保存您所做的修改';
+	      	}
+    	  }
+    	  // Chrome, Safari, Firefox 4+, Opera 12+ , IE 9+
+    	  if(uploadStatus != 'finished'){
+    		  return '上传尚未完成，系统可能不会保存您所做的修改';
+      	  }
+    	};*/
+    	
+    	window.addEventListener("beforeunload", function (e) {
+
+		  var confirmationMessage = '上传尚未完成，系统可能不会保存您所做的修改';
+		  var uploadStatus = $("#uploadStatus").val();
+		 
+		  if(uploadStatus != 'finished' && uploadStatus != ''){
+			  (e || window.event).returnValue = confirmationMessage;     // Gecko and Trident
+		  }
+		  
+		  if(uploadStatus != 'finished' && uploadStatus != ''){
+			  return confirmationMessage;                                // Gecko and WebKit
+		  }
+		});
+        
+        /*window.onbeforeunload = function(event) { 
+        	var uploadStatus = $("#uploadStatus").val();
+        	if(uploadStatus != 'finished'){
+        		return confirm("上传尚未完成，系统可能不会保存您所做的修改"); 
+        	}
+		}*/
+        function checkCover(ele,type){
+        	if(type == 1){
+        		var cover = $(ele).attr('data-src') ;
+            	$("[name='cover']").val(cover);
+            	$("#preview").attr('src',cover);
+            	$(ele).siblings().removeClass('current');
+            	$(ele).addClass('current');
+        	}else{
+        		var cover = $(ele).attr('data-src') ;
+            	$("[name='cover']").val(cover);
+            	$("#preview").attr('src',cover);
+            	$(ele).siblings().removeClass('on');
+            	$(ele).addClass('on');
+        	}
+        	
+        	var html = '<div class="video-focus__preview-bg"><span><i></i>重新上传</span></div>';
+            $("#f").after(html);
+        }
+
+        
+        function getRecTag(channel){
+        	$.ajax({
+        		type:'get',
+        		data:{channel:channel},
+        		dataType:'json',
+        		url:'?r=api/getRecTagByChannel',
+        		success:function(data){
+        			if(data.code == 1){
+        				var html = "推荐标签: " ;
+        				for(var index in data.msg){
+        					html += "<a>#"+data.msg[index]+"</a>" ;
+        				}
+        				$("p.tag-recommend").html(html);
+        			}
+        		}
+        	})
+        }
+        function change() {
+             var pic = document.getElementById("preview");
+             var file = document.getElementById("f");
+             var ext=file.value.substring(file.value.lastIndexOf(".")+1).toLowerCase();
+             // gif在IE浏览器暂时无法显示
+             if(ext=='png'){
+            	 alert("不支持PNG图片"); return;
+             }
+             if(ext!='png'&& ext!='jpg'&&ext!='jpeg'){
+                 alert("文件必须为图片！"); return;
+             }
+
+             
+             var fileSizeOrg = file.fileSize || file.files[0].fileSize || file.files[0].size ;
+             if(fileSizeOrg != 'undefined'){
+             	var fileSize = fileSizeOrg / 1024;
+             	if(fileSize > 500){
+             	   	 alert('图片超过500K！');return ;
+             	    }
+             }
+             // IE浏览器
+             if (document.all) {
+         
+                 file.select();
+                 var reallocalpath = document.selection.createRange().text;
+                 var ie6 = /msie 6/i.test(navigator.userAgent);
+                 // IE6浏览器设置img的src为本地路径可以直接显示图片
+                 if (ie6) pic.src = reallocalpath;
+                 else {
+                     // 非IE6版本的IE由于安全问题直接设置img的src无法显示本地图片，但是可以通过滤镜来实现
+                     pic.style.filter = "progid:DXImageTransform.Microsoft.AlphaImageLoader(sizingMethod='image',src=\"" + reallocalpath + "\")";
+                     // 设置img的src为base64编码的透明图片 取消显示浏览器默认图片
+                     pic.src = 'data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==';
+                 }
+             }else{
+                 html5Reader(file);
+             }
+             
+             var html = '<div class="video-focus__preview-bg"><span><i></i>重新上传</span></div>';
+             $("#f").after(html);
+        }
+         
+        function html5Reader(file){
+             var file = file.files[0];
+             var reader = new FileReader();
+             reader.readAsDataURL(file);
+             reader.onload = function(e){
+                var pic = document.getElementById("preview");
+                pic.src=this.result;
+            }
+        }
+        
+        function getRadioValue(radioName) {
+            var chkRadio = document.getElementsByName(radioName);
+            for (var i = 0; i < chkRadio.length; i++) {
+                if (chkRadio[i].checked)
+                    return chkRadio[i].value;
+            }
+            return "undefined";
+        }
+        
+        function modifyInfo(){
+        	$("#video_info_form").show();
+        	$("#info_complete").hide();
+        	$("#saveStatus").val("");
+        }
+        
+        
+        function closePop(){
+        	$("#uploadMask").hide();
+        	$("#uploadPopBlock").hide();
+        }
+        
+        function showPop(){
+        	$("#uploadMask").show();
+        	$("#uploadPopBlock").show();
+        }
