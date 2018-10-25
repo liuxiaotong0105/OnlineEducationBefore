@@ -35,7 +35,11 @@ spring:
   # 数据库链接
   datasource:
     driver-class-name: com.mysql.jdbc.Driver
+<<<<<<< HEAD
     url: jdbc:mysql://192.168.31.8:3306/edu
+=======
+    url: jdbc:mysql://192.168.31.8:3306/ceshiedu
+>>>>>>> e1715199ebf80a549510bbccc29ae0f790a98bbe
     username: root
     password: root
 
