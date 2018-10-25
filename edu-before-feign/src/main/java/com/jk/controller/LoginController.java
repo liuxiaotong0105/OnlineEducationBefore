@@ -74,7 +74,6 @@ public class LoginController {
             return hashMap;
         }
         hashMap.put("code", 0);
-        userInfo.setStatus("1");
         session.setAttribute("user", userInfo);
         return hashMap;
     }
@@ -110,10 +109,6 @@ public class LoginController {
      */
     @RequestMapping("toMain")
     public String toMain(HttpServletRequest request) {
-
-
-
-
         String status = "";
         UserBean attribute =  (UserBean) request.getSession().getAttribute("user");
         if (attribute != null) {
@@ -123,7 +118,6 @@ public class LoginController {
         }else{
             request.setAttribute("status",status);
         }
-
         return "view/index";
 
 
@@ -199,7 +193,6 @@ public class LoginController {
             result.put("msg","验证码错误");
             return result;
         }
-        userBean.setStatus("1");
         session.setAttribute("user",userBean);
         result.put("code", 0);
         return result;
