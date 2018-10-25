@@ -28,32 +28,72 @@
 <!-- Header Area -->
 <header class="header-area inner-page">
     <!-- Header Top Area -->
-    <section class="header-top">
-        <div class="container">
-            <div class="row">
-                <div class="col-sm-12 col-xs-12">
-                    <div class="header-elements pull-right">
-                        <ul class="social-icon pull-left">
-                            <li><a href="#"><i class="fa fa-qq"></i></a></li>
-                            <li><a href="#"><i class="fa fa-wechat"></i></a></li>
-                        </ul>
-                        <div class="language pull-left">
-                            <a href="#">
-                                <i class="icon-font"></i>
-                                <span>中文站</span>
+    <ul th:if="${status}==''">
+        <!-- Header Top Area -->
+        <section class="header-top">
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-12 col-xs-12">
+                        <div class="header-elements pull-right">
+                            <ul class="social-icon pull-left">
+                                <li><a href="#"><i class="fa fa-qq"></i></a></li>
+                                <li><a href="#"><i class="fa fa-wechat"></i></a></li>
+                            </ul>
+                            <div class="language pull-left">
+                                <a href="#">
+                                    <i class="icon-font"></i>
+                                    <span>中文站</span>
 
-                            </a>
-                        </div>
-                        <div class="login-or-signup pull-left">
-                            <a href="../tozhu
-"><i class="icon-user"></i><span>登录</span></a>
-                            <a href="#"><i class="icon-user"></i><span>登录</span></a>
+                                </a>
+                            </div>
+                            <div class="login-or-signup pull-left">
+                                <a href="../login/toLogin"><i class="icon-user"></i><span>注册/登录</span></a>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
+    </ul>
+    <!--登录后-->
+    <ul th:if="${status}==1">
+        <!-- Header Top Area -->
+        <section class="header-top">
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-12 col-xs-12">
+                        <div class="header-elements pull-right">
+                            <ul class="social-icon pull-left">
+                                <li><a href="#"><i class="fa fa-qq"></i></a></li>
+                                <li><a href="#"><i class="fa fa-wechat"></i></a></li>
+                            </ul>
+                            <div class="language pull-left">
+                                <a href="#">
+                                    <i class="icon-font"></i>
+                                    <span>中文站</span>
+
+                                </a>
+                            </div>
+                            <div class="login-or-signup pull-left">
+                                欢迎!♚
+
+                                <a  class="nick"  >
+                                    <span th:text="${user.name}"></span>
+                                    <em class="arrow"></em>
+                                </a>的登录!&nbsp;&nbsp;
+
+
+                                <a href="../login/removeUser">注销</a>
+
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </section>
+    </ul>
     <!-- /.header-top -->
     <nav class="navigation">
         <div class="container">
@@ -64,7 +104,7 @@
                     </div>
                     <ul class="main-menu pull-right">
                         <li>
-                            <a href="../index.html">首页</a>
+                            <a href="../login/toMain">首页</a>
 
                         </li>
                         <li class="menu-has-child">
