@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Error>
+  <Code>MirrorFailed</Code>
+  <Message>Error status : 502 from mirror host, should return 200 OK.</Message>
+  <RequestId>5BCD97EB92441293814FB97B</RequestId>
+  <HostId>vhuya-img.oss-cn-hangzhou.aliyuncs.com</HostId>
+</Error>
