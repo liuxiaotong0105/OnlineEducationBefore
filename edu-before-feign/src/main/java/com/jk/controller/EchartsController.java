@@ -1,7 +1,10 @@
 package com.jk.controller;
 
+import com.jk.modelapi.UserBean;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+
+import javax.servlet.http.HttpServletRequest;
 
 /**
  *
@@ -26,7 +29,19 @@ public class EchartsController {
      * @return数学
      */
     @RequestMapping("shuecharts")
-    public String toshuecharts(){
+    public String toshuecharts(HttpServletRequest request){
+
+        String status = "";
+        UserBean attribute =  (UserBean) request.getSession().getAttribute("user");
+        if (attribute != null) {
+            status = attribute.getStatus();
+            request.setAttribute("user",attribute);
+            request.setAttribute("status",status);
+        }else{
+            request.setAttribute("status",status);
+        }
+
+
         return "/xiao/shuecharts";
     }
 
@@ -35,7 +50,17 @@ public class EchartsController {
      * @return奥数
      */
     @RequestMapping("aoecharts")
-    public String aoecharts(){
+    public String aoecharts(HttpServletRequest request){
+        String status = "";
+        UserBean attribute =  (UserBean) request.getSession().getAttribute("user");
+        if (attribute != null) {
+            status = attribute.getStatus();
+            request.setAttribute("user",attribute);
+            request.setAttribute("status",status);
+        }else{
+            request.setAttribute("status",status);
+        }
+
         return "/xiao/aoecharts";
     }
 
@@ -44,7 +69,16 @@ public class EchartsController {
      * @return英语
      */
     @RequestMapping("yingecharts")
-    public String yingecharts(){
+    public String yingecharts(HttpServletRequest request){
+        String status = "";
+        UserBean attribute =  (UserBean) request.getSession().getAttribute("user");
+        if (attribute != null) {
+            status = attribute.getStatus();
+            request.setAttribute("user",attribute);
+            request.setAttribute("status",status);
+        }else{
+            request.setAttribute("status",status);
+        }
         return "/xiao/yingecharts";
     }
 
@@ -53,7 +87,16 @@ public class EchartsController {
      * @return语文
      */
     @RequestMapping("yuecharts")
-    public String yuecharts(){
+    public String yuecharts(HttpServletRequest request){
+        String status = "";
+        UserBean attribute =  (UserBean) request.getSession().getAttribute("user");
+        if (attribute != null) {
+            status = attribute.getStatus();
+            request.setAttribute("user",attribute);
+            request.setAttribute("status",status);
+        }else{
+            request.setAttribute("status",status);
+        }
         return "/xiao/yuecharts";
     }
 
@@ -66,7 +109,16 @@ public class EchartsController {
      * @return语文
      */
     @RequestMapping("cyuecharts")
-    public String cyuecharts(){
+    public String cyuecharts(HttpServletRequest request){
+        String status = "";
+        UserBean attribute =  (UserBean) request.getSession().getAttribute("user");
+        if (attribute != null) {
+            status = attribute.getStatus();
+            request.setAttribute("user",attribute);
+            request.setAttribute("status",status);
+        }else{
+            request.setAttribute("status",status);
+        }
         return "/chu/yuecharts";
     }
 
@@ -75,7 +127,16 @@ public class EchartsController {
      * @return数学
      */
     @RequestMapping("cshuecharts")
-    public String cshuecharts(){
+    public String cshuecharts(HttpServletRequest request){
+        String status = "";
+        UserBean attribute =  (UserBean) request.getSession().getAttribute("user");
+        if (attribute != null) {
+            status = attribute.getStatus();
+            request.setAttribute("user",attribute);
+            request.setAttribute("status",status);
+        }else{
+            request.setAttribute("status",status);
+        }
         return "/chu/shuecharts";
     }
 
@@ -84,7 +145,16 @@ public class EchartsController {
      * @return英语
      */
     @RequestMapping("cyingecharts")
-    public String cyingecharts(){
+    public String cyingecharts(HttpServletRequest request){
+        String status = "";
+        UserBean attribute =  (UserBean) request.getSession().getAttribute("user");
+        if (attribute != null) {
+            status = attribute.getStatus();
+            request.setAttribute("user",attribute);
+            request.setAttribute("status",status);
+        }else{
+            request.setAttribute("status",status);
+        }
         return "/chu/yingecharts";
     }
 
@@ -93,7 +163,16 @@ public class EchartsController {
      * @return物理
      */
     @RequestMapping("cwuecharts")
-    public String cwuecharts(){
+    public String cwuecharts(HttpServletRequest request){
+        String status = "";
+        UserBean attribute =  (UserBean) request.getSession().getAttribute("user");
+        if (attribute != null) {
+            status = attribute.getStatus();
+            request.setAttribute("user",attribute);
+            request.setAttribute("status",status);
+        }else{
+            request.setAttribute("status",status);
+        }
         return "/chu/wuecharts";
     }
 
@@ -102,7 +181,16 @@ public class EchartsController {
      * @return科学
      */
     @RequestMapping("ckeecharts")
-    public String ckeecharts(){
+    public String ckeecharts(HttpServletRequest request){
+        String status = "";
+        UserBean attribute =  (UserBean) request.getSession().getAttribute("user");
+        if (attribute != null) {
+            status = attribute.getStatus();
+            request.setAttribute("user",attribute);
+            request.setAttribute("status",status);
+        }else{
+            request.setAttribute("status",status);
+        }
         return "/chu/keecharts";
     }
 
@@ -111,7 +199,16 @@ public class EchartsController {
      * @return化学
      */
     @RequestMapping("chuaecharts")
-    public String chuaecharts(){
+    public String chuaecharts(HttpServletRequest request){
+        String status = "";
+        UserBean attribute =  (UserBean) request.getSession().getAttribute("user");
+        if (attribute != null) {
+            status = attribute.getStatus();
+            request.setAttribute("user",attribute);
+            request.setAttribute("status",status);
+        }else{
+            request.setAttribute("status",status);
+        }
         return "/chu/huaecharts";
     }
     /**
@@ -123,7 +220,16 @@ public class EchartsController {
      * @return语文
      */
     @RequestMapping("gyuecharts")
-    public String gyuecharts(){
+    public String gyuecharts(HttpServletRequest request){
+        String status = "";
+        UserBean attribute =  (UserBean) request.getSession().getAttribute("user");
+        if (attribute != null) {
+            status = attribute.getStatus();
+            request.setAttribute("user",attribute);
+            request.setAttribute("status",status);
+        }else{
+            request.setAttribute("status",status);
+        }
         return "/gao/yuecharts";
     }
 
@@ -132,7 +238,16 @@ public class EchartsController {
      * @return数学
      */
     @RequestMapping("gshuecharts")
-    public String gshuecharts(){
+    public String gshuecharts(HttpServletRequest request){
+        String status = "";
+        UserBean attribute =  (UserBean) request.getSession().getAttribute("user");
+        if (attribute != null) {
+            status = attribute.getStatus();
+            request.setAttribute("user",attribute);
+            request.setAttribute("status",status);
+        }else{
+            request.setAttribute("status",status);
+        }
         return "/gao/shuecharts";
     }
 
@@ -141,7 +256,16 @@ public class EchartsController {
      * @return英语
      */
     @RequestMapping("gyingecharts")
-    public String gyingecharts(){
+    public String gyingecharts(HttpServletRequest request){
+        String status = "";
+        UserBean attribute =  (UserBean) request.getSession().getAttribute("user");
+        if (attribute != null) {
+            status = attribute.getStatus();
+            request.setAttribute("user",attribute);
+            request.setAttribute("status",status);
+        }else{
+            request.setAttribute("status",status);
+        }
         return "/gao/yingecharts";
     }
 
@@ -150,7 +274,16 @@ public class EchartsController {
      * @return物理
      */
     @RequestMapping("gwuecharts")
-    public String gwuecharts(){
+    public String gwuecharts(HttpServletRequest request){
+        String status = "";
+        UserBean attribute =  (UserBean) request.getSession().getAttribute("user");
+        if (attribute != null) {
+            status = attribute.getStatus();
+            request.setAttribute("user",attribute);
+            request.setAttribute("status",status);
+        }else{
+            request.setAttribute("status",status);
+        }
         return "/gao/wuecharts";
     }
 
@@ -159,7 +292,16 @@ public class EchartsController {
      * @return生物
      */
     @RequestMapping("gshengecharts")
-    public String gshengecharts(){
+    public String gshengecharts(HttpServletRequest request){
+        String status = "";
+        UserBean attribute =  (UserBean) request.getSession().getAttribute("user");
+        if (attribute != null) {
+            status = attribute.getStatus();
+            request.setAttribute("user",attribute);
+            request.setAttribute("status",status);
+        }else{
+            request.setAttribute("status",status);
+        }
         return "/gao/shengecharts";
     }
 
@@ -168,7 +310,16 @@ public class EchartsController {
      * @return化学
      */
     @RequestMapping("ghuaecharts")
-    public String ghuaecharts(){
+    public String ghuaecharts(HttpServletRequest request){
+        String status = "";
+        UserBean attribute =  (UserBean) request.getSession().getAttribute("user");
+        if (attribute != null) {
+            status = attribute.getStatus();
+            request.setAttribute("user",attribute);
+            request.setAttribute("status",status);
+        }else{
+            request.setAttribute("status",status);
+        }
         return "/gao/huaecharts";
     }
 }
