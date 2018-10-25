@@ -35,15 +35,7 @@ spring:
   # 数据库链接
   datasource:
     driver-class-name: com.mysql.jdbc.Driver
-<<<<<<< HEAD
-    url: jdbc:mysql://127.0.0.1:3306/ceshiedu
-=======
-<<<<<<< HEAD
     url: jdbc:mysql://192.168.31.8:3306/edu
-=======
-    url: jdbc:mysql://192.168.31.8:3306/ceshiedu
->>>>>>> e1715199ebf80a549510bbccc29ae0f790a98bbe
->>>>>>> 8c8d941d14f3588b2d2a9b2e796e8c24a8aee938
     username: root
     password: root
 
@@ -52,8 +44,9 @@ eureka:
     serviceUrl:
       defaultZone: http://localhost:8090/eureka/
 
-
-
+mybatis:
+  type-aliases-package: com.jk.modelapi
+  mapper-locations: classpath:mapper/*.xml
 
 
 
