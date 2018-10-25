@@ -13,8 +13,8 @@
 
 	<insert id="addUser" parameterType="com.jk.modelapi.UserBean">
 		insert into t_login_user
-		 (id,name,loginname,password,phone)
-		values (#{id},#{name},#{loginname},#{password},#{phone})
+		 (id,name,loginname,password,phone,status)
+		values (#{id},#{name},#{loginname},#{password},#{phone},#{status})
 	</insert>
 
 
