@@ -2,8 +2,11 @@ package com.jk.controller;
 
 import com.jk.modelapi.Ce;
 import com.jk.modelapi.Movie;
+import com.jk.modelapi.UserBean;
 import com.jk.service.CeService;
 import com.jk.util.OSSClientUtil;
+import com.jk.util.UserUtil;
+import org.apache.catalina.servlet4preview.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -51,8 +54,10 @@ public class CeController {
         return "shiping1";
     }
     @RequestMapping("shangchuan")
-    public String shangchuan(){
-
+    public String shangchuan(HttpServletRequest request,Model model){
+        UserBean userInfo = UserUtil.getUserInfo(request);
+        model.addAttribute("userName",userInfo.getName());
+        model.addAttribute("userPhoto",userInfo.getPhone());
         return "shangchuan";
     }
     //oss图片上传
@@ -74,17 +79,21 @@ public class CeController {
         return map ;
     }
     @RequestMapping("toAddMovie")
-    public String toAddMovie(String movieUrl, Model model){
+    public String toAddMovie(String movieUrl, Model model,HttpServletRequest request){
+        UserBean userInfo = UserUtil.getUserInfo(request);
+        model.addAttribute("userName",userInfo.getName());
+        model.addAttribute("userPhoto",userInfo.getPhone());
           model.addAttribute("movieUrl",movieUrl);
           return "add";
     }
 
     @RequestMapping("addMovie")
     @ResponseBody
-    public Boolean addMovie(Movie movie){
+    public Boolean addMovie(Movie movie,HttpServletRequest request){
         try {
-
-            movie.setTeacherid(4);
+            int userId = UserUtil.getUserId(request);
+            movie.setTeacherid(userId);
+            movie.setTeacherName(UserUtil.getUserInfo(request).getName());
             ceService.addMovie(movie);
         } catch (Exception e) {
             e.printStackTrace();

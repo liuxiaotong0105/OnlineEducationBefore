@@ -28,11 +28,29 @@ public class Movie implements Serializable {
 
     private Integer movieStatus;
 
-    private Integer teacherid;
+    private Integer  teacherid;
 
     private String moviePrice;
 
+    private String movieClass;
 
+    private String teacherName;
+
+    public String getMovieClass() {
+        return movieClass;
+    }
+
+    public void setMovieClass(String movieClass) {
+        this.movieClass = movieClass;
+    }
+
+    public String getTeacherName() {
+        return teacherName;
+    }
+
+    public void setTeacherName(String teacherName) {
+        this.teacherName = teacherName;
+    }
 
     public Integer getMovieId() {
         return movieId;

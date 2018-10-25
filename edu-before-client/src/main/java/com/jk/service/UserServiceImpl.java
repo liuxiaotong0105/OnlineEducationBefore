@@ -27,8 +27,8 @@ public class UserServiceImpl {
     }
 
     public void addUser(UserBean userBean) {
-        String uuId = StringUtil.getUUId();
-        userBean.setId(uuId);
+
+
         userMapper.addUser(userBean);
     }
 }
