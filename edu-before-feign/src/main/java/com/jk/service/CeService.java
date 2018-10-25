@@ -1,5 +1,6 @@
 package com.jk.service;
 
+import com.jk.modelapi.Movie;
 import com.jk.serviceapi.CeServiceApi;
 import org.springframework.cloud.openfeign.FeignClient;
 
@@ -15,5 +16,6 @@ import org.springframework.cloud.openfeign.FeignClient;
 
 @FeignClient(value = "service-edubefores")
 public interface CeService extends CeServiceApi {
+
 
 }

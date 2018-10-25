@@ -1,8 +1,10 @@
 package com.jk.controller;
 
 import com.jk.modelapi.Ce;
+import com.jk.modelapi.Movie;
 import com.jk.serviceapi.CeServiceApi;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -26,6 +28,11 @@ public class CeController {
     public Ce queryCe(){
 
         return ceServiceApi.queryCe();
+    }
+
+    @RequestMapping(value = "movie/addMovie",method = RequestMethod.POST)
+    public void addMovie(@RequestBody Movie movie){
+        ceServiceApi.addMovie(movie);
     }
 
 

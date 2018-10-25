@@ -23,6 +23,7 @@ public class UserBean implements Serializable {
 
     private String status;
 
+
     private String photo;
 
     public String getPhoto() {
@@ -32,6 +33,7 @@ public class UserBean implements Serializable {
     public void setPhoto(String photo) {
         this.photo = photo;
     }
+
 
     public String getStatus() {
         return status;

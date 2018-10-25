@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ExternalStorageConfigurationManager" enabled="true" />
+  <component name="JavaScriptSettings">
+    <option name="languageLevel" value="ES6" />
+  </component>
   <component name="MavenProjectsManager">
     <option name="originalFiles">
       <list>
@@ -10,6 +13,11 @@
         <option value="$PROJECT_DIR$/edu-before-feign/pom.xml" />
       </list>
     </option>
+  </component>
+  <component name="ProjectPlainTextFileTypeManager">
+    <file url="file://$PROJECT_DIR$/edu-before-feign/src/main/resources/templates/echarts/shuecharts.html" />
+    <file url="file://$PROJECT_DIR$/edu-before-feign/src/main/resources/templates/echarts/yingecharts.html" />
+    <file url="file://$PROJECT_DIR$/edu-before-feign/src/main/resources/templates/echarts/yuecharts.html" />
   </component>
   <component name="ProjectRootManager" version="2" languageLevel="JDK_1_8" project-jdk-name="1.8" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/out" />

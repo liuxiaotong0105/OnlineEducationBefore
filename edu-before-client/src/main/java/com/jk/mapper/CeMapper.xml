@@ -6,7 +6,11 @@
 	<select id="queryCe" resultType="com.jk.modelapi.Ce" >
 		select * from t_ce
 	</select>
-	
+	<insert id="addMovie" useGeneratedKeys="true" keyProperty="movieId">
+		INSERT into t_movie
+		 (movieName,movieInfo,moviePrice,movieStatus,movieType,movieUrl,moviePicther,teacherid) VALUES
+			(#{movieName},#{movieInfo},#{moviePrice},0,#{movieType},#{movieUrl},#{moviePicther},#{teacherid})
+	</insert>
 
 
 

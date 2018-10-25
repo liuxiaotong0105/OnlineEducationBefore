@@ -1,13 +1,16 @@
 package com.jk.controller;
 
 
+import com.jk.modelapi.Movie;
 import com.jk.modelapi.UserBean;
 import com.jk.serviceapi.LoginServiceApi;
 
 import com.jk.util.*;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -16,9 +19,8 @@ import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.Map;
+import java.io.IOException;
+import java.util.*;
 import java.util.concurrent.TimeUnit;
 
 /**
@@ -35,6 +37,8 @@ public class LoginController {
 
     @Resource
     private RedisTemplate<String,String> redisTemplate;
+
+
 
 
     @RequestMapping("toLogin")
@@ -70,7 +74,8 @@ public class LoginController {
             return hashMap;
         }
         hashMap.put("code", 0);
-        session.setAttribute(session.getId(), userInfo);
+        userInfo.setStatus("1");
+        session.setAttribute("user", userInfo);
         return hashMap;
     }
 
@@ -105,6 +110,10 @@ public class LoginController {
      */
     @RequestMapping("toMain")
     public String toMain(HttpServletRequest request) {
+
+
+
+
         String status = "";
         UserBean attribute =  (UserBean) request.getSession().getAttribute("user");
         if (attribute != null) {
@@ -114,7 +123,11 @@ public class LoginController {
         }else{
             request.setAttribute("status",status);
         }
+
         return "view/index";
+
+
+
     }
 
     /**
@@ -186,10 +199,24 @@ public class LoginController {
             result.put("msg","验证码错误");
             return result;
         }
-        session.setAttribute(session.getId(),phone);
+        userBean.setStatus("1");
+        session.setAttribute("user",userBean);
         result.put("code", 0);
         return result;
     }
+    /**
+     * @return注销
+     */
+
+    @RequestMapping("removeUser")
+    public String removeUser(HttpServletRequest request) {
+        HttpSession session = request.getSession();
+        session.removeAttribute("user");
+        return "redirect:toMain";
+    }
+
+
+
     @RequestMapping("toRegistered")
     public String toRegistered(){
 
@@ -230,7 +257,5 @@ public class LoginController {
         hashMap.put("msg", "注册成功");
         return hashMap;
     }
-
-
 
 }
