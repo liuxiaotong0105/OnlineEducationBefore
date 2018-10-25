@@ -27,87 +27,179 @@
 <body>
 <!-- Header Area -->
 <header class="header-area inner-page">
-	<!-- Header Top Area -->
-	<section class="header-top">
-		<div class="container">
-			<div class="row">
-				<div class="col-sm-12 col-xs-12">
-					<div class="header-elements pull-right">
-						<ul class="social-icon pull-left">
-							<li><a href="#"><i class="fa fa-facebook"></i></a></li>
-							<li><a href="#"><i class="fa fa-twitter"></i></a></li>
-							<li><a href="#"><i class="fa fa-google-plus"></i></a></li>
-							<li><a href="#"><i class="fa fa-instagram"></i></a></li>
-						</ul>
-						<div class="language pull-left">
-							<a href="#">
-								<i class="icon-translator"></i>
-								<span>English</span>
-								<i class="fa fa-angle-down"></i>
-							</a>
-						</div>
-						<div class="login-or-signup pull-left">
-							<a href="#"><i class="icon-user"></i><span>Login/sign up</span></a>
+	<ul th:if="${status}==''">
+		<section class="header-top">
+			<div class="container">
+				<div class="row">
+					<div class="col-sm-12 col-xs-12" background-color="red">
+						<div class="header-elements pull-right">
+							<ul class="social-icon pull-left">
+								<li>
+									<a target="_blank" href="http://wpa.qq.com/msgrd?v=3&uin=2218050300&site=qq&menu=yes"><i class="fa fa-qq"></i></a>
+
+								</li>
+							</ul>
+							<div class="language pull-left">
+								<a href="#">
+									<i class="icon-font"></i>
+									<span>中文站</span>
+								</a>
+							</div>
+							<div class="login-or-signup pull-left">
+								<a href="../login/toLogin"><i class="icon-user"></i><span>注册/登录</span></a>
+							</div>
 						</div>
 					</div>
 				</div>
 			</div>
-		</div>
-	</section>
+		</section>
+	</ul>
+	<!--登录后-->
+	<!-- Header Top Area -->
+	<ul th:if="${status}==1">
+		<section class="header-top">
+			<div class="container">
+				<div class="row">
+					<div class="col-sm-12 col-xs-12">
+						<div class="header-elements pull-right">
+							<ul class="social-icon pull-left">
+								<li>
+									<a target="_blank" href="http://wpa.qq.com/msgrd?v=3&uin=2218050300&site=qq&menu=yes"><i class="fa fa-qq"></i></a></li>
+							</ul>
+							<div class="language pull-left">
+								<a href="#">
+									<i class="icon-font"></i>
+									<span>中文站</span>
+								</a>
+							</div>
+							<div class="login-or-signup pull-left">
+								欢迎!
+								<span class="photo">
+                                             <img  src="/images/rebc.gif" width="25px">
+                                        </span>
+								<a  class="nick"  >
+									<span th:text="${user.name}"></span>
+									<em class="arrow"></em>
+								</a>的登录!
+								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+								<a href="../login/removeUser">注销</a>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+	</ul>
+
+	<!-- Header Top Area -->
+	<ul th:if="${status}==2">
+		<section class="header-top">
+			<div class="container">
+				<div class="row">
+					<div class="col-sm-12 col-xs-12">
+						<div class="header-elements pull-right">
+							<ul class="social-icon pull-left">
+								<li>
+									<a target="_blank" href="http://wpa.qq.com/msgrd?v=3&uin=2218050300&site=qq&menu=yes"><i class="fa fa-qq"></i></a></li>
+							</ul>
+							<div class="language pull-left">
+								<a href="#">
+									<i class="icon-font"></i>
+									<span>中文站</span>
+
+								</a>
+							</div>
+							<div class="login-or-signup pull-left">
+								欢迎!
+								<span class="photo">
+                                         <img  src="/images/rebc.gif" width="25px">
+                                    </span>
+								<a  class="nick"  >
+									<span th:text="${user.name}"></span>
+									<em class="arrow"></em>
+								</a>&nbsp;的登录!
+								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+								<a href="../login/removeUser">注销</a>
+								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+								<a href="../movie/shangchuan">上传视频</a>
+								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+								<a href="#">去直播</a>
+								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+								<a href="../money/tobuy">已购买视频</a>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+	</ul>
 	<!-- /.header-top -->
 	<nav class="navigation">
 		<div class="container">
 			<div class="row">
 				<div class="col-sm-12 col-xs-12">
 					<div class="logo pull-left">
-						<a href="../index.html"><img alt="Kidzy" src="../images/home1/logo.png"></a> 
+						<a href="../index.html"><img alt="Kidzy" src="/images/home1/logo.png"></a>
 					</div>
 					<ul class="main-menu pull-right">
-						<li class="menu-has-child">
-							<a href="../index.html">Home</a>
-							<ul>
-								<li><a href="index2.html">Home 2</a></li>
-								<li><a href="index3.html">Home 3</a></li>
-							</ul>
+						<li>
+							<a href="../login/toMain">首页</a>
+
 						</li>
-						<li><a href="../about-us.html">About us</a></li>
 						<li class="menu-has-child">
-							<a href="#">Pages</a>
+							<a href="#">课程</a>
 							<ul>
 								<li>
-									<a href="../event.html">Event</a>
+									<a href="#">小学</a>
 									<ul>
-										<li><a href="event-details.html">Event Details</a></li>
+										<li><a href="../shuecharts">数学</a></li>
+										<li><a href="../yuecharts">语文</a></li>
+										<li><a href="../yingecharts">英语</a></li>
+										<li><a href="../aoecharts">数理逻辑训练</a></li>
 									</ul>
 								</li>
-								<li><a href="routine.html">Routine</a></li>
-								<li><a href="contact.html">Contact</a></li>
-								<li><a href="404.html">404</a></li>
-								<li><a href="coming-soon.html">Coming Soon</a></li>
+								<li><a href="#">初中</a>
+									<ul>
+										<li><a href="../cshuecharts">数学</a></li>
+										<li><a href="../cyuecharts">语文</a></li>
+										<li><a href="../cyingecharts">英语</a></li>
+										<li><a href="../ckeecharts">科学</a></li>
+										<li><a href="../chuaecharts">化学</a></li>
+										<li><a href="../cwuecharts">物理</a></li>
+									</ul>
+								</li>
+								<li><a href="#">高中</a>
+									<ul>
+										<li><a href="../gshuecharts">数学</a></li>
+										<li><a href="../gyuecharts">语文</a></li>
+										<li><a href="../gyingecharts">英语</a></li>
+										<li><a href="../gshengecharts">生物</a></li>
+										<li><a href="../ghuaecharts">化学</a></li>
+										<li><a href="../gwuecharts">物理</a></li>
+									</ul>
+								</li>
 							</ul>
 						</li>
-						<li><a href="javascript:tobuy()">已购买</a></li>
-						<li class="menu-has-child">
-							<a href="class.html">Classes</a>
-							<ul>
-								<li><a href="class-details.html">Classes Details</a></li>
-							</ul>
-						</li>
-						<li class="menu-has-child">
-							<a href="blog.html">Blog</a>
-							<ul>
-								<li><a href="../blog-details.html">Blog Details</a></li>
-							</ul>
-						</li>
-						<li class="menu-has-child">
-							<a href="../teacher.html">Teacher</a>
-							<ul>
-								<li><a href="teacher-details.html">Teacher Details</a></li>
-							</ul>
+
+						<li><a href="shortcode.html">教学视频</a></li>
+						<li>
+							<a href="class-details.html">正在直播</a>
+
 						</li>
 						<li>
-							<a href="#" id="search-pop"><i class="fa fa-search"></i></a>
+							<a href="blog-details.html">官方博客</a>
+
 						</li>
+						<li>
+							<a href="teacher.html">师资力量</a>
+
+						</li>
+
 					</ul>
 					<div class="mobile-menu hidden-lg hidden-md hidden-sm">
 						<span></span>
@@ -118,12 +210,7 @@
 				</div>
 			</div>
 		</div>
-		<div class="search-area">
-			<form action="#" method="post">
-				<input type="search" name="search" placeholder="Enter your Search Text Here....">
-			</form>
-			<a href="#" class="search-close"><i class="fa fa-times"></i></a>
-		</div>
+
 	</nav>
 </header>
 <!-- /.header-area -->
@@ -191,65 +278,69 @@
 
 <
 <!-- Footer Section -->
-<footer class="footer-section">
+<section class="footer-section">
 	<div class="container">
 		<div class="row">
-			<div class="col-md-4 col-sm-6 col-xs-12 text-left">
-				<div class="about-widget">
-					<div class="footer-logo">
-						<a href="../index.html"><img alt="" src="../images/home1/footer-logo.png"></a>
-					</div>
-					<p>
-						生命不息,奔腾不止,孩纸努力学吧
+			<div class="col-sm-12 col-xs-12">
+				<div class="title-with-icon text-center">
+					<img alt="" src="/images/home1/logo.png">
+					<p class="subtitle-2">
+						“小天鹅”隶属于北京金科1803A二组，是中小学教育线上新型平台。创立于北京西三旗。致力于“让学习更有效”，以生动为特色，为注重自我提升的中小学生提供高品质线上教育。<br>
 					</p>
-					<span>&copy; 2016 Kidzy School</span>
-					<ul class="social-icon">
-						<li><a href="#"><i class="fa fa-facebook"></i></a></li>
-						<li><a href="#"><i class="fa fa-twitter"></i></a></li>
-						<li><a href="#"><i class="fa fa-google-plus"></i></a></li>
-						<li><a href="#"><i class="fa fa-instagram"></i></a></li>
-					</ul>
 				</div>
 			</div>
-			<div class="col-md-2 col-sm-6 col-xs-12 text-left">
-				<div class="footer-widget">
-					<h3>Qucik Link</h3>
-					<ul>
-						<li><a href="#">Home</a></li>
-						<li><a href="#">About</a></li>
-						<li><a href="#">Gallery</a></li>
-						<li><a href="#">Blog</a></li>
-						<li><a href="#">Contact</a></li>
-					</ul>
+		</div>
+		<div class="row">
+			<div class="col-sm-3 col-xs-12 text-center">
+				<div class="single-facility">
+
+					<font size="5" color="#FFFFFF">优秀的1对1教育品牌</font><br><br>
+					<p class="subtitle-2">创办超过一周时间<br><br>
+						600万+注册学员<br><br>
+						配备50000+名老师<br><br>
+						超过3000人的服务团队<br><br>
+					</p>
 				</div>
 			</div>
-			<div class="col-md-2 col-sm-6 col-xs-12 text-left">
-				<div class="footer-widget">
-					<h3>Classes</h3>
-					<ul>
-						<li><a href="#">Happy Kiddo</a></li>
-						<li><a href="#">Junior Lambs</a></li>
-						<li><a href="#">Master Mind</a></li>
-						<li><a href="#">Rabbit House</a></li>
-						<li><a href="#">Terrific Tigers</a></li>
-					</ul>
+			<div class="col-sm-3 col-xs-12 text-center">
+				<div class="single-facility two">
+
+					<font size="5" color="#FFFFFF">推荐资讯</font><br><br>
+					<p class="subtitle-2">
+						学生讲堂<br><br>
+						掌门新闻<br><br>
+						家长学堂<br><br>
+						学生讲堂<br><br>
+					</p>
 				</div>
 			</div>
-			<div class="col-md-4 col-sm-6 col-xs-12">
-				<div class="footer-widget">
-					<h3>Newsletter</h3>
-					<p>Copyright &copy; 2016.Company name All rights reserved.More Templates <a href="http://www.cssmoban.com/" target="_blank" title="模板之家">模板之家</a> - Collect from <a href="http://www.cssmoban.com/" title="网页模板" target="_blank">网页模板</a></p>
-					<form action="#" method="post" class="subscribe-form">
-						<input type="email" name="email" placeholder="Your email Id">
-						<button class="primary-btn pull-right"><span>Submit</span></button>
-						<div class="clearfix"></div>
-					</form>
+			<div class="col-sm-3 col-xs-12 text-center">
+				<div class="single-facility three">
+
+					<font size="5" color="#FFFFFF">产品&服务</font><br><br>
+					<p class="subtitle-2">
+						功能更新<br><br>
+						专题推荐<br><br>
+						新课发布<br><br>
+						学生讲堂<br><br>
+					</p>
+				</div>
+			</div>
+			<div class="col-sm-3 col-xs-12 text-center">
+				<div class="single-facility four">
+
+					<font size="5" color="#FFFFFF">帮助中心</font><br><br>
+					<p class="subtitle-2">
+						学习问题<br><br>
+						新手上路<br><br>
+						手机端下载<br><br>
+						意见反馈<br><br>
+					</p>
 				</div>
 			</div>
 		</div>
 	</div>
-</footer>
-<!-- /.footer-section -->
+</section>
 
 
 
