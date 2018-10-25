@@ -35,6 +35,8 @@
             <scope>compile</scope>
         </dependency>
         <dependency>
+<<<<<<< HEAD
+=======
             <groupId>com.aliyun.oss</groupId>
             <artifactId>aliyun-sdk-oss</artifactId>
             <version>RELEASE</version>
@@ -42,6 +44,7 @@
         </dependency>
 
         <dependency>
+>>>>>>> e1715199ebf80a549510bbccc29ae0f790a98bbe
             <groupId>org.apache.tomcat.embed</groupId>
             <artifactId>tomcat-embed-core</artifactId>
             <version>RELEASE</version>
@@ -53,7 +56,15 @@
             <version>4.5.2</version>
             <scope>compile</scope>
         </dependency>
+<<<<<<< HEAD
 
+=======
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> before
+>>>>>>> e1715199ebf80a549510bbccc29ae0f790a98bbe
+>>>>>>> 8c8d941d14f3588b2d2a9b2e796e8c24a8aee938
     </dependencies>
 
 </project>

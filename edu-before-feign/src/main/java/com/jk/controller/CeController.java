@@ -6,6 +6,8 @@ import com.jk.service.CeService;
 import com.jk.util.OSSClientUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -38,6 +40,10 @@ public class CeController {
         return ceService.queryCe();
     }
 
+    @RequestMapping("toIndex")
+    public String toIndex() {
+        return "index";
+    }
 
     @RequestMapping("toShiPin1")
     public String toShiPin1(){

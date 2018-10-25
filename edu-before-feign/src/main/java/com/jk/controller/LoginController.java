@@ -1,13 +1,25 @@
 package com.jk.controller;
 
 
+<<<<<<< HEAD
+import com.jk.modelapi.Movie;
+=======
+>>>>>>> e1715199ebf80a549510bbccc29ae0f790a98bbe
 import com.jk.modelapi.UserBean;
 import com.jk.serviceapi.LoginServiceApi;
 
 import com.jk.util.*;
+<<<<<<< HEAD
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+=======
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.redis.core.RedisTemplate;
+import org.springframework.stereotype.Controller;
+>>>>>>> e1715199ebf80a549510bbccc29ae0f790a98bbe
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -16,9 +28,14 @@ import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+<<<<<<< HEAD
+import java.io.IOException;
+import java.util.*;
+=======
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
+>>>>>>> e1715199ebf80a549510bbccc29ae0f790a98bbe
 import java.util.concurrent.TimeUnit;
 
 /**
@@ -37,6 +54,11 @@ public class LoginController {
     private RedisTemplate<String,String> redisTemplate;
 
 
+<<<<<<< HEAD
+
+
+=======
+>>>>>>> e1715199ebf80a549510bbccc29ae0f790a98bbe
     @RequestMapping("toLogin")
     public String  toLogin(){
 
@@ -70,7 +92,12 @@ public class LoginController {
             return hashMap;
         }
         hashMap.put("code", 0);
+<<<<<<< HEAD
+        userInfo.setStatus("1");
+        session.setAttribute("user", userInfo);
+=======
         session.setAttribute(session.getId(), userInfo);
+>>>>>>> e1715199ebf80a549510bbccc29ae0f790a98bbe
         return hashMap;
     }
 
@@ -104,8 +131,24 @@ public class LoginController {
      * @return
      */
     @RequestMapping("toMain")
+<<<<<<< HEAD
+    public String toMain(HttpServletRequest request) {
+
+
+        String status = "";
+        UserBean attribute =  (UserBean) request.getSession().getAttribute("user");
+        if (attribute != null) {
+            status = attribute.getStatus();
+            request.setAttribute("user",attribute);
+            request.setAttribute("status",status);
+        }else{
+            request.setAttribute("status",status);
+        }
+        return "index";
+=======
     public String toMain() {
         return "view/index";
+>>>>>>> e1715199ebf80a549510bbccc29ae0f790a98bbe
     }
 
     /**
@@ -177,10 +220,31 @@ public class LoginController {
             result.put("msg","验证码错误");
             return result;
         }
+<<<<<<< HEAD
+        userBean.setStatus("1");
+        session.setAttribute("user",userBean);
+        result.put("code", 0);
+        return result;
+    }
+    /**
+     * @return注销
+     */
+
+    @RequestMapping("removeUser")
+    public String removeUser(HttpServletRequest request) {
+        HttpSession session = request.getSession();
+        session.removeAttribute("user");
+        return "redirect:toMain";
+    }
+
+
+
+=======
         session.setAttribute(session.getId(),phone);
         result.put("code", 0);
         return result;
     }
+>>>>>>> e1715199ebf80a549510bbccc29ae0f790a98bbe
     @RequestMapping("toRegistered")
     public String toRegistered(){
 

@@ -1,13 +1,14 @@
 package com.jk.serviceapi;
 
 import com.jk.modelapi.Ce;
+<<<<<<< HEAD
+=======
 import com.jk.modelapi.Movie;
 import org.springframework.web.bind.annotation.RequestBody;
+>>>>>>> e1715199ebf80a549510bbccc29ae0f790a98bbe
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 
-import java.util.List;
 
 /**
  * <pre>项目名称：springCloud
@@ -18,6 +19,7 @@ import java.util.List;
  * 手机号：18511777907&16619767907
  * 备注：生命不息，车轮不止
  */
+
 public interface CeServiceApi {
 
     @RequestMapping(value="queryCe",method = RequestMethod.GET)

@@ -113,6 +113,13 @@
             <version>1.0-SNAPSHOT</version>
             <scope>compile</scope>
         </dependency>
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> e1715199ebf80a549510bbccc29ae0f790a98bbe
+>>>>>>> 8c8d941d14f3588b2d2a9b2e796e8c24a8aee938
 
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -125,6 +132,14 @@
             <version>1.19.1</version>
             <scope>compile</scope>
         </dependency>
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> before
+>>>>>>> e1715199ebf80a549510bbccc29ae0f790a98bbe
+>>>>>>> 8c8d941d14f3588b2d2a9b2e796e8c24a8aee938
     </dependencies>
 
 
