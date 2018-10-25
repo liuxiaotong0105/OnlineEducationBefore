@@ -104,7 +104,16 @@ public class LoginController {
      * @return
      */
     @RequestMapping("toMain")
-    public String toMain() {
+    public String toMain(HttpServletRequest request) {
+        String status = "";
+        UserBean attribute =  (UserBean) request.getSession().getAttribute("user");
+        if (attribute != null) {
+            status = attribute.getStatus();
+            request.setAttribute("user",attribute);
+            request.setAttribute("status",status);
+        }else{
+            request.setAttribute("status",status);
+        }
         return "view/index";
     }
 
@@ -210,8 +219,6 @@ public class LoginController {
             hashMap.put("msg", "手机已经注册");
             return hashMap;
         }
-
-
         try {
             loginServiceApi.addUser(userBean);
         } catch (Exception e) {
