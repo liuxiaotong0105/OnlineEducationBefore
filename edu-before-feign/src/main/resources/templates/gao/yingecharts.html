@@ -28,21 +28,21 @@
 <!-- Header Area -->
 <header class="header-area inner-page">
     <ul th:if="${status}==''">
-        <!-- Header Top Area -->
         <section class="header-top">
             <div class="container">
                 <div class="row">
-                    <div class="col-sm-12 col-xs-12">
+                    <div class="col-sm-12 col-xs-12" background-color="red">
                         <div class="header-elements pull-right">
                             <ul class="social-icon pull-left">
-                                <li><a href="#"><i class="fa fa-qq"></i></a></li>
-                                <li><a href="#"><i class="fa fa-wechat"></i></a></li>
+                                <li>
+                                    <a target="_blank" href="http://wpa.qq.com/msgrd?v=3&uin=2218050300&site=qq&menu=yes"><i class="fa fa-qq"></i></a>
+
+                                </li>
                             </ul>
                             <div class="language pull-left">
                                 <a href="#">
                                     <i class="icon-font"></i>
                                     <span>中文站</span>
-
                                 </a>
                             </div>
                             <div class="login-or-signup pull-left">
@@ -55,16 +55,53 @@
         </section>
     </ul>
     <!--登录后-->
+    <!-- Header Top Area -->
     <ul th:if="${status}==1">
-        <!-- Header Top Area -->
         <section class="header-top">
             <div class="container">
                 <div class="row">
                     <div class="col-sm-12 col-xs-12">
                         <div class="header-elements pull-right">
                             <ul class="social-icon pull-left">
-                                <li><a href="#"><i class="fa fa-qq"></i></a></li>
-                                <li><a href="#"><i class="fa fa-wechat"></i></a></li>
+                                <li>
+                                    <a target="_blank" href="http://wpa.qq.com/msgrd?v=3&uin=2218050300&site=qq&menu=yes"><i class="fa fa-qq"></i></a></li>
+                            </ul>
+                            <div class="language pull-left">
+                                <a href="#">
+                                    <i class="icon-font"></i>
+                                    <span>中文站</span>
+                                </a>
+                            </div>
+                            <div class="login-or-signup pull-left">
+                                欢迎!
+                                <span class="photo">
+                                             <img  src="/images/rebc.gif" width="25px">
+                                        </span>
+                                <a  class="nick"  >
+                                    <span th:text="${user.name}"></span>
+                                    <em class="arrow"></em>
+                                </a>的登录!
+                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                <a href="../login/removeUser">注销</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </ul>
+
+    <!-- Header Top Area -->
+    <ul th:if="${status}==2">
+        <section class="header-top">
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-12 col-xs-12">
+                        <div class="header-elements pull-right">
+                            <ul class="social-icon pull-left">
+                                <li>
+                                    <a target="_blank" href="http://wpa.qq.com/msgrd?v=3&uin=2218050300&site=qq&menu=yes"><i class="fa fa-qq"></i></a></li>
                             </ul>
                             <div class="language pull-left">
                                 <a href="#">
@@ -74,23 +111,28 @@
                                 </a>
                             </div>
                             <div class="login-or-signup pull-left">
-                                欢迎!♚
-
+                                欢迎!
+                                <span class="photo">
+                                         <img  src="/images/rebc.gif" width="25px">
+                                    </span>
                                 <a  class="nick"  >
                                     <span th:text="${user.name}"></span>
                                     <em class="arrow"></em>
-                                </a>的登录!&nbsp;&nbsp;
-
-
+                                </a>&nbsp;的登录!
+                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                 <a href="../login/removeUser">注销</a>
-
-
+                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                <a href="../movie/shangchuan">上传视频</a>
+                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                <a href="#">去直播</a>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-
         </section>
     </ul>
 
