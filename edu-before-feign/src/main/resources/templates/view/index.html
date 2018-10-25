@@ -205,13 +205,15 @@
             <div class="col-sm-12 col-xs-12">
                 <div class="class-sort-btn-section">
                     <ul class="sort-btn pull-left">
-                        <li class="active filter" data-filter="mix"><a href="#" onclick="searchBtn(0)">所有</a></li>
-                        <li class="filter" data-filter="kinder" id="kinder"><a href="#" onclick="searchBtn(1)">小学</a></li>
-                        <li class="filter" data-filter="play" id="play"><a href="#" onclick="searchBtn(2)">初中</a></li>
-                        <li class="filter" data-filter="primary" id="primary"><a href="#" onclick="searchBtn(3)">高中</a></li>
+                        <li class="active filter" data-filter="mix"><a href="#" onclick="loadList(null)">所有</a></li>
+                        <li class="filter" data-filter="kinder" id="kinder"><a href="#" onclick="loadList('语文')">语文</a></li>
+                        <li class="filter" data-filter="play" id="play"><a href="#" onclick="loadList('数学')">数学</a></li>
+                        <li class="filter" data-filter="primary" ><a href="#" onclick="loadList('英语')">英语</a></li>
+                        <li class="filter" data-filter="primary" ><a href="#" onclick="loadList('物理')">物理</a></li>
+                        <li class="filter" data-filter="primary" ><a href="#" onclick="loadList('化学')">化学</a></li>
                     </ul>
                     <form  class="class-search pull-right">
-                        <input type="search"  id="searchName" placeholder="搜索课程">
+                        <input type="search"  id="movieName" placeholder="搜索课程">
                         <button type="submit" onclick="searchBtn(0)"><i class="fa fa-search"></i></button>
                     </form>
                     <div class="clearfix">
@@ -220,6 +222,7 @@
                 </div>
             </div>
         </div>
+
         <div class="row">
             <div id="mixer">
                 <div class="col-sm-4 col-xs-12 mix kinder play">
@@ -248,7 +251,87 @@
                         </div>
                     </div>
                 </div>
+                <div class="col-sm-4 col-xs-12 mix kinder play">
+
+                    <div class="single-class">
+                        <div class="class-img">
+                            <img alt="" src="/images/class1/class8.jpg">
+                        </div>
+                        <div class="class-details">
+                            <h3><a href="class.html">第1讲 元素周期律</a></h3>
+                            <p>化学</p>
+                            <div class="clearfix">
+                                <div class="class-meta pull-left">
+                                    <span>所属阶段</span>
+                                    <p>初三</p>
+                                </div>
+                                <div class="class-meta pull-left">
+                                    <span>讲课老师</span>
+                                    <center><p>李老师</p></center>
+                                </div>
+                                <div class="class-meta pull-left">
+                                    <span>课程费用</span>
+                                    <center><p>免费</p></center>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-4 col-xs-12 mix kinder play">
+
+                    <div class="single-class">
+                        <div class="class-img">
+                            <img alt="" src="/images/class1/class8.jpg">
+                        </div>
+                        <div class="class-details">
+                            <h3><a href="class.html">第1讲 元素周期律</a></h3>
+                            <p>化学</p>
+                            <div class="clearfix">
+                                <div class="class-meta pull-left">
+                                    <span>所属阶段</span>
+                                    <p>初三</p>
+                                </div>
+                                <div class="class-meta pull-left">
+                                    <span>讲课老师</span>
+                                    <center><p>李老师</p></center>
+                                </div>
+                                <div class="class-meta pull-left">
+                                    <span>课程费用</span>
+                                    <center><p>免费</p></center>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-4 col-xs-12 mix kinder play">
+
+                    <div class="single-class">
+                        <div class="class-img">
+                            <img alt="" src="/images/class1/class8.jpg">
+                        </div>
+                        <div class="class-details">
+                            <h3><a href="class.html">第1讲 元素周期律</a></h3>
+                            <p>化学</p>
+                            <div class="clearfix">
+                                <div class="class-meta pull-left">
+                                    <span>所属阶段</span>
+                                    <p>初三</p>
+                                </div>
+                                <div class="class-meta pull-left">
+                                    <span>讲课老师</span>
+                                    <center><p>李老师</p></center>
+                                </div>
+                                <div class="class-meta pull-left">
+                                    <span>课程费用</span>
+                                    <center><p>免费</p></center>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
             </div>
+
 
             <!--<div class="row">-->
                 <!--<div class="col-sm-12 col-xs-12 text-center">-->
@@ -334,6 +417,7 @@
 <script src="/js/main.js"></script>
 <script src="/js/lunbo/velocity.js"></script>
 <script src="/js/lunbo/shutter.js"></script>
+<script src="/js/index/index.js"></script>
 <script >
     function searchBtn(x) {
         var movieName = $("#searchName").val();
