@@ -30,7 +30,7 @@ public class CeController {
         return ceServiceApi.queryCe();
     }
 
-    @RequestMapping(value = "addMovie",method = RequestMethod.POST)
+    @RequestMapping(value = "movie/addMovie",method = RequestMethod.POST)
     public void addMovie(@RequestBody Movie movie){
         ceServiceApi.addMovie(movie);
     }

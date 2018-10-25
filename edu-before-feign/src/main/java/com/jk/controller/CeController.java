@@ -26,6 +26,7 @@ import java.util.HashMap;
  * 备注：生命不息，车轮不止
  */
 @Controller
+@RequestMapping("movie")
 public class CeController {
 
     @Autowired

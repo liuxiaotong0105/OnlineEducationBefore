@@ -23,7 +23,7 @@ public interface CeServiceApi {
     @RequestMapping(value="queryCe",method = RequestMethod.GET)
     Ce queryCe();
 
-    @RequestMapping(value = "addMovie",method = RequestMethod.POST)
+    @RequestMapping(value = "movie/addMovie",method = RequestMethod.POST)
     void addMovie(@RequestBody Movie movie);
 
 
