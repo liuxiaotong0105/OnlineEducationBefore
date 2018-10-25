@@ -2,6 +2,7 @@ package com.jk.service;
 
 import com.jk.mapper.CeMapper;
 import com.jk.modelapi.Ce;
+import com.jk.modelapi.Movie;
 import com.jk.serviceapi.CeServiceApi;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -25,5 +26,10 @@ public class CeServiceImpl implements CeServiceApi {
     @Override
     public Ce queryCe() {
         return ceMapper.queryCe();
+    }
+
+    @Override
+    public void addMovie(Movie movie) {
+        ceMapper.addMovie(movie);
     }
 }

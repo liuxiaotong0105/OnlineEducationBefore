@@ -37,11 +37,14 @@ spring:
       # 连接超时时间（毫秒）
       timeout: 2000
     # 数据库链接
-    datasource:
-      driver-class-name: com.mysql.jdbc.Driver
-      url: jdbc:mysql://127.0.0.1:3306/edu
-      username: root
-      password: root
+  thymeleaf:
+    mode: LEGACYHTML5
+    cache: false
+    prefix: classpath:/templates/
+    encoding: UTF-8
+    suffix: .html
+    servlet:
+      content-type: text/html
 
 
 
