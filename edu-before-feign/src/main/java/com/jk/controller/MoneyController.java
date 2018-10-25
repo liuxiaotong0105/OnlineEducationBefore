@@ -39,7 +39,6 @@ public class MoneyController {
 
         List<Video> video = moneyService.queryvideo(course.getId());
         md.addAttribute("video",video);
-
         for  ( int  i  =   0 ; i  <  video.size()  -   1 ; i ++ )  {
             for  ( int  j  =  video.size()  -   1 ; j  >  i; j -- )  {
                 if  (video.get(j).getTeacherid()==(video.get(i).getTeacherid()))  {

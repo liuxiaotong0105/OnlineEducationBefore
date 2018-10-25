@@ -24,13 +24,15 @@ public class Movie implements Serializable {
 
     private String movieInfo;
 
-    private Integer movieType;
+    private String movieType;
 
     private Integer movieStatus;
 
     private Integer teacherid;
 
     private String moviePrice;
+
+
 
     public Integer getMovieId() {
         return movieId;
@@ -72,11 +74,11 @@ public class Movie implements Serializable {
         this.movieInfo = movieInfo;
     }
 
-    public Integer getMovieType() {
+    public String getMovieType() {
         return movieType;
     }
 
-    public void setMovieType(Integer movieType) {
+    public void setMovieType(String movieType) {
         this.movieType = movieType;
     }
 

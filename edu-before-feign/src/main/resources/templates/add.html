@@ -8,8 +8,7 @@
     <meta name="mobile-agent" content="format=html5;url=http://m.v.huya.com/">
     <meta name="description" content="虎牙直播为您提供高清、流畅的游戏解说视频；包括英雄联盟lol、DOTA2、地下城与勇士dnf、魔兽世界、炉石传说频等，最新最热的赛事、解说、搞笑、娱乐、攻略视频，一切尽在虎牙直播-全民游戏视频社区。">
     <link rel="stylesheet" type="text/css" href="../add_files/vhuya_sys.css">
-    <script src="../add_files/jquery.js.下载"></script>
-    <script src="../add_files/js&amp;f=jquery-1.11.2.min.js,jquery-migrate-1.2.1.min.js&amp;20141231"></script>
+    <script src="../add_files/jquery.js.下载"></script><script src="../add_files/js&amp;f=jquery-1.11.2.min.js,jquery-migrate-1.2.1.min.js&amp;20141231"></script>
     <meta name="renderer" content="webkit">
     <meta name="front-end" content="MrF">
     
@@ -30,29 +29,19 @@
     <div class="duya-header-bd clearfix">
 
       <div class="duya-header-nav">
-        <div class="hy-nav-item hy-nav-item-on"><a href="http://v.huya.com/" class="hy-nav-link statpid" s_data="hysp/navi/home/click/web|视频/导航/首页/点击/web">首页</a></div>
+        <div class="hy-nav-item hy-nav-item-on"><a href="../login/toMain" class="hy-nav-link statpid" s_data="hysp/navi/home/click/web|视频/导航/首页/点击/web">首页</a></div>
+        <div class="hy-nav-item">
 
+        </div>
         
 
-        <div class="hy-nav-item">
-          <a href="http://www.huya.com/" class="hy-nav-link hiido_stat statpid" hiido_code="10004227" target="_blank" s_data="hysp/navi/live/click/web|视频/导航/直播/点击/web">直播</a>
-        </div>
       </div>
 
 
       <div class="duya-header-right" id="J_duyaHeaderRight">
         <div class="duya-header-control clearfix">
 
-          <div class="hy-nav-right un-login J_isNotLogin" style="display: none;">
-            <div class="hy-nav-title">
-              <i class="hy-nav-icon hy-nav-login-icon"></i>
-              <div class="un-login-btn">
-                <a class="statpid" id="nav-login" href="http://v.huya.com/?r=videomanage/upload#" s_data="">登录</a>
-                <i>|</i>
-                <a class="statpid" id="nav-regiest" href="http://v.huya.com/?r=videomanage/upload#" s_data="">注册</a>
-              </div>
-            </div>
-          </div> 
+
           <div class="hy-nav-right nav-user success-login J_isLogin" style="display: block;">
             <a class="nav-user-title" href="http://v.huya.com/u/1688816247" target="_blank">
             <img id="login-userAvatar" src="../add_files/c7530a195988a7e59f86c5811389f4_180_135.jpg" alt="头像">
@@ -65,7 +54,7 @@
                 <div class="h-user-info">
                   <a class="h-user-avatar statpid" s_data="hysp/navi/head/click/web|视频/导航/头像/点击/web" target="_blank" href="http://v.huya.com/u/1688816247">
                     <img data-role="user-avatar" src="../add_files/c7530a195988a7e59f86c5811389f4_180_135.jpg">
-                    <p class="h-user-name" data-role="user-name" title="兜兜有钱^O^"><span th:text="${user.name}"></span></p>
+                    <p class="h-user-name" data-role="user-name" title="兜兜有钱^O^">兜兜有钱^O^</p>
                   </a>
 
                 </div>
@@ -75,6 +64,7 @@
               </div>
             </div>
           </div>
+
         </div>
       </div>
     </div>
@@ -128,7 +118,7 @@
                                     <div class="u-input-radio-wrap">
                                         <input type="radio" name="movieType" value="数学" class="u-input-radio">数学</div>
                                     <div class="u-input-radio-wrap">
-                                        <input type="radio" name="movieType" value="英语" class="u-input-radio">英语</div>
+                                        <input type="radio" name="movieType" value="外语" class="u-input-radio">外语</div>
                                 </div>
 
                             </div>
@@ -243,7 +233,7 @@ window.UPLOAD_DOMAIN = 'v-upload13.huya.com';
             data:$("#addMovie").serialize(),
             success:function(data){
                 if(data){
-                    location.href = '../login/toMain';
+                    location.href = "../login/toMain";
                 }else{
                     alert("新增失败")
                 }
@@ -251,9 +241,7 @@ window.UPLOAD_DOMAIN = 'v-upload13.huya.com';
 
         })
     }
-
 </script>
-
 <div class="hide">
 <!--统计-->
 

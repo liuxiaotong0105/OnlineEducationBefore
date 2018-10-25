@@ -1,11 +1,8 @@
 package com.jk.serviceapi;
 
 import com.jk.modelapi.Ce;
-<<<<<<< HEAD
-=======
 import com.jk.modelapi.Movie;
 import org.springframework.web.bind.annotation.RequestBody;
->>>>>>> e1715199ebf80a549510bbccc29ae0f790a98bbe
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
