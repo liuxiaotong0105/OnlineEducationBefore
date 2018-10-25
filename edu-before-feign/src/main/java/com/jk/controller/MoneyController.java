@@ -4,6 +4,7 @@ package com.jk.controller;
 import com.alipay.api.AlipayApiException;
 import com.jk.modelapi.AlipayBean;
 import com.jk.modelapi.Course;
+import com.jk.modelapi.UserBean;
 import com.jk.modelapi.Video;
 import com.jk.service.MoneyService;
 import com.jk.util.AlipayUtil;
@@ -53,6 +54,17 @@ public class MoneyController {
 
     @RequestMapping("tobuy")
     public String tobuy(HttpServletRequest request,Model md){
+
+        String status = "";
+        UserBean attribute =  (UserBean) request.getSession().getAttribute("user");
+        if (attribute != null) {
+            status = attribute.getStatus();
+            request.setAttribute("user",attribute);
+            request.setAttribute("status",status);
+        }else{
+            request.setAttribute("status",status);
+        }
+
         //request.getSession().getAttribute();获取用户id
         List<Course> course = moneyService.tobuy(1);
         md.addAttribute("course",course);

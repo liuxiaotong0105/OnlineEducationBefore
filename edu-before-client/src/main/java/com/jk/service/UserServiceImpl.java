@@ -28,7 +28,6 @@ public class UserServiceImpl {
 
     public void addUser(UserBean userBean) {
 
-
         userMapper.addUser(userBean);
     }
 }

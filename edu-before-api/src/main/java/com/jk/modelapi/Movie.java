@@ -28,7 +28,7 @@ public class Movie implements Serializable {
 
     private Integer movieStatus;
 
-    private Integer  teacherid;
+    private Integer teacherid;
 
     private String moviePrice;
 
