@@ -21,7 +21,6 @@ public class UserBean implements Serializable {
 
     private String imgVerify;
 
-<<<<<<< HEAD
     private String status;
 
     public String getStatus() {
@@ -32,8 +31,6 @@ public class UserBean implements Serializable {
         this.status = status;
     }
 
-=======
->>>>>>> e1715199ebf80a549510bbccc29ae0f790a98bbe
     public String getId() {
         return id;
     }
