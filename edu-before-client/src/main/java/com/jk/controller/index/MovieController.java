@@ -43,6 +43,9 @@ public class MovieController {
         StringBuffer search = new StringBuffer("movie_status:1");
         if (StringUtils.isNotEmpty(movie.getMovieName())){
             search.append(" AND movie_name:"+movie.getMovieName());
+            if (movie.getFreeStatus() != -1){
+                search.append(" AND free_status:"+movie.getFreeStatus());
+            }
             if (StringUtils.isNotEmpty(movie.getMovieType())){
                 search.append(" AND movie_type:"+movie.getMovieType());
             }
@@ -50,6 +53,9 @@ public class MovieController {
         }else {
             if (StringUtils.isNotEmpty(movie.getMovieType())){
                 search.append(" AND movie_type:"+movie.getMovieType());
+            }
+            if (movie.getFreeStatus() != -1){
+                search.append(" AND free_status:"+movie.getFreeStatus());
             }
             params.set("q",search.toString());
         }
@@ -100,6 +106,7 @@ public class MovieController {
         m.setMovieUrl(result.get("movie_url").toString());
         m.setTeacherid(Integer.parseInt(result.get("teacher_id").toString()));
         m.setTeacherName(result.get("teacher_name").toString());
+        m.setFreeStatus(Integer.parseInt(result.get("free_status").toString()));
         return m;
     }
 

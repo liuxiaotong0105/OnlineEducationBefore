@@ -238,19 +238,25 @@
 <!-- Classes Section -->
 <section class="classes-section-2">
     <div class="container">
+
+
         <div class="row">
             <div class="col-sm-12 col-xs-12">
                 <div class="class-sort-btn-section">
                     <ul class="sort-btn pull-left">
-                        <li class="active filter" data-filter="mix"><a href="#" onclick="searchBtn(null)">所有</a></li>
+                        <li class="active filter" data-filter="mix"><a href="#" onclick="searchAll()">所有</a></li>
                         <li class="filter" data-filter="kinder" id="kinder"><a href="#" onclick="searchBtn('语文')">语文</a></li>
                         <li class="filter" data-filter="play" id="play"><a href="#" onclick="searchBtn('数学')">数学</a></li>
                         <li class="filter" data-filter="primary" id="primary"><a href="#" onclick="searchBtn('英语')">英语</a></li>
                         <li class="filter" data-filter="primary" ><a href="#" onclick="searchBtn('物理')">物理</a></li>
                         <li class="filter" data-filter="primary" ><a href="#" onclick="searchBtn('化学')">化学</a></li>
+                        <li class="filter" data-filter="primary" ><a href="#" onclick="searchFree(0)">免费</a></li>
+                        <li class="filter" data-filter="primary" ><a href="#" onclick="searchFree(1)">收费</a></li>
 
                     </ul>
+
                     <input type="hidden" id="movieType">
+                    <input type="hidden" id="freeStatus" value="-1">
                     <form  class="class-search pull-right">
                         <input type="search"  id="names" placeholder="搜索课程">
                         <button type="button" onclick="initMovie()"><i class="fa fa-search"></i></button>
@@ -261,6 +267,9 @@
                 </div>
             </div>
         </div>
+
+
+
         <div class="row">
             <div id="mm">
                 <div class="col-sm-4 col-xs-12 mix kinder play">
