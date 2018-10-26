@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.jk.mapper.UserMapper">
-	
+
 	<select id="getUserByLoginName" resultType="com.jk.modelapi.UserBean" >
 		select * from t_login_user where loginname = #{loginname}
 	</select>
-	
+
 	<select id="getUserphoneName" resultType="com.jk.modelapi.UserBean">
 		select * from t_login_user where phone = #{phone}
 	</select>
