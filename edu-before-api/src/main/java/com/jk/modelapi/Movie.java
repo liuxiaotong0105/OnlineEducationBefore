@@ -36,6 +36,16 @@ public class Movie implements Serializable {
 
     private String teacherName;
 
+    private Integer freeStatus;
+
+    public Integer getFreeStatus() {
+        return freeStatus;
+    }
+
+    public void setFreeStatus(Integer freeStatus) {
+        this.freeStatus = freeStatus;
+    }
+
     public String getMovieClass() {
         return movieClass;
     }

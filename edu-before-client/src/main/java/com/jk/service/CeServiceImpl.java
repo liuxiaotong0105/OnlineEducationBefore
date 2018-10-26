@@ -7,6 +7,8 @@ import com.jk.serviceapi.CeServiceApi;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 /**
  * <pre>项目名称：springCloud
  * 类名称：UserServiceImpl
@@ -30,6 +32,15 @@ public class CeServiceImpl implements CeServiceApi {
 
     @Override
     public void addMovie(Movie movie) {
+        String price = movie.getMoviePrice();
+        if(price == "" || price == null){
+            movie.setMoviePrice("0");
+        }
         ceMapper.addMovie(movie);
+    }
+
+    @Override
+    public List<Movie> queryMovieSolr() {
+        return ceMapper.queryMovieSolr();
     }
 }
