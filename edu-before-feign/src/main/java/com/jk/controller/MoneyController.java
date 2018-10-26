@@ -50,12 +50,28 @@ public class MoneyController {
         md.addAttribute("laishi",video);
         return "money/class-details";
     }
+    @RequestMapping("tolouvifeo")
+    public String tolouvifeo(Model md,Integer id){
+
+        Video Video = moneyService.getVideo(id);
+        md.addAttribute("video",Video);
+
+
+        return "money/class-video";
+    }
 
 
     @RequestMapping("tobuy")
     public String tobuy(HttpServletRequest request,Model md){
         //request.getSession().getAttribute();获取用户id
         List<Course> course = moneyService.tobuy(1);
+        for  ( int  i  =   0 ; i  <  course.size()  -   1 ; i ++ )  {
+            for  ( int  j  =  course.size()  -   1 ; j  >  i; j -- )  {
+                if  (course.get(j).getId()==(course.get(i).getId()))  {
+                    course.remove(j);
+                }
+            }
+        }
         md.addAttribute("course",course);
         return "money/buy";
     }

@@ -50,7 +50,7 @@ public class LoginController {
     @RequestMapping("loginUser")
     @ResponseBody
     public Map<String, Object> loginUser(String imgVerify, UserBean userBean, HttpServletRequest request){
-        HashMap<String, Object> hashMap = new HashMap<>();
+        HashMap<String, Object> hashMap = new HashMap<String, Object>();
         HttpSession session = request.getSession();
         String imgcode = session.getAttribute(RandomValidateCodeUtil.RANDOMCODEKEY).toString();
         if (!imgVerify.equals(imgcode)) {
@@ -130,7 +130,7 @@ public class LoginController {
                     String lock = redisTemplate.opsForValue().get(cacheFlagkey);
                     if(StringUtils.isEmpty(lock)) {
                         int random = (int) ((Math.random()*9+1)*100000);
-                        HashMap<String,Object> params=new HashMap<>();
+                        HashMap<String,Object> params=new HashMap<String,Object>();
                         params.put("accountSid", Constant.ACCOUNTSID);
                         params.put("templateid", Constant.TEMPLATEID);
                         params.put("param",""+random+"");
@@ -194,7 +194,7 @@ public class LoginController {
     @RequestMapping("addUser")
     @ResponseBody
     public Map<String, Object> addUser(UserBean userBean, HttpServletRequest request){
-        HashMap<String, Object> hashMap = new HashMap<>();
+        HashMap<String, Object> hashMap = new HashMap<String, Object>();
         HttpSession session = request.getSession();
         String imgVerify = userBean.getImgVerify();
         String imgcode = session.getAttribute(RandomValidateCodeUtil.RANDOMCODEKEY).toString();

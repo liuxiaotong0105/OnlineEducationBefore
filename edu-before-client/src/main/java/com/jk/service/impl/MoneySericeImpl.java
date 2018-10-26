@@ -50,4 +50,9 @@ public class MoneySericeImpl implements MoneySerice {
         moneyMapper.addcv(courseid,videoid,userid);
     }
 
+    @Override
+    public Video getVideo(Integer id) {
+        return moneyMapper.getVideo(id);
+    }
+
 }

@@ -53,4 +53,8 @@ public class MoneyController {
     public void addcv(Integer courseid,Integer videoid,Integer userid) {
         moneySerice.addcv(courseid, videoid,userid);
     }
+    @RequestMapping(value = "getVideo" ,method = RequestMethod.GET)
+    public Video getVideo(Integer id){
+        return moneySerice.getVideo(id);
+    }
 }

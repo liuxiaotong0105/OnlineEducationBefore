@@ -11,7 +11,6 @@ import org.springframework.cloud.openfeign.EnableFeignClients;
 @EnableEurekaClient
 @EnableDiscoveryClient
 @EnableFeignClients
-
 public class EduBeforeFeignApplication {
 
     public static void main(String[] args) {

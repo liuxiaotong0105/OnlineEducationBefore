@@ -153,9 +153,10 @@
 			<div class="col-sm-12 col-xs-12">
 				<div class="class-sort-btn-section">
 					<ul class="sort-btn pull-left">
-						<li><span th:text="${name}"></span></li>
-
-
+						<li><a href="class.html#kinder">Kindergarten</a></li>
+						<li><a href="class.html#play">Play Group</a></li>
+						<li><a href="class.html#primary">Pre- Primary</a></li>
+						<li><a href="class.html#story">Story</a></li>
 					</ul>
 					<form method="post" action="#" class="class-search pull-right">
 						<input type="search" name="search" placeholder="Search classes">
@@ -166,11 +167,97 @@
 			</div>
 		</div>
 		<div class="row">
-			<span th:each="video : ${video}">
+			<div class="col-sm-6 col-xs-12">
+				<div class="class-detail-img">
+					<img alt="" th:src="@{${video.moviePicther}}">
+				</div>
+			</div>
+			<div class="col-sm-6 col-xs-12">
+				<div class="class-information">
+					<h3><span th:text="${video.movieName}"></span></h3>
+					<h5>&nbsp;&nbsp;&nbsp;&nbsp;</h5>
+					<p th:text="${video.movieInfo}"></p>
+				</div>
+				<div class="class-meta-data">
+					<div class="class-single-meta pull-left">
+						<p>类型</p>
+						<h4><p th:text="${video.movieType}"></p></h4>
+					</div>
+
+					<div class="class-single-meta pull-left">
+						<p>价格</p>
+						<h4><p th:text="${video.moviePrice}"></p></h4>
+					</div>
+
+
+					<div class="class-single-meta pull-left">
+						<a class="primary-btn pull-right" href="javascript:money()"><span>购买</span></a>
+					</div>
+
+					<div class="clearfix"></div>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+<!-- /.classes-section-2 -->
+
+<!-- Subject and teacher Section -->
+<section class="subject-and-teacher-details">
+	<div class="container">
+		<div class="row">
+			<div class="col-sm-12 col-xs-12">
+				<div class="subject-details">
+					<div class="sub-heading"><h4>课程介绍<span></span></h4><p></p></div>
+					<ul class="subject-list">
+						<li>
+
+							<p th:text="${video.movieInfo}"></p>
+							<span></span>
+						</li>
+
+					</ul>
+				</div>
+			</div>
+		</div>
+		<!--<div class="row">
+			<div class="col-sm-12 col-xs-12">
+				<div class="subject-details">
+					<div class="sub-heading"><h4>课程收益<span></span></h4><p></p></div>
+					<ul class="subject-list">
+						<li>
+							<span th:text="${course.courseOninfao}"></span>
+						</li>
+
+					</ul>
+				</div>
+			</div>
+		</div>-->
+		<!--<div class="row">
+			<div class="col-sm-12 col-xs-12">
+				<div class="subject-details">
+					<div class="sub-heading"><h4>课程列表<span></span></h4><p>讲师</p></div>
+					<ul class="subject-list" th:each="video : ${video}">
+						<li>
+							<a href="#"><p th:text="${video.movieName}"></p></a>
+							<span th:text="${video.teachername}"></span>
+						</li>
+
+					</ul>
+				</div>
+			</div>
+		</div>-->
+		<div class="row">
+			<div class="col-sm-12 col-xs-12">
+				<div class="sub-heading"><h4>课程老师<span></span></h4></div>
+			</div>
+		</div>
+		<div class="row">
+
 			<div class="col-sm-6 col-md-3 col-xs-12 text-center">
 				<div class="single-team">
 					<div class="team-img">
-						<img alt="" th:src="@{${video.moviePicther}}">
+						<img alt="" src="../images/home1/staff1.jpg">
 						<ul class="team-social">
 							<li><a href="#" class="facebook"><i class="fa fa-facebook"></i></a></li>
 							<li><a href="#" class="twitter"><i class="fa fa-twitter"></i></a></li>
@@ -178,18 +265,75 @@
 							<li><a href="#" class="instagram"><i class="fa fa-instagram"></i></a></li>
 						</ul>
 					</div>
-					<h3><p th:text="${video.movieType}"></p></h3>
-					<p th:text="${video.movieName}"></p>
-					<p><a th:href="${video.movieUrl}" class="primary-btn pull-right"><span>播放</span></a></p>
+					<h3><p th:text="${video.teachername}"></p></h3>
+					<p th:text="${video.teacherinfo}"></p>
 				</div>
 			</div>
-			</span>
+
+
+
 		</div>
 	</div>
 </section>
-<!-- /.classes-section-2 -->
+<!-- /.subject-and-teacher-details -->
+<!-- Call to Action -->
+<section class="callto-action-section">
+	<div class="container">
+		<div class="row">
+			<div class="col-sm-12 col-xs-12">
+				<div class="callto-content">
+					<h2>现在正在注册，请联系我们。</h2>
+					<a href="#" class="primary-btn pull-right"><span>现在报名</span></a>
+					<div class="clearfix"></div>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+<!-- /.callto-action-section -->
+<!-- Related Course Section -->
+<!--<section class="related-course-section">
+	<div class="container">
+		<div class="row">
+			<div class="col-sm-12 col-xs-12 text-center">
+				<h2 class="title">相关课程s</h2>
+				<p class="subtitle">手把手零基础教学</p>
+			</div>
+		</div>
+		<div class="row">
 
-<
+
+			<div class="col-sm-4 col-xs-12">
+				<div class="single-class">
+					<div class="class-img">
+						<img alt="" src="../images/home1/class3.jpg">
+						<div class="class-hover">
+							<a href="../images/home1/class3.jpg" class="popup"><i class="icon-link"></i></a>
+						</div>
+					</div>
+					<div class="class-details">
+						<h3><a href="class.html">springboot2.0.5</a></h3>
+						<p>Admission Close</p>
+						<div class="clearfix">
+							<div class="class-meta pull-left">
+								<span>类型</span>
+								<p>4-6</p>
+							</div>
+							<div class="class-meta pull-left">
+								<span>已报名</span>
+								<p>15</p>
+							</div>
+							<div class="class-meta pull-left">
+								<span>价格e</span>
+								<p>$150</p>
+							</div>
+
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+</section>-->
 <!-- Footer Section -->
 <footer class="footer-section">
 	<div class="container">
@@ -251,7 +395,10 @@
 </footer>
 <!-- /.footer-section -->
 
-
+<input type="hidden" th:value = "${video.movieName}" id="subject"/>
+<input type="hidden" th:value = "${video.movieInfo}" id="body"/>
+<input type="hidden" th:value = "${video.moviePrice}" id="coursePrice"/>
+<input type="hidden" th:value = "${video.movieId}" id="id"/>
 
 
 <!-- Include All JavaScript -->
@@ -261,7 +408,20 @@
 <script src="../js/jquery.magnific-popup.min.js"></script>
 <script src="../js/main.js"></script>
 <script>
+	function money() {
+        var subject = $("#subject").val();
+        var body = $("#body").val();
+        var coursePrice = $("#coursePrice").val();
+        var id = $("#id").val();
+        location.href="../money/alipay?body="+body+"&subject="+subject+"&total_amount="+coursePrice+"&id="+id+"&status=2";
 
+    }
+
+    function tobuy() {
+
+        location.href="../money/tobuy";
+
+    }
 
 </script>
 </body>

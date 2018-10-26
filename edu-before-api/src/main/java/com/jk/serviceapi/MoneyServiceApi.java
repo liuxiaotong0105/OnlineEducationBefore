@@ -32,4 +32,6 @@ public interface MoneyServiceApi {
 
     @RequestMapping(value = "money/addcv", method = RequestMethod.GET)
     void addcv(@RequestParam(value = "courseid") Integer courseid, @RequestParam(value = "videoid") Integer videoid,@RequestParam(value = "userid")Integer userid);
+    @RequestMapping(value = "money/getVideo", method = RequestMethod.GET)
+    Video getVideo(@RequestParam(value = "id")Integer id);
 }

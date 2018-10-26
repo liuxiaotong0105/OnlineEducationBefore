@@ -37,5 +37,10 @@
           values (#{userid},#{videoid},#{courseid})
 	</insert>
 
+    <select id="getVideo" resultType="com.jk.modelapi.Video">
+        select tm.*,tt.name teachername,tt.info teacherinfo from t_movie tm
+            left join t_teacher tt on tm.teacherid=tt.id
+            where movieId=#{value}
+</select>
 
 </mapper>
