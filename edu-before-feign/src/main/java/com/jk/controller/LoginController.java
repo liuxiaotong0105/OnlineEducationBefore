@@ -3,6 +3,7 @@ package com.jk.controller;
 
 import com.jk.modelapi.Movie;
 import com.jk.modelapi.UserBean;
+import com.jk.service.MoneyService;
 import com.jk.serviceapi.LoginServiceApi;
 
 import com.jk.util.*;
@@ -38,9 +39,46 @@ public class LoginController {
     @Resource
     private RedisTemplate<String,String> redisTemplate;
 
+//修改直播状态
+    @RequestMapping("updateZbStatus")
+    @ResponseBody
+    public Boolean updateZbStatus(int zbstatus,int id){
+        try {
+            loginServiceApi.updateZbStatus(zbstatus,id);
+            return true;
+        }catch (Exception e){
+            System.out.print("修改出错了！");
+            return false;
+        }
+
+    }
+//查询所有直播
+    @RequestMapping("returnAllZhiBo")
+    public String returnAllZhiBo(HttpServletRequest request){
+        String status = "";
+        UserBean attribute =  (UserBean) request.getSession().getAttribute("user");
+        if (attribute != null) {
+            status = attribute.getStatus();
+            request.setAttribute("user",attribute);
+            request.setAttribute("status",status);
+        }else{
+            request.setAttribute("status",status);
+        }
+       List<UserBean> list= loginServiceApi.queryAllZhiBo();
+        request.setAttribute("list",list);
+        return  "zhibo/allZhiBo";
+    }
+//跳转直播地址
+    @RequestMapping("toWs")
+    public String toWs(HttpServletRequest request){
+
+        UserBean attribute =  (UserBean) request.getSession().getAttribute("user");
+
+            request.setAttribute("userws",attribute);
 
 
-
+        return "zhibo/ws";
+    }
     @RequestMapping("toLogin")
     public String  toLogin(){
 
@@ -249,6 +287,19 @@ public class LoginController {
         hashMap.put("code", 0);
         hashMap.put("msg", "注册成功");
         return hashMap;
+    }
+    //跳转所选择的直播页面
+    @RequestMapping("returnThisWs")
+    public String returnThisWs(HttpServletRequest request,UserBean userBean){
+        UserBean  attribute =new UserBean();
+        if(request.getSession().getAttribute("user")==null){
+            attribute.setName("errors");
+        }else {
+            attribute=(UserBean)request.getSession().getAttribute("user");
+        }
+        request.setAttribute("myNames",attribute);
+        request.setAttribute("userws",userBean);
+        return  "zhibo/ws";
     }
 
 }

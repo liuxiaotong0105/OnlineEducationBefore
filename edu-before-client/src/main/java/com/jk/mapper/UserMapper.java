@@ -1,6 +1,9 @@
 package com.jk.mapper;
 
 import com.jk.modelapi.UserBean;
+import org.springframework.data.repository.query.Param;
+
+import java.util.List;
 
 /**
  * @Auther: 赵黎明
@@ -13,4 +16,9 @@ public interface UserMapper {
     UserBean getUserphoneName(String phone);
 
     void addUser(UserBean userBean);
+
+    List<UserBean> queryAllZhiBo();
+
+
+    void updateZbStatus(@Param("zbstatus") int zbstatus,@Param("id") int id);
 }

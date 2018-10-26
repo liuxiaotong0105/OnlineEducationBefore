@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import java.util.List;
+
 /**
  * @Auther: 赵黎明
  * @Date: 2018/10/21 11:24
@@ -48,5 +50,14 @@ public class LoginController {
         return true;
     }
 
+    @RequestMapping("queryAllZhiBo")
+    @ResponseBody
+    public List<UserBean> queryAllZhiBo(){
+        return  userServiceImpl.queryAllZhiBo();
+    }
 
+    @RequestMapping("updateZbStatus")
+    public void updateZbStatus(int zbstatus,int id){
+        userServiceImpl.updateZbStatus(zbstatus,id);
+    }
 }

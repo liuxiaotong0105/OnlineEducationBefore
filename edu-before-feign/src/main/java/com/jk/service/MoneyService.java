@@ -1,7 +1,10 @@
 package com.jk.service;
 
+
 import com.jk.serviceapi.MoneyServiceApi;
 import org.springframework.cloud.openfeign.FeignClient;
+
+
 
 /**
  * @Auther: ${赵成林}
@@ -10,4 +13,5 @@ import org.springframework.cloud.openfeign.FeignClient;
  */
 @FeignClient(value = "service-edubefores")
 public interface MoneyService extends MoneyServiceApi{
+
 }

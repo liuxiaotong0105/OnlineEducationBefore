@@ -7,6 +7,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import java.util.List;
+
 /**
  * @Auther: 赵黎明
  * @Date: 2018/10/21 11:19
@@ -23,4 +25,8 @@ public interface LoginServiceApi {
 
     @RequestMapping(value = "/user/addUser",method = RequestMethod.POST)
     void addUser(@RequestBody UserBean userBean);
+    @RequestMapping(value = "/user/queryAllZhiBo")
+    List<UserBean> queryAllZhiBo();
+    @RequestMapping(value = "/user/updateZbStatus")
+    void updateZbStatus(@RequestParam(value = "zbstatus")int zbstatus,@RequestParam(value="id")int id);
 }
