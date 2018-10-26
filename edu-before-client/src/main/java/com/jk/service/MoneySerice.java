@@ -23,5 +23,9 @@ public interface MoneySerice {
 
     List<Video> tobuycourse(Integer id);
 
-    void addcv(Integer courseid, Integer videoid,Integer userid);
+    void addcv(Integer courseid, Integer videoid, Integer userid);
+
+    Video getVideo(Integer id);
+
+    int status(Integer id, Integer id1, Integer status);
 }

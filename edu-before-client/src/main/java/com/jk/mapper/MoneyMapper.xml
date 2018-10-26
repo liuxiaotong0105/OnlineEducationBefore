@@ -37,5 +37,21 @@
           values (#{userid},#{videoid},#{courseid})
 	</insert>
 
+    <select id="getVideo" resultType="com.jk.modelapi.Video">
+        select tm.*,tt.name teachername,tt.info teacherinfo from t_movie tm
+            left join t_teacher tt on tm.teacherid=tt.id
+            where movieId=#{value}
+    </select>
+    <select id="status" resultType="int">
+        select count(*) from t_user_video_course
+            where user_id=#{id}
+             <if test="status==1 and status!=null">
+                and course_id=#{id1}
+             </if>
+             <if test="status==2 and status!=null">
+                and video_id=#{id1}
+             </if>
+
+    </select>
 
 </mapper>
