@@ -6,8 +6,6 @@ function searchBtn(x){
     initMovie();
 }
 function initMovie(){
-    alert($('#names').val())
-    alert($('#movieType').val())
     $.ajax({
         url:'../getMovie',
         type:'post',
@@ -17,13 +15,14 @@ function initMovie(){
         },
         success:function(data){
             var html = "";
-            alert(data.length)
             for (var i = 0;i<data.length;i++){
+                var id = data[i].movieId;
                 html+=
                     '<div class="col-sm-4 col-xs-12 mix kinder play">' +
                     '                    <div class="single-class">' +
+                                        '<a href="../money/tolouvifeo?id='+id+'">'+
                     '                        <div class="class-img">' +
-                    '                            <img alt="" src="'+data[i].moviePicther+'">' +
+                    '                            <img alt="" src="'+data[i].moviePicther+'"></a>' +
                     '                        </div>' +
                     '                        <div class="class-details">' +
                     '                            <h3><a href="class.html">'+data[i].movieName+'</a></h3>' +

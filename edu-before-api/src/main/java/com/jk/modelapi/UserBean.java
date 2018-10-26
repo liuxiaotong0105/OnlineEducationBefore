@@ -9,7 +9,7 @@ import java.io.Serializable;
  */
 public class UserBean implements Serializable {
 
-    private String id;
+    private Integer id;
 
     private String  name;
 
@@ -43,11 +43,11 @@ public class UserBean implements Serializable {
         this.status = status;
     }
 
-    public String getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 

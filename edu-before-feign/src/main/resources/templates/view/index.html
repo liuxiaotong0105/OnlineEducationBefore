@@ -30,35 +30,35 @@
 <header class="header-area inner-page">
     <!-- Header Top Area -->
     <ul th:if="${status}==''">
-        <section class="header-top">
-            <div class="container">
-                <div class="row">
-                    <div class="col-sm-12 col-xs-12" background-color="red">
-                        <div class="header-elements pull-right">
-                            <ul class="social-icon pull-left">
-                                <li>
-                                    <a target="_blank" href="http://wpa.qq.com/msgrd?v=3&uin=2218050300&site=qq&menu=yes"><i class="fa fa-qq"></i></a>
+    <section class="header-top">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-12 col-xs-12" background-color="red">
+                    <div class="header-elements pull-right">
+                        <ul class="social-icon pull-left">
+                            <li>
+                                <a target="_blank" href="http://wpa.qq.com/msgrd?v=3&uin=2218050300&site=qq&menu=yes"><i class="fa fa-qq"></i></a>
 
                                 </li>
-                            </ul>
-                            <div class="language pull-left">
-                                <a href="#">
-                                    <i class="icon-font"></i>
-                                    <span>中文站</span>
-                                </a>
-                            </div>
-                            <div class="login-or-signup pull-left">
-                                <a href="../login/toLogin"><i class="icon-user"></i><span>注册/登录</span></a>
-                            </div>
+                        </ul>
+                        <div class="language pull-left">
+                            <a href="#">
+                                <i class="icon-font"></i>
+                                <span>中文站</span>
+                            </a>
+                        </div>
+                        <div class="login-or-signup pull-left">
+                            <a href="../login/toLogin"><i class="icon-user"></i><span>注册/登录</span></a>
                         </div>
                     </div>
                 </div>
             </div>
-        </section>
+        </div>
+    </section>
     </ul>
-    <!--登录后-->
-    <!-- Header Top Area -->
-    <ul th:if="${status}==1">
+<!--登录后-->
+        <!-- Header Top Area -->
+        <ul th:if="${status}==1">
         <section class="header-top">
             <div class="container">
                 <div class="row">
@@ -76,23 +76,23 @@
                             </div>
                             <div class="login-or-signup pull-left">
                                 欢迎!
-                                <span class="photo">
+                                    <span class="photo">
                                              <img  src="/images/rebc.gif" width="25px">
                                         </span>
-                                <a  class="nick"  >
-                                    <span th:text="${user.name}"></span>
-                                    <em class="arrow"></em>
-                                </a>的登录!
-                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                <a href="../login/removeUser">注销</a>
+                                    <a  class="nick"  >
+                                        <span th:text="${user.name}"></span>
+                                        <em class="arrow"></em>
+                                    </a>的登录!
+                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                    <a href="../login/removeUser">注销</a>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
-    </ul>
+</ul>
 
     <!-- Header Top Area -->
     <ul th:if="${status}==2">
@@ -130,6 +130,9 @@
                                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                 <a href="#">去直播</a>
+                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                <a href="../money/tobuy">已购买视频</a>
                             </div>
                         </div>
                     </div>
@@ -148,8 +151,43 @@
                     </div>
                     <ul class="main-menu pull-right">
                         <li>
-                            <a href="../toIndex">首页</a>
+                            <a href="../login/toMain">首页</a>
                         </li>
+                        <li class="menu-has-child">
+                            <a href="#">课程</a>
+                            <ul>
+                                <li>
+                                    <a href="#">小学</a>
+                                    <ul>
+                                        <li><a href="../shuecharts">数学</a></li>
+                                        <li><a href="../yuecharts">语文</a></li>
+                                        <li><a href="../yingecharts">英语</a></li>
+                                        <li><a href="../aoecharts">数理逻辑训练</a></li>
+                                    </ul>
+                                </li>
+                                <li><a href="#">初中</a>
+                                    <ul>
+                                        <li><a href="../cshuecharts">数学</a></li>
+                                        <li><a href="../cyuecharts">语文</a></li>
+                                        <li><a href="../cyingecharts">英语</a></li>
+                                        <li><a href="../ckeecharts">科学</a></li>
+                                        <li><a href="../chuaecharts">化学</a></li>
+                                        <li><a href="../cwuecharts">物理</a></li>
+                                    </ul>
+                                </li>
+                                <li><a href="#">高中</a>
+                                    <ul>
+                                        <li><a href="../gshuecharts">数学</a></li>
+                                        <li><a href="../gyuecharts">语文</a></li>
+                                        <li><a href="../gyingecharts">英语</a></li>
+                                        <li><a href="../gshengecharts">生物</a></li>
+                                        <li><a href="../ghuaecharts">化学</a></li>
+                                        <li><a href="../gwuecharts">物理</a></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </li>
+
                         <li>
                             <a href="#">教学视频</a>
                         </li>
@@ -179,21 +217,20 @@
 <!-- Breadcrumb  -->
 <section class="header-top">
     <div class="col-sm-12 col-xs-12">
-        <div class="shutter">
-            <div class="shutter-img">
-                <a href="#" data-shutter-title="Iron Man"><img src="/images/lunbo/images/shutter_1.jpg" alt="#"></a>
-                <a href="#" data-shutter-title="Super Man"><img src="/images/lunbo/images/shutter_2.jpg" alt="#"></a>
-                <a href="#" data-shutter-title="The Hulk"><img src="/images/lunbo/images/shutter_3.jpg" alt="#"></a>
-                <a href="#" data-shutter-title="The your"><img src="/images/lunbo/images/shutter_4.jpg" alt="#"></a>
-            </div>
-            <ul class="shutter-btn">
-                <li class="prev"></li>
-                <li class="next"></li>
-            </ul>
-            <div class="shutter-desc">
-                <p>Iron Man</p>
-            </div>
+    <div class="shutter">
+        <div class="shutter-img">
+            <a href="#" data-shutter-title="Iron Man"><img src="/shou/tu1.jpg" alt="#"></a>
+            <a href="#" data-shutter-title="Super Man"><img src="/shou/tu2.jpg" alt="#"></a>
+            <a href="#" data-shutter-title="The Hulk"><img src="/shou/tu3.jpg" alt="#"></a>
         </div>
+        <ul class="shutter-btn">
+            <li class="prev"></li>
+            <li class="next"></li>
+        </ul>
+        <div class="shutter-desc">
+            <p>Iron Man</p>
+        </div>
+    </div>
     </div>
 </section>
 <!-- /.breadcrumb-section  -->
@@ -205,7 +242,7 @@
             <div class="col-sm-12 col-xs-12">
                 <div class="class-sort-btn-section">
                     <ul class="sort-btn pull-left">
-                        <li class="active filter" data-filter="mix"><a href="#" onclick="searchBtn(0)">所有</a></li>
+                        <li class="active filter" data-filter="mix"><a href="#" onclick="searchBtn(null)">所有</a></li>
                         <li class="filter" data-filter="kinder" id="kinder"><a href="#" onclick="searchBtn('语文')">语文</a></li>
                         <li class="filter" data-filter="play" id="play"><a href="#" onclick="searchBtn('数学')">数学</a></li>
                         <li class="filter" data-filter="primary" id="primary"><a href="#" onclick="searchBtn('英语')">英语</a></li>
@@ -255,13 +292,13 @@
             </div>
 
             <!--<div class="row">-->
-            <!--<div class="col-sm-12 col-xs-12 text-center">-->
-            <!--<ul class="paginations">-->
-            <!--<font size="6" color="#9932cc"><a href="#" onclick="">︽上一页︽</a>☆★☆-->
-            <!--<a href="#" onclick="">︾下一页︾</a></font>-->
+                <!--<div class="col-sm-12 col-xs-12 text-center">-->
+                    <!--<ul class="paginations">-->
+                     <!--<font size="6" color="#9932cc"><a href="#" onclick="">︽上一页︽</a>☆★☆-->
+                        <!--<a href="#" onclick="">︾下一页︾</a></font>-->
 
-            <!--</ul>-->
-            <!--</div>-->
+                    <!--</ul>-->
+                <!--</div>-->
             <!--</div>-->
         </div>
 </section>
