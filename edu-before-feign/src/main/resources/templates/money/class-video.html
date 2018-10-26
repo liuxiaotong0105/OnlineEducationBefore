@@ -256,24 +256,24 @@
 		<div class="row">
 			<div class="col-sm-6 col-xs-12">
 				<div class="class-detail-img">
-					<img alt="" src="../images/class1/class-details.jpg">
+					<img alt="" th:src="@{${video.moviePicther}}">
 				</div>
 			</div>
 			<div class="col-sm-6 col-xs-12">
 				<div class="class-information">
-					<h3><span th:text="${course.courseName}"></span></h3>
-					<h5><span th:text="${course.courseCount}"></span>已报名学习</h5>
-					<p th:text="${course.courseInfo}"></p>
+					<h3><span th:text="${video.movieName}"></span></h3>
+					<h5>&nbsp;&nbsp;&nbsp;&nbsp;</h5>
+					<p th:text="${video.movieInfo}"></p>
 				</div>
 				<div class="class-meta-data">
 					<div class="class-single-meta pull-left">
 						<p>类型</p>
-						<h4><p th:text="${course.courseType}"></p></h4>
+						<h4><p th:text="${video.movieType}"></p></h4>
 					</div>
 
 					<div class="class-single-meta pull-left">
 						<p>价格</p>
-						<h4><p th:text="${course.coursePrice}"></p></h4>
+						<h4><p th:text="${video.moviePrice}"></p></h4>
 					</div>
 
 
@@ -298,14 +298,16 @@
 					<div class="sub-heading"><h4>课程介绍<span></span></h4><p></p></div>
 					<ul class="subject-list">
 						<li>
-							<span th:text="${course.courseInfo}"></span>
+
+							<p th:text="${video.movieInfo}"></p>
+							<span></span>
 						</li>
 
 					</ul>
 				</div>
 			</div>
 		</div>
-		<div class="row">
+		<!--<div class="row">
 			<div class="col-sm-12 col-xs-12">
 				<div class="subject-details">
 					<div class="sub-heading"><h4>课程收益<span></span></h4><p></p></div>
@@ -317,8 +319,8 @@
 					</ul>
 				</div>
 			</div>
-		</div>
-		<div class="row">
+		</div>-->
+		<!--<div class="row">
 			<div class="col-sm-12 col-xs-12">
 				<div class="subject-details">
 					<div class="sub-heading"><h4>课程列表<span></span></h4><p>讲师</p></div>
@@ -331,14 +333,14 @@
 					</ul>
 				</div>
 			</div>
-		</div>
+		</div>-->
 		<div class="row">
 			<div class="col-sm-12 col-xs-12">
 				<div class="sub-heading"><h4>课程老师<span></span></h4></div>
 			</div>
 		</div>
 		<div class="row">
-			<span th:each="laishi : ${laishi}">
+
 			<div class="col-sm-6 col-md-3 col-xs-12 text-center">
 				<div class="single-team">
 					<div class="team-img">
@@ -350,11 +352,11 @@
 							<li><a href="#" class="instagram"><i class="fa fa-instagram"></i></a></li>
 						</ul>
 					</div>
-					<h3><p th:text="${laishi.teachername}"></p></h3>
-					<p th:text="${laishi.teacherinfo}"></p>
+					<h3><p th:text="${video.teachername}"></p></h3>
+					<p th:text="${video.teacherinfo}"></p>
 				</div>
 			</div>
-			</span>
+
 
 
 		</div>
@@ -377,7 +379,7 @@
 </section>
 <!-- /.callto-action-section -->
 <!-- Related Course Section -->
-<section class="related-course-section">
+<!--<section class="related-course-section">
 	<div class="container">
 		<div class="row">
 			<div class="col-sm-12 col-xs-12 text-center">
@@ -418,7 +420,7 @@
 				</div>
 			</div>
 		</div>
-</section>
+</section>-->
 <!-- Footer Section -->
 <footer class="footer-section">
 	<div class="container">
@@ -480,10 +482,10 @@
 </footer>
 <!-- /.footer-section -->
 
-<input type="hidden" th:value = "${course.courseName}" id="subject"/>
-<input type="hidden" th:value = "${course.courseInfo}" id="body"/>
-<input type="hidden" th:value = "${course.coursePrice}" id="coursePrice"/>
-<input type="hidden" th:value = "${course.id}" id="id"/>
+<input type="hidden" th:value = "${video.movieName}" id="subject"/>
+<input type="hidden" th:value = "${video.movieInfo}" id="body"/>
+<input type="hidden" th:value = "${video.moviePrice}" id="coursePrice"/>
+<input type="hidden" th:value = "${video.movieId}" id="id"/>
 
 
 <!-- Include All JavaScript -->
@@ -498,7 +500,7 @@
         var body = $("#body").val();
         var coursePrice = $("#coursePrice").val();
         var id = $("#id").val();
-        location.href="../money/alipay?body="+body+"&subject="+subject+"&total_amount="+coursePrice+"&id="+id+"&status=1";
+        location.href="../money/alipay?body="+body+"&subject="+subject+"&total_amount="+coursePrice+"&id="+id+"&status=2";
 
     }
 

@@ -23,4 +23,8 @@ public interface MoneyMapper {
     List<Video> tobuycourse(Integer id);
 
     void addcv(@Param("courseid") Integer courseid, @Param("videoid") Integer videoid, @Param("userid") Integer userid);
+
+    Video getVideo(Integer id);
+
+    int status(@Param("id") Integer id, @Param("id1") Integer id1, @Param("status") Integer status);
 }
