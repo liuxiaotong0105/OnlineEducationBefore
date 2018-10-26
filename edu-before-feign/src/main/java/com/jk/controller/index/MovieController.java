@@ -4,6 +4,7 @@ import com.jk.modelapi.Movie;
 import com.jk.service.index.MovieService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
@@ -16,12 +17,15 @@ import java.util.List;
  * Version 1.0
  **/
 @RestController
-@RequestMapping("movie")
 public class MovieController {
 
     @Autowired
     private MovieService movieService;
 
-
+    @RequestMapping(value = "getMovie")
+    public List<Movie> getMovie(Movie movie){
+        List<Movie> list = movieService.MovieList(movie);
+        return list;
+    }
 
 }

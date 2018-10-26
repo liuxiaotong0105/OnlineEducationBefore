@@ -1,18 +1,23 @@
 $(function(){
-    initMovie(null);
+    initMovie();
 })
-
-function initMovie(movieType){
-
+function searchBtn(x){
+    $('#movieType').val(x);
+    initMovie();
+}
+function initMovie(){
+    alert($('#names').val())
+    alert($('#movieType').val())
     $.ajax({
-        url:'../movie/getMovie',
+        url:'../getMovie',
         type:'post',
         data:{
-            movieType:movieType,
-            movieName:movieName
+            movieType:$('#movieType').val(),
+            movieName:$('#names').val()
         },
         success:function(data){
             var html = "";
+            alert(data.length)
             for (var i = 0;i<data.length;i++){
                 html+=
                     '<div class="col-sm-4 col-xs-12 mix kinder play">' +
@@ -40,7 +45,8 @@ function initMovie(movieType){
                     '                        </div>' +
                     '                    </div>' +
                     '                </div>';
-            } 
+            }
+            $('#mm').html(html);
         }
     })
 }
