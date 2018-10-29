@@ -101,6 +101,15 @@
 
                             </div>
                             <div class="video-info--uploading__item">
+                                <h3>费用<span>*</span></h3>
+                                <div class="u-input-radio-wrap">
+                                    <input type="radio" name="freeStatus" value = "0" checked id="mianfei"class="u-input-radio">免费</div>
+                                <div class="u-input-radio-wrap">
+                                    <input type="radio" name="freeStatus" value = "1" id="fufei" class="u-input-radio">付费</div>
+                            </div>
+
+
+                            <div class="video-info--uploading__item hide" id="jiage">
                                 <h3>价格<span>*</span></h3>
                                 <div class="cont">
                                     <input type="text" name="moviePrice" class="u-input-text"  placeholder="视频赏金" >
@@ -243,6 +252,13 @@ window.UPLOAD_DOMAIN = 'v-upload13.huya.com';
             }
         })
     })
+    $("#fufei").click(function(){
+        $("#jiage").attr("class","video-info--uploading__item")
+    })
+    $("#mianfei").click(function(){
+        $("#jiage").attr("class","video-info--uploading__item hide")
+    })
+
     function addMovie(){
 
         $.ajax({
