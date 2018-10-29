@@ -481,7 +481,7 @@
 <!-- /.footer-section -->
 
 <input type="hidden" th:value = "${course.courseName}" id="subject"/>
-<input type="hidden" th:value = "${course.courseInfo}" id="body"/>
+<input type="hidden" th:value = "${course.courseInfo}" id="bbody"/>
 <input type="hidden" th:value = "${course.coursePrice}" id="coursePrice"/>
 <input type="hidden" th:value = "${course.id}" id="id"/>
 
@@ -495,10 +495,10 @@
 <script>
 	function money() {
         var subject = $("#subject").val();
-        var body = $("#body").val();
+        var bbody = $("#body").val();
         var coursePrice = $("#coursePrice").val();
         var id = $("#id").val();
-        location.href="../money/alipay?body="+body+"&subject="+subject+"&total_amount="+coursePrice+"&id="+id+"&status=1";
+       location.href="../money/alipay?body="+bbody+"&subject="+subject+"&total_amount="+coursePrice+"&id="+id+"&status=1";
 
     }
 

@@ -185,6 +185,7 @@ public class MoneyController {
      * @throws
      */
     @RequestMapping("alipay")
+    @ResponseBody
     public String alipay(String subject,String total_amount,String body,Integer id,Integer status,HttpServletRequest request) throws AlipayApiException {
 
         UserBean attribute =  (UserBean) request.getSession().getAttribute("user");
@@ -198,13 +199,21 @@ public class MoneyController {
 
 
         AlipayBean alipayBean = new AlipayBean();
+
         alipayBean.setBody(body);
+
         SimpleDateFormat idd=new SimpleDateFormat("yyyyMMddHHmmss");
+
         String out_trade_no = idd.format(new Date());
+
         alipayBean.setOut_trade_no(out_trade_no);
+
         alipayBean.setTotal_amount(new StringBuffer().append(total_amount));
+
         alipayBean.setSubject(subject);
+
         return  AlipayUtil.connect(alipayBean);
+
     }
 
 

@@ -16,6 +16,9 @@ import java.net.URL;
 import java.util.Date;
 import java.util.Random;
 
+import com.aliyun.oss.ClientException;
+import com.aliyun.oss.OSSException;
+import com.aliyun.oss.model.GetObjectRequest;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.util.StringUtils;
@@ -228,5 +231,11 @@ public class OSSClientUtil {
 	            return url.toString();  
 	        }  
 	        return  "";  
-	    }  
+	    }
+	// 下载文件
+		private static void downloadFile(OSSClient client, String bucketName,String key, String filename) throws OSSException, ClientException {
+			client.getObject(new GetObjectRequest(bucketName, key), new File(				filename));	}
+
+
+
 }
