@@ -5,13 +5,23 @@ function searchBtn(x){
     $('#movieType').val(x);
     initMovie();
 }
+function searchFree(freeStatus){
+    $('#freeStatus').val(freeStatus);
+    initMovie();
+}
+function searchAll(){
+    $('#movieType').val("");
+    $('#freeStatus').val("-1");
+    initMovie();
+}
 function initMovie(){
     $.ajax({
         url:'../getMovie',
         type:'post',
         data:{
             movieType:$('#movieType').val(),
-            movieName:$('#names').val()
+            movieName:$('#names').val(),
+            freeStatus:$('#freeStatus').val()
         },
         success:function(data){
             var html = "";

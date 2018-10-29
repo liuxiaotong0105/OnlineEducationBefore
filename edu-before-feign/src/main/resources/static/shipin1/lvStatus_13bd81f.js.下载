@@ -1,0 +1,1 @@
+define("widget/roomAnchorLv/lvStatus.js",function(t,e,n){var a=t("Event"),o=new a;o.state=1,o.update=function(t){t!==o.state&&o.emit("change",o.state=t)},n.exports=o});

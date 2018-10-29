@@ -11,6 +11,8 @@ public class LoginUser {
 
     private String phone;
 
+    private Integer vipStatus;
+
     public String getId() {
         return id;
     }
@@ -49,5 +51,13 @@ public class LoginUser {
 
     public void setPhone(String phone) {
         this.phone = phone == null ? null : phone.trim();
+    }
+
+    public Integer getVipStatus() {
+        return vipStatus;
+    }
+
+    public void setVipStatus(Integer vipStatus) {
+        this.vipStatus = vipStatus;
     }
 }
