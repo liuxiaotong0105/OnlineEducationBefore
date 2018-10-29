@@ -67,12 +67,17 @@ public class MoneyController {
             status = attribute.getStatus();
             request.setAttribute("user",attribute);
             request.setAttribute("status",status);
+            Integer s = 2;
+            int count=moneyService.status(attribute.getId(),id,s);
+            md.addAttribute("count",count);
         }else{
             request.setAttribute("status",status);
         }
 
-        Video Video = moneyService.getVideo(id);
-        md.addAttribute("video",Video);
+        Video video = moneyService.getVideo(id);
+
+        md.addAttribute("video",video);
+
 
 
         return "money/class-video";
@@ -185,16 +190,8 @@ public class MoneyController {
      * @throws
      */
     @RequestMapping("alipay")
+    @ResponseBody
     public String alipay(String subject,String total_amount,String body,Integer id,Integer status,HttpServletRequest request) throws AlipayApiException {
-
-        UserBean attribute =  (UserBean) request.getSession().getAttribute("user");
-        int count=moneyService.status(attribute.getId(),id,status);
-        if (count>0){
-            return "money/yigou";
-            // return "redirect:tobuy";
-        }
-        request.getSession().setAttribute("id",id);
-        request.getSession().setAttribute("status",status);
 
 
         AlipayBean alipayBean = new AlipayBean();

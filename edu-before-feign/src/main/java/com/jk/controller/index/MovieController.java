@@ -42,7 +42,8 @@ public class MovieController {
     public ModelAndView toMovieInfo(Movie movie, HttpServletRequest request){
         UserBean user = UserUtil.getUserInfo(request);
         ModelAndView modelAndView = new ModelAndView("movie/movieInfo");
-        modelAndView.addObject("m",movie);
+        Movie m = movieService.getMovieById(movie.getMovieId());
+        modelAndView.addObject("m",m);
         modelAndView.addObject("u",user);
         return modelAndView;
     }

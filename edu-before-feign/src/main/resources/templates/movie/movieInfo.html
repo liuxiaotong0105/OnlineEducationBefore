@@ -15,7 +15,7 @@
     <link type="text/css" rel="stylesheet" href="../shipin1/auto_combine_b9f38_a8f4d5f.css">
     <!--HEAD_END-->
     <link rel="preload" as="style" href="../shipin1/vplayer.css">
-    <link rel="preload" as="script" href="">
+
     <link rel="stylesheet" href="../shipin1/vplayer.css">
 
     <style type="text/css">
@@ -434,7 +434,12 @@
 
 <input type="hidden" th:value="${m.moviePicther}" id="photo">
 <input type="hidden" th:value="${m.movieUrl}" id="url">
-<input type="hidden" th:value="${u.name}" id="userName">
+<span th:if="${u!=null}">
+    <input type="hidden" th:value="${u.name}" id="userName">
+</span>
+<span th:if="${u==null}">
+    <input type="hidden"  id="userName" value="">
+</span>
 
 <script type="text/javascript" src="../movie/jquery-1.10.2.min.js"></script>
 <script src="https://cdn.goeasy.io/goeasy.js"></script>
@@ -684,7 +689,21 @@
 
     function adjump() {
         //alert('点击了跳过广告按钮');
-        player.videoPlay();
+        var userName = $('#userName').val();
+        if (userName == ''){
+            if(confirm("您还未登录，是否登录?")){
+                location.href='../login/toLogin';
+                return;
+            }
+        }
+
+        $.ajax({
+            url:'',
+            success:function(){
+
+            }
+        })
+        //player.videoPlay();
 
     }
 
@@ -807,6 +826,9 @@
         channel: "DanMu",
         onMessage: function(message){
             var userName = $('#userName').val();
+            if(userName==''){
+                userName="游客"+Math.ceil(Math.random()*999999999);
+            }
             var msg = message.content;
             newDanmu(message.content);
             var Words = document.getElementById("words");

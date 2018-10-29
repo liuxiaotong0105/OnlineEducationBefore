@@ -27,7 +27,7 @@
 <body>
 <!-- Header Area -->
 <header class="header-area inner-page">
-	<ul th:if="${status}==''">
+	<span th:if="${status}==''">
 		<section class="header-top">
 			<div class="container">
 				<div class="row">
@@ -53,10 +53,10 @@
 				</div>
 			</div>
 		</section>
-	</ul>
+	</span>
 	<!--登录后-->
 	<!-- Header Top Area -->
-	<ul th:if="${status}==1">
+	<span th:if="${status}==1">
 		<section class="header-top">
 			<div class="container">
 				<div class="row">
@@ -90,10 +90,10 @@
 				</div>
 			</div>
 		</section>
-	</ul>
+	</span>
 
 	<!-- Header Top Area -->
-	<ul th:if="${status}==2">
+	<span th:if="${status}==2">
 		<section class="header-top">
 			<div class="container">
 				<div class="row">
@@ -137,7 +137,7 @@
 				</div>
 			</div>
 		</section>
-	</ul>
+	</span>
 	<!-- /.header-top -->
 	<nav class="navigation">
 		<div class="container">
@@ -265,21 +265,85 @@
 					<h5>&nbsp;&nbsp;&nbsp;&nbsp;</h5>
 					<p th:text="${video.movieInfo}"></p>
 				</div>
+
 				<div class="class-meta-data">
 					<div class="class-single-meta pull-left">
 						<p>类型</p>
 						<h4><p th:text="${video.movieType}"></p></h4>
 					</div>
-
+				<span th:if="${status}!=''">
+					<span th:if="${video.freeStatus}==1">
+						<span th:if="${count}==0">
+							<div class="class-single-meta pull-left">
+								<p >价格</p>
+								<h4 >
+									<p th:text="${video.moviePrice}"></p>
+								</h4>
+							</div>
+							<div class="class-single-meta pull-left">
+								<a class="primary-btn pull-right" href="javascript:money()"><span>购买</span></a>
+							</div>
+						</span>
+					<span th:if="${count}==0">
+							<div class="class-single-meta pull-left">
+								<p >价格</p>
+								<h4 >
+									<p th:text="${video.moviePrice}"></p>
+								</h4>
+							</div>
+							<div class="class-single-meta pull-left">
+								<a class="primary-btn pull-right" href="javascript:toMovieInfo()"><span>立即播放</span></a>
+							</div>
+						</span>
+				</span>
+				<span th:if="${video.freeStatus}==0">
 					<div class="class-single-meta pull-left">
-						<p>价格</p>
-						<h4><p th:text="${video.moviePrice}"></p></h4>
-					</div>
+					<p >价格</p>
+					<h4 >
+						<p>免费</p>
+					</h4>
+				</div>
+				<div class="class-single-meta pull-left">
+					<a class="primary-btn pull-right" href="javascript:toMovieInfo()">
+						<span >立即播放</span></a>
+				</div>
+				</span>
+			</span>
 
 
+
+					<span th:if="${status}==''">
+					<span th:if="${video.freeStatus}==1">
+
+							<div class="class-single-meta pull-left">
+								<p >价格</p>
+								<h4 >
+									<p th:text="${video.moviePrice}"></p>
+								</h4>
+							</div>
+							<div class="class-single-meta pull-left">
+								<a class="primary-btn pull-right" href="javascript:money()"><span>购买</span></a>
+							</div>
+
+				</span>
+				<span th:if="${video.freeStatus}==0">
 					<div class="class-single-meta pull-left">
-						<a class="primary-btn pull-right" href="javascript:money()"><span>购买</span></a>
-					</div>
+					<p >价格</p>
+					<h4 >
+						<p>免费</p>
+					</h4>
+				</div>
+				<div class="class-single-meta pull-left">
+					<a class="primary-btn pull-right" href="javascript:toMovieInfo()">
+						<span >立即播放</span></a>
+				</div>
+				</span>
+			</span>
+
+
+
+
+
 
 					<div class="clearfix"></div>
 				</div>
@@ -481,11 +545,16 @@
 	</div>
 </footer>
 <!-- /.footer-section -->
-
+<input type="hidden" th:value = "${video.movieId}" id="movieId"/>
 <input type="hidden" th:value = "${video.movieName}" id="subject"/>
 <input type="hidden" th:value = "${video.movieInfo}" id="body"/>
 <input type="hidden" th:value = "${video.moviePrice}" id="coursePrice"/>
 <input type="hidden" th:value = "${video.movieId}" id="id"/>
+<input type="hidden" th:value = "${video.moviePicther}" id="moviePicther"/>
+<input type="hidden" th:value = "${video.movieUrl}" id="movieUrl"/>
+<input type="hidden" th:value = "${video.movieInfo}" id="movieInfo"/>
+<input type="hidden" th:value = "${video.teachername}" id="teacherName"/>
+<input type="hidden" th:value = "${status}" id="status"/>
 
 
 <!-- Include All JavaScript -->
@@ -495,11 +564,29 @@
 <script src="../js/jquery.magnific-popup.min.js"></script>
 <script src="../js/main.js"></script>
 <script>
+
+	function toMovieInfo(){
+        var movieId = $("#movieId").val();
+        /*var moviePicther = $("#moviePicther").val();
+        var movieUrl = $("#movieUrl").val();
+        var moviePicther = $("#movieInfo").val();
+        var teacherName = $("#teacherName").val();*/
+	    /*location.href='../toMovieInfo?movieName='+subject+'&moviePicther='+moviePicther+'&movieUrl='+
+            movieUrl+'&movieInfo='+movieInfo+'&teacherName='+teacherName;*/
+	    location.href='../toMovieInfo?movieId='+movieId;
+	}
 	function money() {
         var subject = $("#subject").val();
         var body = $("#body").val();
         var coursePrice = $("#coursePrice").val();
         var id = $("#id").val();
+        var status = $('#status').val();
+        if(status == ''){
+            if(confirm("您还没有登录，是否登录？")){
+                location.href='../login/toLogin';
+			}
+			return;
+		}
         location.href="../money/alipay?body="+body+"&subject="+subject+"&total_amount="+coursePrice+"&id="+id+"&status=2";
 
     }
@@ -509,7 +596,6 @@
         location.href="../money/tobuy";
 
     }
-
 </script>
 </body>
 </html>

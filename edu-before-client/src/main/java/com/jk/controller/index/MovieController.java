@@ -10,10 +10,7 @@ import org.apache.solr.client.solrj.response.QueryResponse;
 import org.apache.solr.common.SolrDocument;
 import org.apache.solr.common.SolrDocumentList;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -30,8 +27,8 @@ import java.util.Map;
 @RestController
 public class MovieController {
 
-    /*@Autowired
-    private MovieService movieService;*/
+    @Autowired
+    private MovieService movieService;
 
     @Autowired
     private SolrClient solrClient;
@@ -108,6 +105,11 @@ public class MovieController {
         m.setTeacherName(result.get("teacher_name").toString());
         m.setFreeStatus(Integer.parseInt(result.get("free_status").toString()));
         return m;
+    }
+
+    @RequestMapping(value = "/getMovieById",method = RequestMethod.GET)
+    public Movie getMovieById(@RequestParam("movieId") Integer movieId){
+        return movieService.getMovieById(movieId);
     }
 
 }
