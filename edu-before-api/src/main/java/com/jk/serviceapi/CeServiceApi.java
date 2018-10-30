@@ -6,6 +6,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import java.util.List;
+
 
 /**
  * <pre>项目名称：springCloud
@@ -25,6 +27,7 @@ public interface CeServiceApi {
     @RequestMapping(value = "movie/addMovie",method = RequestMethod.POST)
     void addMovie(@RequestBody Movie movie);
 
-
+    @RequestMapping(value = "movie/addMovie",method = RequestMethod.GET)
+    List<Movie> queryMovieSolr();
 
 }

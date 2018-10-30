@@ -32,7 +32,7 @@
     <div class="duya-header-bd clearfix">
 
       <div class="duya-header-nav">
-        <div class="hy-nav-item hy-nav-item-on"><a href="http://v.huya.com/" class="hy-nav-link statpid" s_data="hysp/navi/home/click/web|视频/导航/首页/点击/web">首页</a></div>
+        <div class="hy-nav-item hy-nav-item-on"><a href="../login/toMain" class="hy-nav-link statpid" s_data="hysp/navi/home/click/web|视频/导航/首页/点击/web">首页</a></div>
 
 
         <div class="hy-nav-item">
@@ -58,8 +58,8 @@
           </div> 
           <div class="hy-nav-right nav-user success-login J_isLogin" style="display: block;">
             <a class="nav-user-title" href="http://v.huya.com/u/1688816247" target="_blank">
-            <img id="login-userAvatar" src="../shangchuan/c7530a195988a7e59f86c5811389f4_180_135.jpg" alt="头像">
-            <span id="login-username" title="兜兜有钱^O^">兜兜有钱^O^</span>
+            <img id="login-userAvatar" src="../shangchuan/c7530a195988a7e59f86c5811389f4_180_135.jpg" alt="头像" >
+            <span id="login-username" th:text="${userName}"></span>
             <i></i>
             <b class="m-reddot J_headerRedDot" style="display: inline;"></b></a>
             <div class="nav-expand-list">
@@ -74,7 +74,7 @@
                 </div>
                 <div class="h-user-bot clearfix">
 
-                  <a href="javascript:void(0);" class="fltR" data-role="miti-loginout">退出登录</a>
+                  <a href="../login/removeUser" class="fltR" data-role="miti-loginout">退出登录</a>
                 </div>
               </div>
             </div>
@@ -97,6 +97,8 @@
 
         <!-- 视频上传准备页品牌-->
         <div class="video-upload--forupload" style="height: 400px;">
+            <div id="showswf1" style="margin-left:320px;"></div>
+
             <div class="pc">
                 <div id="showImg" style="margin-left:150px;"></div>
             </div>
@@ -150,7 +152,7 @@
             'fileTypeExts' : '*.*',
             'fileSizeLimit' : '2000MB',
             //给div的进度条加背景 不可忽略
-            'queueID' : 'showBars',
+            'queueID' : 'showswf1',
             // controller层方法中接收文件的参数名
             'fileObjName' : 'file',
             //上传成功后的回调函数
@@ -166,10 +168,10 @@
     })
 $("#ddd").click(function(){
     var url = $("#userp").val();
-    alert(url)
+
     if(url != null & url != ''){
 
-        location.href = '../movie/toAddMovie?movieUrl = '+url;
+        location.href = '../movie/toAddMovie?movieUrl='+url;
     }
     else{
         alert("请上传图片先！可不可以？")

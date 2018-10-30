@@ -24,11 +24,7 @@ public class Movie implements Serializable {
 
     private String movieInfo;
 
-
-
-
     private String movieType;
-
 
     private Integer movieStatus;
 
@@ -36,6 +32,35 @@ public class Movie implements Serializable {
 
     private String moviePrice;
 
+    private String movieClass;
+
+    private String teacherName;
+
+    private Integer freeStatus;
+
+    public Integer getFreeStatus() {
+        return freeStatus;
+    }
+
+    public void setFreeStatus(Integer freeStatus) {
+        this.freeStatus = freeStatus;
+    }
+
+    public String getMovieClass() {
+        return movieClass;
+    }
+
+    public void setMovieClass(String movieClass) {
+        this.movieClass = movieClass;
+    }
+
+    public String getTeacherName() {
+        return teacherName;
+    }
+
+    public void setTeacherName(String teacherName) {
+        this.teacherName = teacherName;
+    }
 
     public Integer getMovieId() {
         return movieId;

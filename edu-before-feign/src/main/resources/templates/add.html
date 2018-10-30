@@ -44,17 +44,17 @@
 
           <div class="hy-nav-right nav-user success-login J_isLogin" style="display: block;">
             <a class="nav-user-title" href="http://v.huya.com/u/1688816247" target="_blank">
-            <img id="login-userAvatar" src="../add_files/c7530a195988a7e59f86c5811389f4_180_135.jpg" alt="头像">
-            <span id="login-username" title="兜兜有钱^O^">兜兜有钱^O^</span>
+            <img id="login-userAvatar" src="../shangchuan/c7530a195988a7e59f86c5811389f4_180_135.jpg" alt="头像" >
+            <span id="login-username" title="兜兜有钱^O^" th:text="${userName}"></span>
             <i></i>
             <b class="m-reddot J_headerRedDot" style="display: inline;"></b></a>
             <div class="nav-expand-list">
               <i class="arrow"></i>
               <div class="h-user-info-layer">
                 <div class="h-user-info">
-                  <a class="h-user-avatar statpid" s_data="hysp/navi/head/click/web|视频/导航/头像/点击/web" target="_blank" href="http://v.huya.com/u/1688816247">
+                  <a class="h-user-avatar statpid" s_data="hysp/navi/head/click/web|视频/导航/头像/点击/web" target="_blank" th:href="${userPic}">
                     <img data-role="user-avatar" src="../add_files/c7530a195988a7e59f86c5811389f4_180_135.jpg">
-                    <p class="h-user-name" data-role="user-name" title="兜兜有钱^O^">兜兜有钱^O^</p>
+                    <p class="h-user-name" data-role="user-name" title="兜兜有钱^O^"></p>
                   </a>
 
                 </div>
@@ -87,7 +87,7 @@
                 <h2>视频信息 </h2>
                 <form id="addMovie" >
 
-                        <input type="hidden" name="movieUrl" th:value="${movieUrl}">
+
                     <!-- 视频资料{ -->
                     <div class="video-info--uploading ">
                         <div class="video-info--uploading__section">
@@ -101,6 +101,15 @@
 
                             </div>
                             <div class="video-info--uploading__item">
+                                <h3>费用<span>*</span></h3>
+                                <div class="u-input-radio-wrap">
+                                    <input type="radio" name="freeStatus" value = "0" checked id="mianfei"class="u-input-radio">免费</div>
+                                <div class="u-input-radio-wrap">
+                                    <input type="radio" name="freeStatus" value = "1" id="fufei" class="u-input-radio">付费</div>
+                            </div>
+
+
+                            <div class="video-info--uploading__item hide" id="jiage">
                                 <h3>价格<span>*</span></h3>
                                 <div class="cont">
                                     <input type="text" name="moviePrice" class="u-input-text"  placeholder="视频赏金" >
@@ -113,12 +122,29 @@
                             <div class="video-info--uploading__item">
                                 <h3>类型<span>*</span></h3>
                                 <div class="cont">
-                                    <div class="u-input-radio-wrap">
-                                        <input type="radio" name="movieType" value="语文"  class="u-input-radio">语文</div>
-                                    <div class="u-input-radio-wrap">
-                                        <input type="radio" name="movieType" value="数学" class="u-input-radio">数学</div>
-                                    <div class="u-input-radio-wrap">
-                                        <input type="radio" name="movieType" value="外语" class="u-input-radio">外语</div>
+                                        <select name="movieType" id="" class="u-select">
+                                            <option value="-1">请选择类型</option>
+                                            <option value="语文">语文</option>
+                                            <option value="数学">数学</option>
+                                            <option value="英语">英语</option>
+                                            <option value="物理">物理</option>
+                                            <option value="化学">化学</option>
+                                        </select>
+                                </div>
+
+                            </div>
+                            <div class="video-info--uploading__item">
+                                <h3>年级<span>*</span></h3>
+                                <div class="cont">
+                                        <select name="movieClass" id="album" class="u-select">
+                                            <option value="-1">请选择年级</option>
+                                            <option value="初一">初一</option>
+                                            <option value="初二">初二</option>
+                                            <option value="初三">初三</option>
+                                            <option value="高一">高一</option>
+                                            <option value="高二">高二</option>
+                                            <option value="高三">高三</option>
+                                        </select>
                                 </div>
 
                             </div>
@@ -142,7 +168,7 @@
                             </div>
 
 
-
+                            <input type="hidden" name="movieUrl" th:value="${movieUrl}">
                         </div>
                     </div>
 					<input type="hidden" name="other_channel" value="">
@@ -226,7 +252,15 @@ window.UPLOAD_DOMAIN = 'v-upload13.huya.com';
             }
         })
     })
+    $("#fufei").click(function(){
+        $("#jiage").attr("class","video-info--uploading__item")
+    })
+    $("#mianfei").click(function(){
+        $("#jiage").attr("class","video-info--uploading__item hide")
+    })
+
     function addMovie(){
+
         $.ajax({
             url:'../movie/addMovie',
             type:'post',

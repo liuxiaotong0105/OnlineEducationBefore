@@ -30,6 +30,26 @@ public class Video {
     //教师类型
     private String teachertype;
 
+    private Integer freeStatus;
+
+    private String movieClass;
+
+    public Integer getFreeStatus() {
+        return freeStatus;
+    }
+
+    public void setFreeStatus(Integer freeStatus) {
+        this.freeStatus = freeStatus;
+    }
+
+    public String getMovieClass() {
+        return movieClass;
+    }
+
+    public void setMovieClass(String movieClass) {
+        this.movieClass = movieClass;
+    }
+
     public String getTeachername() {
         return teachername;
     }

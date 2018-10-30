@@ -38,6 +38,9 @@ spring:
     url: jdbc:mysql://192.168.31.8:3306/ceshiedu
     username: root
     password: root
+  data:
+    solr:
+      host: http://127.0.0.1:8080/solr
 
 eureka:
   client:
@@ -47,6 +50,7 @@ eureka:
 mybatis:
   type-aliases-package: com.jk.modelapi
   mapper-locations: classpath:mapper/*.xml
+
 
 
 

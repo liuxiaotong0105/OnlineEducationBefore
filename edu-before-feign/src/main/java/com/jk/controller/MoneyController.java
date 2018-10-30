@@ -4,6 +4,7 @@ package com.jk.controller;
 import com.alipay.api.AlipayApiException;
 import com.jk.modelapi.AlipayBean;
 import com.jk.modelapi.Course;
+import com.jk.modelapi.UserBean;
 import com.jk.modelapi.Video;
 import com.jk.service.MoneyService;
 import com.jk.util.AlipayUtil;
@@ -28,11 +29,20 @@ import java.util.List;
 public class MoneyController {
 
     @Autowired
-   private MoneyService moneyService;
+    private MoneyService moneyService;
 
 
     @RequestMapping("toask")
-    public String toask(Model md,Integer id){
+    public String toask(Model md,Integer id,HttpServletRequest request){
+        String status = "";
+        UserBean attribute =  (UserBean) request.getSession().getAttribute("user");
+        if (attribute != null) {
+            status = attribute.getStatus();
+            request.setAttribute("user",attribute);
+            request.setAttribute("status",status);
+        }else{
+            request.setAttribute("status",status);
+        }
 
         Course course = moneyService.querycourse(id);
         md.addAttribute("course",course);
@@ -49,12 +59,54 @@ public class MoneyController {
         md.addAttribute("laishi",video);
         return "money/class-details";
     }
+    @RequestMapping("tolouvifeo")
+    public String tolouvifeo(Model md,Integer id,HttpServletRequest request){
+        String status = "";
+        UserBean attribute =  (UserBean) request.getSession().getAttribute("user");
+        if (attribute != null) {
+            status = attribute.getStatus();
+            request.setAttribute("user",attribute);
+            request.setAttribute("status",status);
+            Integer s = 2;
+            int count=moneyService.status(attribute.getId(),id,s);
+            md.addAttribute("count",count);
+        }else{
+            request.setAttribute("status",status);
+        }
+
+        Video video = moneyService.getVideo(id);
+
+        md.addAttribute("video",video);
+
+
+
+        return "money/class-video";
+    }
 
 
     @RequestMapping("tobuy")
     public String tobuy(HttpServletRequest request,Model md){
-        //request.getSession().getAttribute();获取用户id
-        List<Course> course = moneyService.tobuy(1);
+
+        String status = "";
+        UserBean attribute =  (UserBean) request.getSession().getAttribute("user");
+        if (attribute != null) {
+            status = attribute.getStatus();
+            request.setAttribute("user",attribute);
+            request.setAttribute("status",status);
+        }else{
+            request.setAttribute("status",status);
+        }
+
+        //获取用户id
+        UserBean user= (UserBean) request.getSession().getAttribute("user");
+        List<Course> course = moneyService.tobuy(user.getId());
+        for  ( int  i  =   0 ; i  <  course.size()  -   1 ; i ++ )  {
+            for  ( int  j  =  course.size()  -   1 ; j  >  i; j -- )  {
+                if  (course.get(j).getId()==(course.get(i).getId()))  {
+                    course.remove(j);
+                }
+            }
+        }
         md.addAttribute("course",course);
         return "money/buy";
     }
@@ -62,8 +114,18 @@ public class MoneyController {
 
     @RequestMapping("tovideo")
     public String tovideo(HttpServletRequest request,Model md){
-        //request.getSession().getAttribute();获取用户id
-        List<Video> video = moneyService.getvideo(1);
+        String status = "";
+        UserBean attribute =  (UserBean) request.getSession().getAttribute("user");
+        if (attribute != null) {
+            status = attribute.getStatus();
+            request.setAttribute("user",attribute);
+            request.setAttribute("status",status);
+        }else{
+            request.setAttribute("status",status);
+        }
+        //获取用户id
+        UserBean user= (UserBean) request.getSession().getAttribute("user");
+        List<Video> video = moneyService.getvideo(user.getId());
         md.addAttribute("video",video);
 
         return "money/buyVideo";
@@ -71,7 +133,16 @@ public class MoneyController {
 
 
     @RequestMapping("tobuycourse")
-    public String tobuycourse(Integer id,String name,Model md){
+    public String tobuycourse(Integer id,String name,Model md,HttpServletRequest request){
+        String status = "";
+        UserBean attribute =  (UserBean) request.getSession().getAttribute("user");
+        if (attribute != null) {
+            status = attribute.getStatus();
+            request.setAttribute("user",attribute);
+            request.setAttribute("status",status);
+        }else{
+            request.setAttribute("status",status);
+        }
         List<Video> video = moneyService.tobuycourse(id);
         md.addAttribute("video",video);
         md.addAttribute("name",name);
@@ -81,20 +152,29 @@ public class MoneyController {
 
     @RequestMapping("addcv")
     public String addcv(HttpServletRequest request,Integer id){
-
-        //request.getSession().getAttribute();获取用户id
+        String status = "";
+        UserBean attribute =  (UserBean) request.getSession().getAttribute("user");
+        if (attribute != null) {
+            status = attribute.getStatus();
+            request.setAttribute("user",attribute);
+            request.setAttribute("status",status);
+        }else{
+            request.setAttribute("status",status);
+        }
+        //获取用户id
+        UserBean user= (UserBean) request.getSession().getAttribute("user");
         //获取视屏套餐id
         Integer idd= (Integer) request.getSession().getAttribute("id");
-        Integer status= (Integer) request.getSession().getAttribute("status");
+        Integer status2= (Integer) request.getSession().getAttribute("status");
         Integer courseid = null;
         Integer videoid=null;
-        if (status==1) {
-              courseid = idd;
+        if (status2==1) {
+            courseid = idd;
         }
-        if (status==2) {
-              videoid = idd;
+        if (status2==2) {
+            videoid = idd;
         }
-            moneyService.addcv(courseid,videoid,1);
+        moneyService.addcv(courseid,videoid,user.getId());
 
         return "redirect:tobuy";
     }
@@ -112,9 +192,6 @@ public class MoneyController {
     @RequestMapping("alipay")
     @ResponseBody
     public String alipay(String subject,String total_amount,String body,Integer id,Integer status,HttpServletRequest request) throws AlipayApiException {
-
-            request.getSession().setAttribute("id",id);
-            request.getSession().setAttribute("status",status);
 
 
         AlipayBean alipayBean = new AlipayBean();
