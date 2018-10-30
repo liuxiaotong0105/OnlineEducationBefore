@@ -59,7 +59,7 @@
 }
 .login-or-signup{
     margin-left: 40px;
-    margin-top: 5px;
+    margin-top: 10px;
 }
 .login-or-signup a {
     color: #fff;
@@ -78,7 +78,7 @@
 /* Main Menu */
 .navigation {
     padding: 17px 0 0;
-    background: #fff;
+    background: #ffffff;
     position: relative;
 }
 .logo{

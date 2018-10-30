@@ -35,20 +35,10 @@
             <div class="row">
                 <div class="col-sm-12 col-xs-12" background-color="red">
                     <div class="header-elements pull-right">
-                        <ul class="social-icon pull-left">
-                            <li>
-                                <a target="_blank" href="http://wpa.qq.com/msgrd?v=3&uin=2218050300&site=qq&menu=yes"><i class="fa fa-qq"></i></a>
-
-                                </li>
-                        </ul>
-                        <div class="language pull-left">
-                            <a href="#">
-                                <i class="icon-font"></i>
-                                <span>中文站</span>
-                            </a>
-                        </div>
                         <div class="login-or-signup pull-left">
-                            <a href="../login/toLogin"><i class="icon-user"></i><span>注册/登录</span></a>
+                            <a target="_blank" href="http://wpa.qq.com/msgrd?v=3&uin=2218050300&site=qq&menu=yes"><i class="fa fa-qq"></i></a>
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            <a href="../login/toLogin"><span>注册/登录</span></a>
                         </div>
                     </div>
                 </div>
@@ -64,25 +54,17 @@
                 <div class="row">
                     <div class="col-sm-12 col-xs-12">
                         <div class="header-elements pull-right">
-                            <ul class="social-icon pull-left">
-                                <li>
-                                    <a target="_blank" href="http://wpa.qq.com/msgrd?v=3&uin=2218050300&site=qq&menu=yes"><i class="fa fa-qq"></i></a></li>
-                            </ul>
-                            <div class="language pull-left">
-                                <a href="#">
-                                    <i class="icon-font"></i>
-                                    <span>中文站</span>
-                                </a>
-                            </div>
                             <div class="login-or-signup pull-left">
-                                欢迎!
+                                <a target="_blank" href="http://wpa.qq.com/msgrd?v=3&uin=2218050300&site=qq&menu=yes"><i class="fa fa-qq"></i></a>
+                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                     <span class="photo">
                                              <img  src="/images/rebc.gif" width="25px">
                                         </span>
+                                    <span th:text="vip1"></span>&nbsp;&nbsp;
                                     <a  class="nick"  >
                                         <span th:text="${user.name}"></span>
                                         <em class="arrow"></em>
-                                    </a>的登录!
+                                    </a>
                                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                     <a href="../login/removeUser">注销</a>
@@ -101,26 +83,18 @@
                 <div class="row">
                     <div class="col-sm-12 col-xs-12">
                         <div class="header-elements pull-right">
-                            <ul class="social-icon pull-left">
-                                <li>
-                                    <a target="_blank" href="http://wpa.qq.com/msgrd?v=3&uin=2218050300&site=qq&menu=yes"><i class="fa fa-qq"></i></a></li>
-                            </ul>
+
                             <div class="language pull-left">
                                 <a href="#">
                                     <i class="icon-font"></i>
                                     <span>中文站</span>
-
                                 </a>
                             </div>
                             <div class="login-or-signup pull-left">
-                                欢迎!
-                                <span class="photo">
-                                         <img  src="/images/rebc.gif" width="25px">
-                                    </span>
                                 <a  class="nick"  >
                                     <span th:text="${user.name}"></span>
                                     <em class="arrow"></em>
-                                </a>&nbsp;的登录!
+                                </a>
                                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                 <a href="../login/removeUser">注销</a>
@@ -206,13 +180,13 @@
                 <div class="class-sort-btn-section">
                     <ul class="sort-btn pull-left">
                         <li class="active filter" data-filter="mix"><a href="#" onclick="searchBtn(0)">所有</a></li>
-                        <li class="filter" data-filter="kinder" id="kinder"><a href="#" onclick="searchBtn(1)">小学</a></li>
+                        <li class="filter" data-filter="kinder" id="kinder"><a href="#" onclick="searchBtn('小学')">小学</a></li>
                         <li class="filter" data-filter="play" id="play"><a href="#" onclick="searchBtn(2)">初中</a></li>
                         <li class="filter" data-filter="primary" id="primary"><a href="#" onclick="searchBtn(3)">高中</a></li>
                     </ul>
                     <form  class="class-search pull-right">
                         <input type="search"  id="searchName" placeholder="搜索课程">
-                        <button type="submit" onclick="searchBtn(0)"><i class="fa fa-search"></i></button>
+                        <button  onclick="searchBtn(0)"><i class="fa fa-search"></i></button>
                     </form>
                     <div class="clearfix">
 
@@ -336,6 +310,7 @@
 <script src="/js/lunbo/shutter.js"></script>
 <script >
     function searchBtn(x) {
+        alert(x);
         var movieName = $("#searchName").val();
         var movieType=x;
         $.ajax({
