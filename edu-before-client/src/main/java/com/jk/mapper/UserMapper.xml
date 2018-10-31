@@ -18,7 +18,7 @@
 	</insert>
 
 	<select id="getAdList" resultType="com.jk.modelapi.AdBean">
-		select * from t_advertisiang
+		select * from t_advertisiang where advAdd = 1
 	</select>
 
 

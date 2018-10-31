@@ -213,16 +213,18 @@
 
     <div class="shutter">
         <div class="shutter-img">
-            <a href="#" data-shutter-title="Iron Man"><img src="/shou/tu1.jpg" alt="#"></a>
-            <a href="#" data-shutter-title="Super Man"><img src="/shou/tu2.jpg" alt="#"></a>
-            <a href="#" data-shutter-title="The Hulk"><img src="/shou/tu3.jpg" alt="#"></a>
+            <!--<a href="#" data-shutter-title="Iron Man"><img src="/shou/tu1.jpg" alt="#"></a>-->
+            <!--<a href="#" data-shutter-title="Super Man"><img src="/shou/tu2.jpg" alt="#"></a>-->
+            <!--<a href="#" data-shutter-title="The Hulk"><img src="/shou/tu3.jpg" alt="#"></a>-->
+
+
         </div>
         <ul class="shutter-btn">
             <li class="prev"></li>
             <li class="next"></li>
         </ul>
         <div class="shutter-desc">
-            <p>Iron Man</p>
+            <p></p>
         </div>
     </div>
     </div>
@@ -382,6 +384,7 @@
 <script src="/js/lunbo/shutter.js"></script>
 <script >
     $(function () {
+        initAd();
         $('.shutter').shutter({
             shutterW: 1300, // 容器宽度
             shutterH: 458, // 容器高度
@@ -397,12 +400,15 @@
             url:'../login/getAdList',
             type:'post',
             data:{},
+            async:false,
             success:function(result){
                 var html = '';
-                for (var i =0;i<result.length();i++){
-                    html+='<a href="'+result[i].getCompName+'" data-shutter-title="'+result[i].getAdvName+'"><img src="'+result[i].getAdvUrl+'" alt="#"></a>'
+                for (var i =0;i<result.length;i++){
+
+                    html+='<a href="'+result[i].compName+'" data-shutter-title="'+result[i].advName+'"><img src="'+result[i].advUrl+'" alt="#"></a>'
                 }
-                $(".shutter-img").html(html);
+
+                 $(".shutter-img").html(html);
             }
         })
     }
