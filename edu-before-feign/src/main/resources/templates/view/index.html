@@ -21,7 +21,10 @@
     <!--[if lt IE 9]>
     <script src="/js/html5shive.js"></script>
     <![endif]-->
-
+    <style>
+        #photo{ margin:auto auto}
+        #photo img{ border-radius:100%;}
+    </style>
 </head>
 <body>
 <!-- Header Area -->
@@ -38,17 +41,10 @@
                         <ul class="social-icon pull-left">
                             <li>
                                 <a target="_blank" href="http://wpa.qq.com/msgrd?v=3&uin=2218050300&site=qq&menu=yes"><i class="fa fa-qq"></i></a>
-
-                                </li>
+                            </li>
                         </ul>
-                        <div class="language pull-left">
-                            <a href="#">
-                                <i class="icon-font"></i>
-                                <span>中文站</span>
-                            </a>
-                        </div>
                         <div class="login-or-signup pull-left">
-                            <a href="../login/toLogin"><i class="icon-user"></i><span>注册/登录</span></a>
+                            <a href="../login/toLogin"><span>注册/登录</span></a>
                         </div>
                     </div>
                 </div>
@@ -68,21 +64,15 @@
                                 <li>
                                     <a target="_blank" href="http://wpa.qq.com/msgrd?v=3&uin=2218050300&site=qq&menu=yes"><i class="fa fa-qq"></i></a></li>
                             </ul>
-                            <div class="language pull-left">
-                                <a href="#">
-                                    <i class="icon-font"></i>
-                                    <span>中文站</span>
-                                </a>
-                            </div>
+
                             <div class="login-or-signup pull-left">
-                                欢迎!
-                                    <span class="photo">
+                                    <span id="photo">
                                              <img  src="/images/rebc.gif" width="25px">
                                         </span>
                                     <a  class="nick"  >
                                         <span th:text="${user.name}"></span>
                                         <em class="arrow"></em>
-                                    </a>的登录!
+                                    </a>
                                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                     <a href="../login/removeUser">注销</a>
@@ -105,25 +95,16 @@
                                 <li>
                                     <a target="_blank" href="http://wpa.qq.com/msgrd?v=3&uin=2218050300&site=qq&menu=yes"><i class="fa fa-qq"></i></a></li>
                             </ul>
-                            <div class="language pull-left">
-                                <a href="#">
-                                    <i class="icon-font"></i>
-                                    <span>中文站</span>
 
-                                </a>
-                            </div>
                             <div class="login-or-signup pull-left">
-                                欢迎!
-                                <span class="photo">
+
+                                <span id="photo">
                                          <img  src="/images/rebc.gif" width="25px">
                                     </span>
                                 <a  class="nick"  >
                                     <span th:text="${user.name}"></span>
                                     <em class="arrow"></em>
-                                </a>&nbsp;的登录!
-                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                <a href="../login/removeUser">注销</a>
+                                </a>
                                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                 <a href="../movie/shangchuan">上传视频</a>
@@ -133,9 +114,21 @@
                                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                 <a href="../money/tobuy">已购买视频</a>
+                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                <a href="../login/removeUser">注销</a>
                             </div>
+
                         </div>
+
                     </div>
+
                 </div>
             </div>
         </section>
@@ -217,6 +210,7 @@
 <!-- Breadcrumb  -->
 <section class="header-top">
     <div class="col-sm-12 col-xs-12">
+
     <div class="shutter">
         <div class="shutter-img">
             <a href="#" data-shutter-title="Iron Man"><img src="/shou/tu1.jpg" alt="#"></a>
@@ -319,9 +313,10 @@
         <div class="row">
             <div class="col-sm-12 col-xs-12">
                 <div class="title-with-icon text-center">
-                    <img alt="" src="/images/home1/logo.png">
+                    <div><center><font color="#1e90ff" size="6" face="楷书">剑桥教育</font></center></div><br>
+                    <div><center><font color="#006400" size="4" face="楷书">国际知名在线教育品牌</font></center></div>
                     <p class="subtitle-2">
-                        “小天鹅”隶属于北京金科1803A二组，是中小学教育线上新型平台。创立于北京西三旗。致力于“让学习更有效”，以生动为特色，为注重自我提升的中小学生提供高品质线上教育。<br>
+                        “剑桥教育”隶属于北京金科1803A二组，是中小学教育线上新型平台。创立于北京西三旗。致力于“让学习更有效”，以生动为特色，为注重自我提升的中小学生提供高品质线上教育。<br>
                     </p>
                 </div>
             </div>
@@ -396,6 +391,21 @@
             fullPage: false // 是否全屏展示
         });
     });
+
+    function initAd(){
+        $.ajax({
+            url:'../login/getAdList',
+            type:'post',
+            data:{},
+            success:function(result){
+                var html = '';
+                for (var i =0;i<result.length();i++){
+                    html+='<a href="'+result[i].getCompName+'" data-shutter-title="'+result[i].getAdvName+'"><img src="'+result[i].getAdvUrl+'" alt="#"></a>'
+                }
+                $(".shutter-img").html(html);
+            }
+        })
+    }
 
 
 </script>

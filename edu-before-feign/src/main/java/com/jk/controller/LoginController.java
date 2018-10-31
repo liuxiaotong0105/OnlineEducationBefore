@@ -1,6 +1,7 @@
 package com.jk.controller;
 
 
+import com.jk.modelapi.AdBean;
 import com.jk.modelapi.Movie;
 import com.jk.modelapi.UserBean;
 import com.jk.serviceapi.LoginServiceApi;
@@ -249,6 +250,14 @@ public class LoginController {
         hashMap.put("code", 0);
         hashMap.put("msg", "注册成功");
         return hashMap;
+    }
+//    广告列表
+
+    @RequestMapping("getAdList")
+    @ResponseBody
+    public List<AdBean> getAdList(){
+        List<AdBean> list = loginServiceApi.getAdList();
+        return list;
     }
 
 }

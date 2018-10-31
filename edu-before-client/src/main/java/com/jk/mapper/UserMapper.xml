@@ -17,5 +17,9 @@
 		values (#{name},#{loginname},#{password},#{phone},#{status})
 	</insert>
 
+	<select id="getAdList" resultType="com.jk.modelapi.AdBean">
+		select * from t_advertisiang
+	</select>
+
 
 </mapper>

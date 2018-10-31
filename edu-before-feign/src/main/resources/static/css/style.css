@@ -72,7 +72,7 @@
     font-size: 15px;
 }
 .login-or-signup a span{
-    margin-left: 6px;
+    margin-left: 0px;
     display: inline-block;
 }
 /* Main Menu */
@@ -94,7 +94,7 @@
     left: -54px;
     position: absolute;
     top: -67px;
-    width: 230px;
+    width: 270px;
     z-index: -1;
     /*    -webkit-transition: all 3s ease-in-out;
         -moz-transition: all 3s ease-in-out;
@@ -147,7 +147,7 @@
     display: none;
 }
 .main-menu > li a{
-    font-size: 16px;
+    font-size: 22px;
     color: #8ac53f;
     position: relative;
     top: 0;
@@ -1216,7 +1216,7 @@ div.owl-controls {
     color: #fff;
 }
 .about-widget .social-icon {
-    margin-top: 32px;
+    margin-top: 45px;
 }
 .about-widget .social-icon li:first-child a{
     margin-left: 0;

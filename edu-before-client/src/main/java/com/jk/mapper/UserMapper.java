@@ -1,6 +1,9 @@
 package com.jk.mapper;
 
+import com.jk.modelapi.AdBean;
 import com.jk.modelapi.UserBean;
+
+import java.util.List;
 
 /**
  * @Auther: 赵黎明
@@ -13,4 +16,6 @@ public interface UserMapper {
     UserBean getUserphoneName(String phone);
 
     void addUser(UserBean userBean);
+
+    List<AdBean> getAdList();
 }

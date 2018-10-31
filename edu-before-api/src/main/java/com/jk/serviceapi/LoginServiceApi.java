@@ -1,11 +1,14 @@
 package com.jk.serviceapi;
 
+import com.jk.modelapi.AdBean;
 import com.jk.modelapi.UserBean;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+
+import java.util.List;
 
 /**
  * @Auther: 赵黎明
@@ -23,4 +26,7 @@ public interface LoginServiceApi {
 
     @RequestMapping(value = "/user/addUser",method = RequestMethod.POST)
     void addUser(@RequestBody UserBean userBean);
+
+    @RequestMapping(value = "/user/getAdList")
+    List<AdBean> getAdList();
 }
