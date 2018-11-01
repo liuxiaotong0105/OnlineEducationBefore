@@ -1,10 +1,10 @@
-/** 
- * <pre>项目名称:back-consumer 
- * 文件名称:RandomValidateCodeUtil.java 
- * 包名:com.jk.utils 
- * 创建日期:2018年9月11日下午4:38:27 
- * Copyright (c) 2018, lxm_man@163.com All Rights Reserved.</pre> 
- */  
+/**
+ * <pre>项目名称:back-consumer
+ * 文件名称:RandomValidateCodeUtil.java
+ * 包名:com.jk.utils
+ * 创建日期:2018年9月11日下午4:38:27
+ * Copyright (c) 2018, lxm_man@163.com All Rights Reserved.</pre>
+ */
 package com.jk.util;
 
 import org.slf4j.Logger;
@@ -22,12 +22,10 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 
-
-
 public class RandomValidateCodeUtil {
 
 
-    public static final String RANDOMCODEKEY= "RANDOMVALIDATECODEKEY";//放到session中的key
+    public static final String RANDOMCODEKEY = "RANDOMVALIDATECODEKEY";//放到session中的key
     private String randString = "0123456789";//随机产生只有数字的字符串 private String
     //private String randString = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";//随机产生只有字母的字符串
     //private String randString = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ";//随机产生数字与字母组合的字符串

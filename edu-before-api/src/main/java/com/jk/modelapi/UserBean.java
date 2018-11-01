@@ -11,7 +11,7 @@ public class UserBean implements Serializable {
 
     private Integer id;
 
-    private String  name;
+    private String name;
 
     private String loginname;
 

@@ -34,8 +34,7 @@
     //--------------------------------------------------
     // Contact Map
     //--------------------------------------------------
-    if ($("#map").length > 0)
-    {
+    if ($("#map").length > 0) {
         var map;
         map = new GMaps({
             el: '#map',
@@ -62,8 +61,7 @@
     //-------------------------------------
     //Count Down
     //-------------------------------------
-    if ($("#count-down").length > 0)
-    {
+    if ($("#count-down").length > 0) {
         $('#count-down').countdown({
             date: '12/24/2016 23:59:59',
             offset: +6,
@@ -104,11 +102,9 @@
     //----------------------------------------
     if ($(".navigation").length > 0) {
         $(window).on('scroll', function () {
-            if ($(window).scrollTop() > 300)
-            {
+            if ($(window).scrollTop() > 300) {
                 $(".navigation").addClass('fixed-menu animated fadeInDown');
-            } else
-            {
+            } else {
                 $(".navigation").removeClass('fixed-menu animated fadeInDown');
             }
         });
@@ -127,8 +123,7 @@
     if ($(window).width() > 767) {
         $(document).mouseup(function (e) {
             var container = $(".search-area");
-            if (!container.is(e.target) && container.has(e.target).length === 0)
-            {
+            if (!container.is(e.target) && container.has(e.target).length === 0) {
                 container.fadeOut(500);
             }
         });
@@ -144,8 +139,7 @@
             if (activeClass) {
                 $(this).addClass('active');
                 activeClass = false;
-            } else
-            {
+            } else {
                 $(this).removeClass('active');
                 activeClass = true;
             }

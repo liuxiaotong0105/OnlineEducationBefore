@@ -21,45 +21,46 @@ public class MoneyController {
     @Autowired
     private MoneySerice moneySerice;
 
-    @RequestMapping(value = "querycourse",method = RequestMethod.GET)
-    public Course querycourse(Integer id){
+    @RequestMapping(value = "querycourse", method = RequestMethod.GET)
+    public Course querycourse(Integer id) {
 
         return moneySerice.querycourse(id);
     }
 
-    @RequestMapping(value = "queryvideo",method = RequestMethod.GET)
-    public List<Video> queryvideo(Integer id){
+    @RequestMapping(value = "queryvideo", method = RequestMethod.GET)
+    public List<Video> queryvideo(Integer id) {
         return moneySerice.queryvideo(id);
     }
 
-    @RequestMapping(value = "tobuy",method = RequestMethod.GET)
-    public List<Course> tobuy(Integer id){
-        List<Course> course=moneySerice.tobuy(id);
+    @RequestMapping(value = "tobuy", method = RequestMethod.GET)
+    public List<Course> tobuy(Integer id) {
+        List<Course> course = moneySerice.tobuy(id);
         return course;
     }
-    @RequestMapping(value = "getvideo",method = RequestMethod.GET)
-    public List<Video> getvideo(Integer id){
+
+    @RequestMapping(value = "getvideo", method = RequestMethod.GET)
+    public List<Video> getvideo(Integer id) {
         return moneySerice.getvideo(id);
     }
 
-    @RequestMapping(value = "tobuycourse",method = RequestMethod.GET)
-    public List<Video> tobuycourse(Integer id){
+    @RequestMapping(value = "tobuycourse", method = RequestMethod.GET)
+    public List<Video> tobuycourse(Integer id) {
         return moneySerice.tobuycourse(id);
     }
 
-    @RequestMapping(value = "addcv" ,method = RequestMethod.GET)
-    public void addcv(Integer courseid,Integer videoid,Integer userid) {
-        moneySerice.addcv(courseid, videoid,userid);
+    @RequestMapping(value = "addcv", method = RequestMethod.GET)
+    public void addcv(Integer courseid, Integer videoid, Integer userid) {
+        moneySerice.addcv(courseid, videoid, userid);
     }
 
-    @RequestMapping(value = "getVideo" ,method = RequestMethod.GET)
-    public Video getVideo(Integer id){
+    @RequestMapping(value = "getVideo", method = RequestMethod.GET)
+    public Video getVideo(Integer id) {
         return moneySerice.getVideo(id);
     }
 
-    @RequestMapping(value = "status" ,method = RequestMethod.GET)
-    public int status(Integer id,Integer id1,Integer status){
-        return moneySerice.status(id,id1,status);
+    @RequestMapping(value = "status", method = RequestMethod.GET)
+    public int status(Integer id, Integer id1, Integer status) {
+        return moneySerice.status(id, id1, status);
     }
 
 }

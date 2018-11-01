@@ -19,8 +19,8 @@ public interface LoginServiceApi {
     UserBean getUserByLoginName(@RequestBody UserBean userBean);
 
     @RequestMapping(value = "/user/getUserphoneName")
-    UserBean getUserphoneName(@RequestParam(value ="phone") String phone);
+    UserBean getUserphoneName(@RequestParam(value = "phone") String phone);
 
-    @RequestMapping(value = "/user/addUser",method = RequestMethod.POST)
+    @RequestMapping(value = "/user/addUser", method = RequestMethod.POST)
     void addUser(@RequestBody UserBean userBean);
 }

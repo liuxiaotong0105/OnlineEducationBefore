@@ -11,5 +11,5 @@ public interface CeMapper {
     void addMovie(Movie movie);
 
     List<Movie> queryMovieSolr();
-    
+
 }

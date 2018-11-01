@@ -24,21 +24,22 @@ public class LoginController {
 
     @RequestMapping("getUserByLoginName")
     @ResponseBody
-    public UserBean getUserByLoginName(@RequestBody UserBean userBean){
+    public UserBean getUserByLoginName(@RequestBody UserBean userBean) {
 
-       UserBean userBean1=userServiceImpl.getUserByLoginName(userBean);
+        UserBean userBean1 = userServiceImpl.getUserByLoginName(userBean);
 
         return userBean1;
     }
+
     @RequestMapping("getUserphoneName")
     @ResponseBody
-    public UserBean getUserphoneName(String phone){
+    public UserBean getUserphoneName(String phone) {
         return userServiceImpl.getUserphoneName(phone);
     }
 
     @RequestMapping("addUser")
     @ResponseBody
-    public Boolean addUser(@RequestBody UserBean userBean){
+    public Boolean addUser(@RequestBody UserBean userBean) {
         try {
             userServiceImpl.addUser(userBean);
         } catch (Exception e) {

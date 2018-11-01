@@ -10,9 +10,9 @@ import java.util.List;
 
 public interface MoviceServiceApi {
 
-    @RequestMapping(value = "/movieList",method = RequestMethod.POST)
+    @RequestMapping(value = "/movieList", method = RequestMethod.POST)
     List<Movie> MovieList(@RequestBody Movie movie);
 
-    @RequestMapping(value = "/getMovieById",method = RequestMethod.GET)
+    @RequestMapping(value = "/getMovieById", method = RequestMethod.GET)
     Movie getMovieById(@RequestParam("movieId") Integer movieId);
 }

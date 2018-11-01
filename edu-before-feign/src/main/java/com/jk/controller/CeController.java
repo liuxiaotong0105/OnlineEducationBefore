@@ -35,11 +35,11 @@ import java.util.HashMap;
 public class CeController {
 
     @Autowired
-   private CeService ceService;
+    private CeService ceService;
 
-    @RequestMapping(value="queryCe",method = RequestMethod.GET)
+    @RequestMapping(value = "queryCe", method = RequestMethod.GET)
     @ResponseBody
-    public Ce queryCe(){
+    public Ce queryCe() {
         return ceService.queryCe();
     }
 
@@ -49,17 +49,19 @@ public class CeController {
     }
 
     @RequestMapping("toShiPin1")
-    public String toShiPin1(){
+    public String toShiPin1() {
 
         return "shiping1";
     }
+
     @RequestMapping("shangchuan")
-    public String shangchuan(HttpServletRequest request,Model model){
+    public String shangchuan(HttpServletRequest request, Model model) {
         UserBean userInfo = UserUtil.getUserInfo(request);
-        model.addAttribute("userName",userInfo.getName());
-        model.addAttribute("userPhoto",userInfo.getPhone());
+        model.addAttribute("userName", userInfo.getName());
+        model.addAttribute("userPhoto", userInfo.getPhone());
         return "shangchuan";
     }
+
     //oss图片上传
     @RequestMapping("initiateMultipartUpload")
     @ResponseBody
@@ -70,26 +72,27 @@ public class CeController {
         }
         //获取文件的大小,单位/KB
         long size = file.getSize();
-        OSSClientUtil ossClient=new OSSClientUtil();
+        OSSClientUtil ossClient = new OSSClientUtil();
         String name = ossClient.uploadImg2Oss(file);
         String imgUrl = ossClient.getImgUrl(name);
-        HashMap<String, Object> map=new HashMap<>();
+        HashMap<String, Object> map = new HashMap<>();
         //文件存储的路径
         map.put("name", imgUrl);
-        return map ;
+        return map;
     }
+
     @RequestMapping("toAddMovie")
-    public String toAddMovie(String movieUrl, Model model,HttpServletRequest request){
+    public String toAddMovie(String movieUrl, Model model, HttpServletRequest request) {
         UserBean userInfo = UserUtil.getUserInfo(request);
-        model.addAttribute("userName",userInfo.getName());
-        model.addAttribute("userPhoto",userInfo.getPhone());
-          model.addAttribute("movieUrl",movieUrl);
-          return "add";
+        model.addAttribute("userName", userInfo.getName());
+        model.addAttribute("userPhoto", userInfo.getPhone());
+        model.addAttribute("movieUrl", movieUrl);
+        return "add";
     }
 
     @RequestMapping("addMovie")
     @ResponseBody
-    public Boolean addMovie(Movie movie,HttpServletRequest request){
+    public Boolean addMovie(Movie movie, HttpServletRequest request) {
         try {
             int userId = UserUtil.getUserId(request);
             movie.setTeacherid(userId);

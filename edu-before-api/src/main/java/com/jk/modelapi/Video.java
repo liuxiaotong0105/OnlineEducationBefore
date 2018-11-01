@@ -1,7 +1,6 @@
 package com.jk.modelapi;
 
 
-
 public class Video {
 
 

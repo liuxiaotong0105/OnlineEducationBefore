@@ -20,7 +20,7 @@
     <!--[if lt IE 9]>
     <script src="/js/html5shive.js"></script>
     <![endif]-->
- <script src="/jquery.min.js"></script>
+    <script src="/jquery.min.js"></script>
     <script src="/echarts.min.js"></script>
 
 </head>
@@ -35,7 +35,9 @@
                         <div class="header-elements pull-right">
                             <ul class="social-icon pull-left">
                                 <li>
-                                    <a target="_blank" href="http://wpa.qq.com/msgrd?v=3&uin=2218050300&site=qq&menu=yes"><i class="fa fa-qq"></i></a>
+                                    <a target="_blank"
+                                       href="http://wpa.qq.com/msgrd?v=3&uin=2218050300&site=qq&menu=yes"><i
+                                            class="fa fa-qq"></i></a>
 
                                 </li>
                             </ul>
@@ -64,7 +66,9 @@
                         <div class="header-elements pull-right">
                             <ul class="social-icon pull-left">
                                 <li>
-                                    <a target="_blank" href="http://wpa.qq.com/msgrd?v=3&uin=2218050300&site=qq&menu=yes"><i class="fa fa-qq"></i></a></li>
+                                    <a target="_blank"
+                                       href="http://wpa.qq.com/msgrd?v=3&uin=2218050300&site=qq&menu=yes"><i
+                                            class="fa fa-qq"></i></a></li>
                             </ul>
                             <div class="language pull-left">
                                 <a href="#">
@@ -75,9 +79,9 @@
                             <div class="login-or-signup pull-left">
                                 欢迎!
                                 <span class="photo">
-                                             <img  src="/images/rebc.gif" width="25px">
+                                             <img src="/images/rebc.gif" width="25px">
                                         </span>
-                                <a  class="nick"  >
+                                <a class="nick">
                                     <span th:text="${user.name}"></span>
                                     <em class="arrow"></em>
                                 </a>的登录!
@@ -101,7 +105,9 @@
                         <div class="header-elements pull-right">
                             <ul class="social-icon pull-left">
                                 <li>
-                                    <a target="_blank" href="http://wpa.qq.com/msgrd?v=3&uin=2218050300&site=qq&menu=yes"><i class="fa fa-qq"></i></a></li>
+                                    <a target="_blank"
+                                       href="http://wpa.qq.com/msgrd?v=3&uin=2218050300&site=qq&menu=yes"><i
+                                            class="fa fa-qq"></i></a></li>
                             </ul>
                             <div class="language pull-left">
                                 <a href="#">
@@ -113,9 +119,9 @@
                             <div class="login-or-signup pull-left">
                                 欢迎!
                                 <span class="photo">
-                                         <img  src="/images/rebc.gif" width="25px">
+                                         <img src="/images/rebc.gif" width="25px">
                                     </span>
-                                <a  class="nick"  >
+                                <a class="nick">
                                     <span th:text="${user.name}"></span>
                                     <em class="arrow"></em>
                                 </a>&nbsp;的登录!
@@ -219,8 +225,8 @@
     <div class="container">
         <div class="row">
             <div class="col-sm-12 col-xs-12 text-center">
-                <div  class="breadcrumb-content">
-                   <img src="/ke/gao-ying.bmp"/>
+                <div class="breadcrumb-content">
+                    <img src="/ke/gao-ying.bmp"/>
                 </div>
             </div>
         </div>
@@ -258,7 +264,7 @@
     <div class="container">
         <div class="row">
             <div class="col-sm-12 col-xs-12 text-center">
-                <div  class="breadcrumb-content">
+                <div class="breadcrumb-content">
                     <h3>高三英语课程占比</h3>
                     <div id="san" style="width:100%;height:500%;"></div>
 
@@ -267,7 +273,6 @@
         </div>
     </div>
 </section>
-
 
 
 <section class="footer-section">
@@ -347,8 +352,8 @@
      */
     var data = {
         id: 'echartPie',
-        value: [9,18,9,27,37],
-        legend: ['祈使句', '直接引语和间接引语','现在进行时表将来','定语从句','被动语句'],
+        value: [9, 18, 9, 27, 37],
+        legend: ['祈使句', '直接引语和间接引语', '现在进行时表将来', '定语从句', '被动语句'],
         color: ['#3FA7DC', 'red', '#00FF00', '#E1CA74', '#332ADC'],
         // tooltipShow:false,    //设置悬浮提示显示              --默认显示true
         // hoverAnimation:false, //设置鼠标悬浮点击饼图动画效果  --默认开启动画true
@@ -361,7 +366,7 @@
      * 数据处理
      */
     var seriesData = []
-    data.value.forEach(function(item, index) {
+    data.value.forEach(function (item, index) {
         seriesData.push({
             value: item,
             name: data.legend[index]
@@ -408,7 +413,7 @@
                 normal: {
                     position: 'inner',
                     // formatter: '{d}%',
-                    formatter: function(param) {
+                    formatter: function (param) {
                         if (!param.percent) return ''
                         var f = Math.round(param.percent * 10) / 10;
                         var s = f.toString();
@@ -446,8 +451,8 @@
      */
     var data = {
         id: 'echartPie',
-        value: [30,10,10,20,20,10],
-        legend: ['过去分词', '倒装的用法','省略的用法','虚拟语句','代词it的用法','非谓语动词的复习'],
+        value: [30, 10, 10, 20, 20, 10],
+        legend: ['过去分词', '倒装的用法', '省略的用法', '虚拟语句', '代词it的用法', '非谓语动词的复习'],
         color: ['#3FA7DC', 'red', '#00FF00', '#E1CA74', '#FF126B', '#2619E1'],
         // tooltipShow:false,    //设置悬浮提示显示              --默认显示true
         // hoverAnimation:false, //设置鼠标悬浮点击饼图动画效果  --默认开启动画true
@@ -460,7 +465,7 @@
      * 数据处理
      */
     var seriesData = []
-    data.value.forEach(function(item, index) {
+    data.value.forEach(function (item, index) {
         seriesData.push({
             value: item,
             name: data.legend[index]
@@ -507,7 +512,7 @@
                 normal: {
                     position: 'inner',
                     // formatter: '{d}%',
-                    formatter: function(param) {
+                    formatter: function (param) {
                         if (!param.percent) return ''
                         var f = Math.round(param.percent * 10) / 10;
                         var s = f.toString();
@@ -545,8 +550,8 @@
      */
     var data = {
         id: 'echartPie',
-        value: [23,2,2,27,7,10],
-        legend: ['听力', '完形填空','理解阅读','七选五','语法填空','短文改错'],
+        value: [23, 2, 2, 27, 7, 10],
+        legend: ['听力', '完形填空', '理解阅读', '七选五', '语法填空', '短文改错'],
         color: ['#3FA7DC', 'red', '#00FF00', '#E1CA74', '#FF126B', '#2619E1'],
         // tooltipShow:false,    //设置悬浮提示显示              --默认显示true
         // hoverAnimation:false, //设置鼠标悬浮点击饼图动画效果  --默认开启动画true
@@ -559,7 +564,7 @@
      * 数据处理
      */
     var seriesData = []
-    data.value.forEach(function(item, index) {
+    data.value.forEach(function (item, index) {
         seriesData.push({
             value: item,
             name: data.legend[index]
@@ -606,7 +611,7 @@
                 normal: {
                     position: 'inner',
                     // formatter: '{d}%',
-                    formatter: function(param) {
+                    formatter: function (param) {
                         if (!param.percent) return ''
                         var f = Math.round(param.percent * 10) / 10;
                         var s = f.toString();

@@ -1,56 +1,56 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.jk.mapper.MoneyMapper" >
+<mapper namespace="com.jk.mapper.MoneyMapper">
     <select id="querycourse" resultType="com.jk.modelapi.Course">
-      select * from t_course where id=#{value}
+        select * from t_course where id=#{value}
     </select>
 
     <select id="tobuy" resultType="com.jk.modelapi.Course">
-      select tc.* from t_user_video_course tuvc
-			left join t_login_user tlu on tuvc.user_id=tlu.id
-			left join t_course tc on tuvc.course_id=tc.id
-      where tlu.id=#{value} and tuvc.video_id is null
+        select tc.* from t_user_video_course tuvc
+        left join t_login_user tlu on tuvc.user_id=tlu.id
+        left join t_course tc on tuvc.course_id=tc.id
+        where tlu.id=#{value} and tuvc.video_id is null
 
     </select>
 
     <select id="queryvideo" resultType="com.jk.modelapi.Video">
         select tm.*,tt.name teachername,tt.info teacherinfo from t_cours_video tcv
-			left join t_movie tm on tcv.videoId=tm.movieId
-			left join t_teacher tt on tm.teacherid=tt.id where tcv.courseId=#{value}
+        left join t_movie tm on tcv.videoId=tm.movieId
+        left join t_teacher tt on tm.teacherid=tt.id where tcv.courseId=#{value}
     </select>
     <select id="getvideo" resultType="com.jk.modelapi.Video">
         select tc.* from t_user_video_course tuvc
-			left join t_login_user tlu on tuvc.user_id=tlu.id
-			left join t_movie tc on tuvc.video_id=tc.movieId
+        left join t_login_user tlu on tuvc.user_id=tlu.id
+        left join t_movie tc on tuvc.video_id=tc.movieId
         where tlu.id=#{value} and tuvc.course_id is null
     </select>
     <select id="tobuycourse" resultType="com.jk.modelapi.Video">
         select tm.* from t_cours_video tcv
-            left join t_movie tm on tcv.videoId=tm.movieId
-            left join t_course tc on tcv.courseId=tc.id
-            where tc.id=#{value}
+        left join t_movie tm on tcv.videoId=tm.movieId
+        left join t_course tc on tcv.courseId=tc.id
+        where tc.id=#{value}
     </select>
 
 
     <insert id="addcv" useGeneratedKeys="true" keyProperty="id">
-          insert into t_user_video_course (user_id,video_id,course_id)
-          values (#{userid},#{videoid},#{courseid})
-	</insert>
+        insert into t_user_video_course (user_id,video_id,course_id)
+        values (#{userid},#{videoid},#{courseid})
+    </insert>
 
     <select id="getVideo" resultType="com.jk.modelapi.Video">
         select tm.*,tt.name teachername,tt.info teacherinfo from t_movie tm
-            left join t_teacher tt on tm.teacherid=tt.id
-            where movieId=#{value}
+        left join t_teacher tt on tm.teacherid=tt.id
+        where movieId=#{value}
     </select>
     <select id="status" resultType="int">
         select count(*) from t_user_video_course
-            where user_id=#{id}
-             <if test="status==1 and status!=null">
-                and course_id=#{id1}
-             </if>
-             <if test="status==2 and status!=null">
-                and video_id=#{id1}
-             </if>
+        where user_id=#{id}
+        <if test="status==1 and status!=null">
+            and course_id=#{id1}
+        </if>
+        <if test="status==2 and status!=null">
+            and video_id=#{id1}
+        </if>
 
     </select>
 

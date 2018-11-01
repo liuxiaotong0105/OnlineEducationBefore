@@ -1,10 +1,10 @@
 package com.jk.service;
 
-        import com.jk.mapper.UserMapper;
-        import com.jk.modelapi.UserBean;
-        import com.jk.util.StringUtil;
-        import org.springframework.beans.factory.annotation.Autowired;
-        import org.springframework.stereotype.Service;
+import com.jk.mapper.UserMapper;
+import com.jk.modelapi.UserBean;
+import com.jk.util.StringUtil;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 /**
  * @Auther: 赵黎明

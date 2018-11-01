@@ -43,3 +43,8 @@ spring:
       # 连接超时时间（毫秒）
       timeout: 2000
 
+constants:
+  # QQ
+  qqAppId: 101514490
+  qqAppSecret: 01df0231020ee43144d8a104bb77611a
+  qqRedirectUrl: http://localhost:8096/money/callback

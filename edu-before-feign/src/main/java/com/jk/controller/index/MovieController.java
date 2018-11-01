@@ -33,24 +33,24 @@ public class MovieController {
     private final String APPKEY = "BC-1447217c711a409c930f64d95c62519e";
 
     @RequestMapping(value = "getMovie")
-    public List<Movie> getMovie(Movie movie){
+    public List<Movie> getMovie(Movie movie) {
         List<Movie> list = movieService.MovieList(movie);
         return list;
     }
 
     @RequestMapping("toMovieInfo")
-    public ModelAndView toMovieInfo(Movie movie, HttpServletRequest request){
+    public ModelAndView toMovieInfo(Movie movie, HttpServletRequest request) {
         UserBean user = UserUtil.getUserInfo(request);
         ModelAndView modelAndView = new ModelAndView("movie/movieInfo");
         Movie m = movieService.getMovieById(movie.getMovieId());
-        modelAndView.addObject("m",m);
-        modelAndView.addObject("u",user);
+        modelAndView.addObject("m", m);
+        modelAndView.addObject("u", user);
         return modelAndView;
     }
 
     @RequestMapping(value = "addDanMu")
     @ResponseBody
-    public void add(String msg, String time){
+    public void add(String msg, String time) {
         ExecutorService executorService = Executors.newFixedThreadPool(3);
         executorService.execute(new Runnable() {
             @Override

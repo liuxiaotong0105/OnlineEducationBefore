@@ -1,22 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
-"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.jk.mapper.CeMapper">
-	
-	<select id="queryCe" resultType="com.jk.modelapi.Ce" >
-		select * from t_ce
-	</select>
-	<insert id="addMovie" useGeneratedKeys="true" keyProperty="movieId">
-		INSERT into t_movie
-		 (movieName,movieInfo,moviePrice,movieStatus,movieType,movieUrl,moviePicther,teacherid,teacherName,movieClass,freeStatus) VALUES
-			(#{movieName},#{movieInfo},#{moviePrice},0,#{movieType},#{movieUrl},#{moviePicther},#{teacherid},
-			#{teacherName},#{movieClass},#{freeStatus})
-	</insert>
+
+    <select id="queryCe" resultType="com.jk.modelapi.Ce">
+        select * from t_ce
+    </select>
+    <insert id="addMovie" useGeneratedKeys="true" keyProperty="movieId">
+        INSERT into t_movie
+        (movieName,movieInfo,moviePrice,movieStatus,movieType,movieUrl,moviePicther,teacherid,teacherName,movieClass,freeStatus)
+        VALUES
+        (#{movieName},#{movieInfo},#{moviePrice},0,#{movieType},#{movieUrl},#{moviePicther},#{teacherid},
+        #{teacherName},#{movieClass},#{freeStatus})
+    </insert>
 
 
-	<select id="queryMovieSolr" resultType="com.jk.modelapi.Movie" >
+    <select id="queryMovieSolr" resultType="com.jk.modelapi.Movie">
 
-		select * from t_movie order by  movieId desc
-	</select>
+        select * from t_movie order by movieId desc
+    </select>
 
 </mapper>

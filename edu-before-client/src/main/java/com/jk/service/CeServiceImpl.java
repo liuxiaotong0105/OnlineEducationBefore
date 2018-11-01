@@ -33,7 +33,7 @@ public class CeServiceImpl implements CeServiceApi {
     @Override
     public void addMovie(Movie movie) {
         String price = movie.getMoviePrice();
-        if(price == "" || price == null){
+        if (price == "" || price == null) {
             movie.setMoviePrice("0");
         }
         ceMapper.addMovie(movie);

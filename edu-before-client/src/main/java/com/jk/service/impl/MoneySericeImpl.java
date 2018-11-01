@@ -31,7 +31,7 @@ public class MoneySericeImpl implements MoneySerice {
 
     @Override
     public List<Course> tobuy(Integer id) {
-        List<Course>  course = moneyMapper.tobuy(id);
+        List<Course> course = moneyMapper.tobuy(id);
         return course;
     }
 
@@ -46,8 +46,8 @@ public class MoneySericeImpl implements MoneySerice {
     }
 
     @Override
-    public void addcv(Integer courseid, Integer videoid,Integer userid) {
-        moneyMapper.addcv(courseid,videoid,userid);
+    public void addcv(Integer courseid, Integer videoid, Integer userid) {
+        moneyMapper.addcv(courseid, videoid, userid);
     }
 
     @Override
@@ -57,7 +57,7 @@ public class MoneySericeImpl implements MoneySerice {
 
     @Override
     public int status(Integer id, Integer id1, Integer status) {
-        return moneyMapper.status(id,id1,status);
+        return moneyMapper.status(id, id1, status);
     }
 
 }

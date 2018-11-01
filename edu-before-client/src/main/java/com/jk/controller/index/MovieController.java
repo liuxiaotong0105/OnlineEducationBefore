@@ -33,28 +33,28 @@ public class MovieController {
     @Autowired
     private SolrClient solrClient;
 
-    @RequestMapping(value = "movieList",method = RequestMethod.POST)
+    @RequestMapping(value = "movieList", method = RequestMethod.POST)
     public List<Movie> movieList(@RequestBody Movie movie) throws IOException, SolrServerException {
         List<Movie> movieList = new ArrayList<>();
         SolrQuery params = new SolrQuery();
         StringBuffer search = new StringBuffer("movie_status:1");
-        if (StringUtils.isNotEmpty(movie.getMovieName())){
-            search.append(" AND movie_name:"+movie.getMovieName());
-            if (movie.getFreeStatus() != -1){
-                search.append(" AND free_status:"+movie.getFreeStatus());
+        if (StringUtils.isNotEmpty(movie.getMovieName())) {
+            search.append(" AND movie_name:" + movie.getMovieName());
+            if (movie.getFreeStatus() != -1) {
+                search.append(" AND free_status:" + movie.getFreeStatus());
             }
-            if (StringUtils.isNotEmpty(movie.getMovieType())){
-                search.append(" AND movie_type:"+movie.getMovieType());
+            if (StringUtils.isNotEmpty(movie.getMovieType())) {
+                search.append(" AND movie_type:" + movie.getMovieType());
             }
-                params.set("q",search.toString());
-        }else {
-            if (StringUtils.isNotEmpty(movie.getMovieType())){
-                search.append(" AND movie_type:"+movie.getMovieType());
+            params.set("q", search.toString());
+        } else {
+            if (StringUtils.isNotEmpty(movie.getMovieType())) {
+                search.append(" AND movie_type:" + movie.getMovieType());
             }
-            if (movie.getFreeStatus() != -1){
-                search.append(" AND free_status:"+movie.getFreeStatus());
+            if (movie.getFreeStatus() != -1) {
+                search.append(" AND free_status:" + movie.getFreeStatus());
             }
-            params.set("q",search.toString());
+            params.set("q", search.toString());
         }
 
 
@@ -67,21 +67,21 @@ public class MovieController {
         params.setHighlightSimplePre("<span style='color:red'>");//前缀
         params.setHighlightSimplePost("</span>");//后缀
 
-        QueryResponse query = solrClient.query("core1",params);
+        QueryResponse query = solrClient.query("core1", params);
         SolrDocumentList results = query.getResults();
         Map<String, Map<String, List<String>>> highlighting = query.getHighlighting();
-        for (SolrDocument result: results) {
+        for (SolrDocument result : results) {
             Movie m = new Movie();
             String highName = "";
             Map<String, List<String>> map = highlighting.get(result.get("id"));
             List<String> highString = map.get("movie_name");
-            if (highString == null){
+            if (highString == null) {
                 try {
                     highName = result.get("movie_name").toString();
-                }catch (Exception e){
+                } catch (Exception e) {
                     e.printStackTrace();
                 }
-            }else {
+            } else {
                 highName = highString.get(0);
             }
             Movie movie1 = movieNode(m, result, highName);
@@ -91,7 +91,7 @@ public class MovieController {
         return movieList;
     }
 
-    private Movie movieNode(Movie m,SolrDocument result,String highName){
+    private Movie movieNode(Movie m, SolrDocument result, String highName) {
         m.setMovieId(Integer.parseInt(result.get("id").toString()));
         m.setMovieInfo(result.get("movie_info").toString());
         m.setMovieName(highName);
@@ -107,8 +107,8 @@ public class MovieController {
         return m;
     }
 
-    @RequestMapping(value = "/getMovieById",method = RequestMethod.GET)
-    public Movie getMovieById(@RequestParam("movieId") Integer movieId){
+    @RequestMapping(value = "/getMovieById", method = RequestMethod.GET)
+    public Movie getMovieById(@RequestParam("movieId") Integer movieId) {
         return movieService.getMovieById(movieId);
     }
 

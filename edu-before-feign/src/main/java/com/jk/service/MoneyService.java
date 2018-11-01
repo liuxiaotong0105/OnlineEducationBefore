@@ -9,5 +9,5 @@ import org.springframework.cloud.openfeign.FeignClient;
  * @Description:
  */
 @FeignClient(value = "service-edubefores")
-public interface MoneyService extends MoneyServiceApi{
+public interface MoneyService extends MoneyServiceApi {
 }

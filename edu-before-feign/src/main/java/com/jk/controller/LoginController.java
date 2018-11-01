@@ -36,24 +36,23 @@ public class LoginController {
     private LoginServiceApi loginServiceApi;
 
     @Resource
-    private RedisTemplate<String,String> redisTemplate;
-
-
+    private RedisTemplate<String, String> redisTemplate;
 
 
     @RequestMapping("toLogin")
-    public String  toLogin(){
+    public String toLogin() {
 
         return "login";
     }
 
     /**
      * 用户登录验证
+     *
      * @return</pre>
      */
     @RequestMapping("loginUser")
     @ResponseBody
-    public Map<String, Object> loginUser(String imgVerify, UserBean userBean, HttpServletRequest request){
+    public Map<String, Object> loginUser(String imgVerify, UserBean userBean, HttpServletRequest request) {
         HashMap<String, Object> hashMap = new HashMap<>();
         HttpSession session = request.getSession();
         String imgcode = session.getAttribute(RandomValidateCodeUtil.RANDOMCODEKEY).toString();
@@ -90,7 +89,7 @@ public class LoginController {
             response.setHeader("Cache-Control", "no-cache");
             response.setDateHeader("Expire", 0);
             RandomValidateCodeUtil randomValidateCode = new RandomValidateCodeUtil();
-            randomValidateCode.getRandcode(request,response);//输出验证码图片方法
+            randomValidateCode.getRandcode(request, response);//输出验证码图片方法
         } catch (Exception e) {
 
         }
@@ -98,79 +97,80 @@ public class LoginController {
 
     //切换快速登录
     @RequestMapping("toQucikLogin")
-    public String toQucikLogin(){
+    public String toQucikLogin() {
 
         return "quickLogin";
     }
 
     /**
      * 跳转主页面
+     *
      * @return
      */
     @RequestMapping("toMain")
     public String toMain(HttpServletRequest request) {
         String status = "";
-        UserBean attribute =  (UserBean) request.getSession().getAttribute("user");
+        UserBean attribute = (UserBean) request.getSession().getAttribute("user");
         if (attribute != null) {
             status = attribute.getStatus();
-            request.setAttribute("user",attribute);
-            request.setAttribute("status",status);
-        }else{
-            request.setAttribute("status",status);
+            request.setAttribute("user", attribute);
+            request.setAttribute("status", status);
+        } else {
+            request.setAttribute("status", status);
         }
         return "view/index";
-
 
 
     }
 
     /**
      * 获取快速登录的验证码
+     *
      * @return
      */
     @RequestMapping("sendSmsName")
     @ResponseBody
-    public Boolean sendSmsName(String phone,HttpServletRequest request) {
+    public Boolean sendSmsName(String phone, HttpServletRequest request) {
         try {
             HttpSession session = request.getSession();
-            UserBean userBean=loginServiceApi.getUserphoneName(phone);
-            if(phone==null) {
+            UserBean userBean = loginServiceApi.getUserphoneName(phone);
+            if (phone == null) {
                 return false;
-            }else{
-                if(userBean.getPhone().equals(phone)) {
+            } else {
+                if (userBean.getPhone().equals(phone)) {
                     //缓存验证码key 为了保证唯一 特定字符加上手机号
                     String cacheCodekey = Constant.LOGIN_CODE + phone;
                     //缓存1分钟锁key
                     String cacheFlagkey = Constant.LOGIN_CODE_FLAG + phone;
                     //判断证号距离上一次获取是否距离1分钟
                     String lock = redisTemplate.opsForValue().get(cacheFlagkey);
-                    if(StringUtils.isEmpty(lock)) {
-                        int random = (int) ((Math.random()*9+1)*100000);
-                        HashMap<String,Object> params=new HashMap<>();
+                    if (StringUtils.isEmpty(lock)) {
+                        int random = (int) ((Math.random() * 9 + 1) * 100000);
+                        HashMap<String, Object> params = new HashMap<>();
                         params.put("accountSid", Constant.ACCOUNTSID);
                         params.put("templateid", Constant.TEMPLATEID);
-                        params.put("param",""+random+"");
+                        params.put("param", "" + random + "");
                         params.put("to", phone);
                         String timestamp = TimeUtil.format(new Date());
                         params.put("timestamp", timestamp);
-                        String sign= Md5Util.getMd532(Constant.ACCOUNTSID+Constant.AUTH_TOKEN+timestamp);
+                        String sign = Md5Util.getMd532(Constant.ACCOUNTSID + Constant.AUTH_TOKEN + timestamp);
                         params.put("sig", sign);
                         HttpClientUtil.post(Constant.SMS_URL, params);
-                        redisTemplate.opsForValue().set(cacheCodekey, ""+random+"", Constant.LOGIN_CODE_TIME_OUT, TimeUnit.MINUTES);
-                        redisTemplate.opsForValue().set(cacheFlagkey, "lock",1,TimeUnit.MINUTES);
-                        session.setAttribute(session.getId(),phone);
-                    }else {
+                        redisTemplate.opsForValue().set(cacheCodekey, "" + random + "", Constant.LOGIN_CODE_TIME_OUT, TimeUnit.MINUTES);
+                        redisTemplate.opsForValue().set(cacheFlagkey, "lock", 1, TimeUnit.MINUTES);
+                        session.setAttribute(session.getId(), phone);
+                    } else {
                         System.out.println("1分钟内不能重复获取验证码");
                         return false;
                     }
-                }else {
+                } else {
                     System.out.println("手机号不能为空");
                     return false;
                 }
             }
-        }catch (Exception e) {
+        } catch (Exception e) {
             // TODO: handle exception
-            System.out.println("异常:"+e.getMessage());
+            System.out.println("异常:" + e.getMessage());
             return false;
         }
         return true;
@@ -178,25 +178,27 @@ public class LoginController {
 
     /**
      * 快速登录的方法
+     *
      * @return
      */
     @RequestMapping("sendSmsNameCode")
     @ResponseBody
-    public Map<String, Object> sendSmsNameCode(String smsCode,String phone,HttpServletRequest request){
-        HashMap<String,Object> result = new HashMap<String, Object>();
+    public Map<String, Object> sendSmsNameCode(String smsCode, String phone, HttpServletRequest request) {
+        HashMap<String, Object> result = new HashMap<String, Object>();
         HttpSession session = request.getSession();
-        UserBean userBean=loginServiceApi.getUserphoneName(phone);
+        UserBean userBean = loginServiceApi.getUserphoneName(phone);
         String cacheCodekey = Constant.LOGIN_CODE + phone;
         String smsCodeName = redisTemplate.opsForValue().get(cacheCodekey);
-        if(!smsCode.equals(smsCodeName)){
+        if (!smsCode.equals(smsCodeName)) {
             result.put("code", 2);
-            result.put("msg","验证码错误");
+            result.put("msg", "验证码错误");
             return result;
         }
-        session.setAttribute("user",userBean);
+        session.setAttribute("user", userBean);
         result.put("code", 0);
         return result;
     }
+
     /**
      * @return注销
      */
@@ -209,32 +211,32 @@ public class LoginController {
     }
 
 
-
     @RequestMapping("toRegistered")
-    public String toRegistered(){
+    public String toRegistered() {
 
         return "registered";
     }
 
     /**
      * 注册
+     *
      * @return</pre>
      */
     @RequestMapping("addUser")
     @ResponseBody
-    public Map<String, Object> addUser(UserBean userBean, HttpServletRequest request){
+    public Map<String, Object> addUser(UserBean userBean, HttpServletRequest request) {
         HashMap<String, Object> hashMap = new HashMap<>();
         HttpSession session = request.getSession();
         String imgVerify = userBean.getImgVerify();
         String imgcode = session.getAttribute(RandomValidateCodeUtil.RANDOMCODEKEY).toString();
         String phone = userBean.getPhone();
-        UserBean userBean2=loginServiceApi.getUserphoneName(phone);
+        UserBean userBean2 = loginServiceApi.getUserphoneName(phone);
         if (!imgVerify.equals(imgcode)) {
             hashMap.put("code", 1);
             hashMap.put("msg", "验证码错误");
             return hashMap;
         }
-        if (userBean2!=null) {
+        if (userBean2 != null) {
             hashMap.put("code", 3);
             hashMap.put("msg", "手机已经注册");
             return hashMap;

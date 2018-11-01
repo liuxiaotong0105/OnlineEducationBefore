@@ -21,13 +21,13 @@ import java.util.List;
 
 public interface CeServiceApi {
 
-    @RequestMapping(value="queryCe",method = RequestMethod.GET)
+    @RequestMapping(value = "queryCe", method = RequestMethod.GET)
     Ce queryCe();
 
-    @RequestMapping(value = "movie/addMovie",method = RequestMethod.POST)
+    @RequestMapping(value = "movie/addMovie", method = RequestMethod.POST)
     void addMovie(@RequestBody Movie movie);
 
-    @RequestMapping(value = "movie/addMovie",method = RequestMethod.GET)
+    @RequestMapping(value = "movie/addMovie", method = RequestMethod.GET)
     List<Movie> queryMovieSolr();
 
 }

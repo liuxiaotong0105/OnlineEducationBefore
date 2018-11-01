@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html  xmlns:th="http://www.thymeleaf.org" >
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
     <title>首页</title>
     <meta charset="UTF-8">
@@ -30,35 +30,37 @@
 <header class="header-area inner-page">
     <!-- Header Top Area -->
     <ul th:if="${status}==''">
-    <section class="header-top">
-        <div class="container">
-            <div class="row">
-                <div class="col-sm-12 col-xs-12" background-color="red">
-                    <div class="header-elements pull-right">
-                        <ul class="social-icon pull-left">
-                            <li>
-                                <a target="_blank" href="http://wpa.qq.com/msgrd?v=3&uin=2218050300&site=qq&menu=yes"><i class="fa fa-qq"></i></a>
+        <section class="header-top">
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-12 col-xs-12" background-color="red">
+                        <div class="header-elements pull-right">
+                            <ul class="social-icon pull-left">
+                                <li>
+                                    <a target="_blank"
+                                       href="http://wpa.qq.com/msgrd?v=3&uin=2218050300&site=qq&menu=yes"><i
+                                            class="fa fa-qq"></i></a>
 
                                 </li>
-                        </ul>
-                        <div class="language pull-left">
-                            <a href="#">
-                                <i class="icon-font"></i>
-                                <span>中文站</span>
-                            </a>
-                        </div>
-                        <div class="login-or-signup pull-left">
-                            <a href="../login/toLogin"><i class="icon-user"></i><span>注册/登录</span></a>
+                            </ul>
+                            <div class="language pull-left">
+                                <a href="#">
+                                    <i class="icon-font"></i>
+                                    <span>中文站</span>
+                                </a>
+                            </div>
+                            <div class="login-or-signup pull-left">
+                                <a href="../login/toLogin"><i class="icon-user"></i><span>注册/登录</span></a>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
     </ul>
-<!--登录后-->
-        <!-- Header Top Area -->
-        <ul th:if="${status}==1">
+    <!--登录后-->
+    <!-- Header Top Area -->
+    <ul th:if="${status}==1">
         <section class="header-top">
             <div class="container">
                 <div class="row">
@@ -66,7 +68,9 @@
                         <div class="header-elements pull-right">
                             <ul class="social-icon pull-left">
                                 <li>
-                                    <a target="_blank" href="http://wpa.qq.com/msgrd?v=3&uin=2218050300&site=qq&menu=yes"><i class="fa fa-qq"></i></a></li>
+                                    <a target="_blank"
+                                       href="http://wpa.qq.com/msgrd?v=3&uin=2218050300&site=qq&menu=yes"><i
+                                            class="fa fa-qq"></i></a></li>
                             </ul>
                             <div class="language pull-left">
                                 <a href="#">
@@ -76,23 +80,23 @@
                             </div>
                             <div class="login-or-signup pull-left">
                                 欢迎!
-                                    <span class="photo">
-                                             <img  src="/images/rebc.gif" width="25px">
+                                <span class="photo">
+                                             <img src="/images/rebc.gif" width="25px">
                                         </span>
-                                    <a  class="nick"  >
-                                        <span th:text="${user.name}"></span>
-                                        <em class="arrow"></em>
-                                    </a>的登录!
-                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                    <a href="../login/removeUser">注销</a>
+                                <a class="nick">
+                                    <span th:text="${user.name}"></span>
+                                    <em class="arrow"></em>
+                                </a>的登录!
+                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                <a href="../login/removeUser">注销</a>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
-</ul>
+    </ul>
 
     <!-- Header Top Area -->
     <ul th:if="${status}==2">
@@ -103,7 +107,9 @@
                         <div class="header-elements pull-right">
                             <ul class="social-icon pull-left">
                                 <li>
-                                    <a target="_blank" href="http://wpa.qq.com/msgrd?v=3&uin=2218050300&site=qq&menu=yes"><i class="fa fa-qq"></i></a></li>
+                                    <a target="_blank"
+                                       href="http://wpa.qq.com/msgrd?v=3&uin=2218050300&site=qq&menu=yes"><i
+                                            class="fa fa-qq"></i></a></li>
                             </ul>
                             <div class="language pull-left">
                                 <a href="#">
@@ -115,9 +121,9 @@
                             <div class="login-or-signup pull-left">
                                 欢迎!
                                 <span class="photo">
-                                         <img  src="/images/rebc.gif" width="25px">
+                                         <img src="/images/rebc.gif" width="25px">
                                     </span>
-                                <a  class="nick"  >
+                                <a class="nick">
                                     <span th:text="${user.name}"></span>
                                     <em class="arrow"></em>
                                 </a>&nbsp;的登录!
@@ -217,20 +223,20 @@
 <!-- Breadcrumb  -->
 <section class="header-top">
     <div class="col-sm-12 col-xs-12">
-    <div class="shutter">
-        <div class="shutter-img">
-            <a href="#" data-shutter-title="Iron Man"><img src="/shou/tu1.jpg" alt="#"></a>
-            <a href="#" data-shutter-title="Super Man"><img src="/shou/tu2.jpg" alt="#"></a>
-            <a href="#" data-shutter-title="The Hulk"><img src="/shou/tu3.jpg" alt="#"></a>
+        <div class="shutter">
+            <div class="shutter-img">
+                <a href="#" data-shutter-title="Iron Man"><img src="/shou/tu1.jpg" alt="#"></a>
+                <a href="#" data-shutter-title="Super Man"><img src="/shou/tu2.jpg" alt="#"></a>
+                <a href="#" data-shutter-title="The Hulk"><img src="/shou/tu3.jpg" alt="#"></a>
+            </div>
+            <ul class="shutter-btn">
+                <li class="prev"></li>
+                <li class="next"></li>
+            </ul>
+            <div class="shutter-desc">
+                <p>Iron Man</p>
+            </div>
         </div>
-        <ul class="shutter-btn">
-            <li class="prev"></li>
-            <li class="next"></li>
-        </ul>
-        <div class="shutter-desc">
-            <p>Iron Man</p>
-        </div>
-    </div>
     </div>
 </section>
 <!-- /.breadcrumb-section  -->
@@ -245,20 +251,23 @@
                 <div class="class-sort-btn-section">
                     <ul class="sort-btn pull-left">
                         <li class="active filter" data-filter="mix"><a href="#" onclick="searchAll()">所有</a></li>
-                        <li class="filter" data-filter="kinder" id="kinder"><a href="#" onclick="searchBtn('语文')">语文</a></li>
-                        <li class="filter" data-filter="play" id="play"><a href="#" onclick="searchBtn('数学')">数学</a></li>
-                        <li class="filter" data-filter="primary" id="primary"><a href="#" onclick="searchBtn('英语')">英语</a></li>
-                        <li class="filter" data-filter="primary" ><a href="#" onclick="searchBtn('物理')">物理</a></li>
-                        <li class="filter" data-filter="primary" ><a href="#" onclick="searchBtn('化学')">化学</a></li>
-                        <li class="filter" data-filter="primary" ><a href="#" onclick="searchFree(0)">免费</a></li>
-                        <li class="filter" data-filter="primary" ><a href="#" onclick="searchFree(1)">收费</a></li>
+                        <li class="filter" data-filter="kinder" id="kinder"><a href="#" onclick="searchBtn('语文')">语文</a>
+                        </li>
+                        <li class="filter" data-filter="play" id="play"><a href="#" onclick="searchBtn('数学')">数学</a>
+                        </li>
+                        <li class="filter" data-filter="primary" id="primary"><a href="#"
+                                                                                 onclick="searchBtn('英语')">英语</a></li>
+                        <li class="filter" data-filter="primary"><a href="#" onclick="searchBtn('物理')">物理</a></li>
+                        <li class="filter" data-filter="primary"><a href="#" onclick="searchBtn('化学')">化学</a></li>
+                        <li class="filter" data-filter="primary"><a href="#" onclick="searchFree(0)">免费</a></li>
+                        <li class="filter" data-filter="primary"><a href="#" onclick="searchFree(1)">收费</a></li>
 
                     </ul>
 
                     <input type="hidden" id="movieType">
                     <input type="hidden" id="freeStatus" value="-1">
-                    <form  class="class-search pull-right">
-                        <input type="search"  id="names" placeholder="搜索课程">
+                    <form class="class-search pull-right">
+                        <input type="search" id="names" placeholder="搜索课程">
                         <button type="button" onclick="initMovie()"><i class="fa fa-search"></i></button>
                     </form>
                     <div class="clearfix">
@@ -267,7 +276,6 @@
                 </div>
             </div>
         </div>
-
 
 
         <div class="row">
@@ -301,13 +309,13 @@
             </div>
 
             <!--<div class="row">-->
-                <!--<div class="col-sm-12 col-xs-12 text-center">-->
-                    <!--<ul class="paginations">-->
-                     <!--<font size="6" color="#9932cc"><a href="#" onclick="">︽上一页︽</a>☆★☆-->
-                        <!--<a href="#" onclick="">︾下一页︾</a></font>-->
+            <!--<div class="col-sm-12 col-xs-12 text-center">-->
+            <!--<ul class="paginations">-->
+            <!--<font size="6" color="#9932cc"><a href="#" onclick="">︽上一页︽</a>☆★☆-->
+            <!--<a href="#" onclick="">︾下一页︾</a></font>-->
 
-                    <!--</ul>-->
-                <!--</div>-->
+            <!--</ul>-->
+            <!--</div>-->
             <!--</div>-->
         </div>
 </section>
@@ -385,7 +393,7 @@
 <script src="/js/main.js"></script>
 <script src="/js/lunbo/velocity.js"></script>
 <script src="/js/lunbo/shutter.js"></script>
-<script >
+<script>
     $(function () {
         $('.shutter').shutter({
             shutterW: 1300, // 容器宽度

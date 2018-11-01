@@ -36,7 +36,9 @@
                         <div class="header-elements pull-right">
                             <ul class="social-icon pull-left">
                                 <li>
-                                    <a target="_blank" href="http://wpa.qq.com/msgrd?v=3&uin=2218050300&site=qq&menu=yes"><i class="fa fa-qq"></i></a>
+                                    <a target="_blank"
+                                       href="http://wpa.qq.com/msgrd?v=3&uin=2218050300&site=qq&menu=yes"><i
+                                            class="fa fa-qq"></i></a>
 
                                 </li>
                             </ul>
@@ -65,7 +67,9 @@
                         <div class="header-elements pull-right">
                             <ul class="social-icon pull-left">
                                 <li>
-                                    <a target="_blank" href="http://wpa.qq.com/msgrd?v=3&uin=2218050300&site=qq&menu=yes"><i class="fa fa-qq"></i></a></li>
+                                    <a target="_blank"
+                                       href="http://wpa.qq.com/msgrd?v=3&uin=2218050300&site=qq&menu=yes"><i
+                                            class="fa fa-qq"></i></a></li>
                             </ul>
                             <div class="language pull-left">
                                 <a href="#">
@@ -76,9 +80,9 @@
                             <div class="login-or-signup pull-left">
                                 欢迎!
                                 <span class="photo">
-                                             <img  src="/images/rebc.gif" width="25px">
+                                             <img src="/images/rebc.gif" width="25px">
                                         </span>
-                                <a  class="nick"  >
+                                <a class="nick">
                                     <span th:text="${user.name}"></span>
                                     <em class="arrow"></em>
                                 </a>的登录!
@@ -102,7 +106,9 @@
                         <div class="header-elements pull-right">
                             <ul class="social-icon pull-left">
                                 <li>
-                                    <a target="_blank" href="http://wpa.qq.com/msgrd?v=3&uin=2218050300&site=qq&menu=yes"><i class="fa fa-qq"></i></a></li>
+                                    <a target="_blank"
+                                       href="http://wpa.qq.com/msgrd?v=3&uin=2218050300&site=qq&menu=yes"><i
+                                            class="fa fa-qq"></i></a></li>
                             </ul>
                             <div class="language pull-left">
                                 <a href="#">
@@ -114,9 +120,9 @@
                             <div class="login-or-signup pull-left">
                                 欢迎!
                                 <span class="photo">
-                                         <img  src="/images/rebc.gif" width="25px">
+                                         <img src="/images/rebc.gif" width="25px">
                                     </span>
-                                <a  class="nick"  >
+                                <a class="nick">
                                     <span th:text="${user.name}"></span>
                                     <em class="arrow"></em>
                                 </a>&nbsp;的登录!
@@ -220,7 +226,7 @@
     <div class="container">
         <div class="row">
             <div class="col-sm-12 col-xs-12 text-center">
-                <div  class="breadcrumb-content">
+                <div class="breadcrumb-content">
                     <img src="/ke/chu-yu.bmp"/>
                 </div>
             </div>
@@ -259,7 +265,7 @@
     <div class="container">
         <div class="row">
             <div class="col-sm-12 col-xs-12 text-center">
-                <div  class="breadcrumb-content">
+                <div class="breadcrumb-content">
                     <h3>初三语文课程占比</h3>
                     <div id="san" style="width:100%;height:500%;"></div>
 
@@ -341,8 +347,8 @@
 <script type="text/javascript">
     var myChart = echarts.init(document.getElementById('yi'));
 
-    var data = [25, 12, 33,25,5]
-    var titlename = ['现代文阅读', '文言文阅读', '作文','诗歌鉴赏','基础知识'];
+    var data = [25, 12, 33, 25, 5]
+    var titlename = ['现代文阅读', '文言文阅读', '作文', '诗歌鉴赏', '基础知识'];
     var valdata = [100, 100, 100, 100, 100]
     var myColor = ['#1089E7', '#F57474', '#56D0E3', '#F8B448'];
     option = {
@@ -365,7 +371,7 @@
             },
             axisLabel: {
                 color: '#fff',
-                formatter: function(value, index) {
+                formatter: function (value, index) {
                     return [
                         '{lg|' + (index + 1) + '}' + '{title|' + value + '} '
                     ].join('\n')
@@ -414,7 +420,7 @@
             itemStyle: {
                 normal: {
                     barBorderRadius: 30,
-                    color: function(params) {
+                    color: function (params) {
                         var num = myColor.length;
                         return myColor[params.dataIndex % num]
                     },
@@ -442,7 +448,7 @@
                     barBorderRadius: 15,
                 }
             }
-        }, ]
+        },]
     };
 
     myChart.setOption(option);
@@ -476,7 +482,7 @@
             },
             axisLabel: {
                 color: '#fff',
-                formatter: function(value, index) {
+                formatter: function (value, index) {
                     return [
                         '{lg|' + (index + 1) + '}' + '{title|' + value + '} '
                     ].join('\n')
@@ -525,7 +531,7 @@
             itemStyle: {
                 normal: {
                     barBorderRadius: 30,
-                    color: function(params) {
+                    color: function (params) {
                         var num = myColor.length;
                         return myColor[params.dataIndex % num]
                     },
@@ -553,7 +559,7 @@
                     barBorderRadius: 15,
                 }
             }
-        }, ]
+        },]
     };
 
     myChart.setOption(option);
@@ -562,7 +568,7 @@
     var myChart = echarts.init(document.getElementById('san'));
 
     var data = [27, 17, 16, 13, 27]
-    var titlename = ['作文', '文言文阅读', '现代文阅读', '基础知识','古诗鉴赏'];
+    var titlename = ['作文', '文言文阅读', '现代文阅读', '基础知识', '古诗鉴赏'];
     var valdata = [100, 100, 100, 100, 100]
     var myColor = ['#1089E7', '#F57474', '#56D0E3', '#F8B448', '#8B78F6'];
     option = {
@@ -585,7 +591,7 @@
             },
             axisLabel: {
                 color: '#fff',
-                formatter: function(value, index) {
+                formatter: function (value, index) {
                     return [
                         '{lg|' + (index + 1) + '}' + '{title|' + value + '} '
                     ].join('\n')
@@ -634,7 +640,7 @@
             itemStyle: {
                 normal: {
                     barBorderRadius: 30,
-                    color: function(params) {
+                    color: function (params) {
                         var num = myColor.length;
                         return myColor[params.dataIndex % num]
                     },
@@ -662,7 +668,7 @@
                     barBorderRadius: 15,
                 }
             }
-        }, ]
+        },]
     };
 
     myChart.setOption(option);
