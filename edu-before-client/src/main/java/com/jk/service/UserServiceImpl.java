@@ -1,10 +1,13 @@
 package com.jk.service;
 
-import com.jk.mapper.UserMapper;
-import com.jk.modelapi.UserBean;
-import com.jk.util.StringUtil;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
+        import com.jk.mapper.UserMapper;
+        import com.jk.modelapi.AdBean;
+        import com.jk.modelapi.UserBean;
+        import com.jk.util.StringUtil;
+        import org.springframework.beans.factory.annotation.Autowired;
+        import org.springframework.stereotype.Service;
+
+        import java.util.List;
 
 /**
  * @Auther: 赵黎明
@@ -29,5 +32,10 @@ public class UserServiceImpl {
     public void addUser(UserBean userBean) {
 
         userMapper.addUser(userBean);
+    }
+
+    public List<AdBean> getAdList() {
+
+        return userMapper.getAdList();
     }
 }

@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta name="renderer" content="webkit">
     <meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>小天鹅登录界面</title>
+	<title>登录界面</title>
     <link rel="stylesheet" href="../EasyUI/themes/default/easyui.css"/>
     <link rel="stylesheet" href="../EasyUI/themes/icon.css"/>
     <link rel="stylesheet" href="../EasyUI/themes/color.css"/>
@@ -14,9 +14,10 @@
     <script src="../jquery.min.js"></script>
 </head>
 <body>
-<div class="passport-wrapper">
+	<div class="passport-wrapper">
     <header id="header" class="passport-header">
-        <div id="logo"><a href="#"><img src="../images/home1/logo.png"></a></div>
+        <div><center><font color="#1e90ff" size="6" face="楷书">剑桥教育</font></center></div><br>
+        <div><center><font color="#006400" size="4" face="楷书">国际知名在线教育品牌</font></center></div>
     </header>
 
     <div id="container">
@@ -138,9 +139,8 @@
     $('#toQuickLogin').click(function () {
         location.href = "../login/toQucikLogin";
     })
-
-    $('#toRegistered').click(function () {
-        location.href = "../login/toRegistered";
+    $('#toRegistered').click(function(){
+        location.href="../login/toRegistered";
     })
 
     $('#toQQLogin').click(function () {
