@@ -246,16 +246,26 @@
             <div class="col-sm-12 col-xs-12">
                 <div class="class-sort-btn-section">
                     <ul class="sort-btn pull-left">
-                        <li><a href="class.html#kinder">Kindergarten</a></li>
-                        <li><a href="class.html#play">Play Group</a></li>
-                        <li><a href="class.html#primary">Pre- Primary</a></li>
-                        <li><a href="class.html#story">Story</a></li>
+                        <li class="active filter" data-filter="mix"><a href="#" onclick="searchAll()">所有</a></li>
+                        <li class="filter" data-filter="kinder" id="kinder"><a href="#" onclick="searchBtn('语文')">语文</a></li>
+                        <li class="filter" data-filter="play" id="play"><a href="#" onclick="searchBtn('数学')">数学</a></li>
+                        <li class="filter" data-filter="primary" id="primary"><a href="#" onclick="searchBtn('英语')">英语</a></li>
+                        <li class="filter" data-filter="primary" ><a href="#" onclick="searchBtn('物理')">物理</a></li>
+                        <li class="filter" data-filter="primary" ><a href="#" onclick="searchBtn('化学')">化学</a></li>
+                        <li class="filter" data-filter="primary" ><a href="#" onclick="searchFree(0)">免费</a></li>
+                        <li class="filter" data-filter="primary" ><a href="#" onclick="searchFree(1)">收费</a></li>
+
                     </ul>
-                    <form method="post" action="#" class="class-search pull-right">
-                        <input type="search" name="search" placeholder="Search classes">
-                        <button type="submit"><i class="fa fa-search"></i></button>
+
+                    <input type="hidden" id="movieType">
+                    <input type="hidden" id="freeStatus" value="-1">
+                    <form  class="class-search pull-right">
+                        <input type="search"  id="names" placeholder="搜索课程">
+                        <button type="button" onclick="initMovie()"><i class="fa fa-search"></i></button>
                     </form>
-                    <div class="clearfix"></div>
+                    <div class="clearfix">
+
+                    </div>
                 </div>
             </div>
         </div>
@@ -278,7 +288,10 @@
                         <h4><p th:text="${video.movieType}"></p></h4>
                     </div>
                     <span th:if="${status}!=''">
+
+
 					<span th:if="${video.freeStatus}==1">
+
 						<span th:if="${count}==0">
 							<div class="class-single-meta pull-left">
 								<p>价格</p>
@@ -290,7 +303,8 @@
 								<a class="primary-btn pull-right" href="javascript:money()"><span>购买</span></a>
 							</div>
 						</span>
-					<span th:if="${count}==0">
+
+					<span th:if="${count}>0">
 							<div class="class-single-meta pull-left">
 								<p>价格</p>
 								<h4>
@@ -301,7 +315,10 @@
 								<a class="primary-btn pull-right" href="javascript:toMovieInfo()"><span>立即播放</span></a>
 							</div>
 						</span>
+
 				</span>
+
+
 				<span th:if="${video.freeStatus}==0">
 					<div class="class-single-meta pull-left">
 					<p>价格</p>
@@ -487,7 +504,7 @@
 		</div>
 </section>-->
 <!-- Footer Section -->
-<footer class="footer-section">
+<!--<footer class="footer-section">
     <div class="container">
         <div class="row">
             <div class="col-md-4 col-sm-6 col-xs-12 text-left">
@@ -546,7 +563,71 @@
             </div>
         </div>
     </div>
-</footer>
+</footer>-->
+<section class="footer-section">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12 col-xs-12">
+                <div class="title-with-icon text-center">
+                    <div><center><font color="#1e90ff" size="6" face="楷书">剑桥教育</font></center></div><br>
+                    <div><center><font color="#006400" size="4" face="楷书">国际知名在线教育品牌</font></center></div>
+                    <p class="subtitle-2">
+                        “剑桥教育”隶属于北京金科1803A二组，是中小学教育线上新型平台。创立于北京西三旗。致力于“让学习更有效”，以生动为特色，为注重自我提升的中小学生提供高品质线上教育。<br>
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-3 col-xs-12 text-center">
+                <div class="single-facility">
+
+                    <font size="5" color="#FFFFFF">优秀的1对1教育品牌</font><br><br>
+                    <p class="subtitle-2">创办超过一周时间<br><br>
+                        600万+注册学员<br><br>
+                        配备50000+名老师<br><br>
+                        超过3000人的服务团队<br><br>
+                    </p>
+                </div>
+            </div>
+            <div class="col-sm-3 col-xs-12 text-center">
+                <div class="single-facility two">
+
+                    <font size="5" color="#FFFFFF">推荐资讯</font><br><br>
+                    <p class="subtitle-2">
+                        学生讲堂<br><br>
+                        掌门新闻<br><br>
+                        家长学堂<br><br>
+                        学生讲堂<br><br>
+                    </p>
+                </div>
+            </div>
+            <div class="col-sm-3 col-xs-12 text-center">
+                <div class="single-facility three">
+
+                    <font size="5" color="#FFFFFF">产品&服务</font><br><br>
+                    <p class="subtitle-2">
+                        功能更新<br><br>
+                        专题推荐<br><br>
+                        新课发布<br><br>
+                        学生讲堂<br><br>
+                    </p>
+                </div>
+            </div>
+            <div class="col-sm-3 col-xs-12 text-center">
+                <div class="single-facility four">
+
+                    <font size="5" color="#FFFFFF">帮助中心</font><br><br>
+                    <p class="subtitle-2">
+                        学习问题<br><br>
+                        新手上路<br><br>
+                        手机端下载<br><br>
+                        意见反馈<br><br>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
 <!-- /.footer-section -->
 <input type="hidden" th:value="${video.movieId}" id="movieId"/>
 <input type="hidden" th:value="${video.movieName}" id="subject"/>
@@ -599,6 +680,35 @@
 
         location.href = "../money/tobuy";
 
+    }
+    $(function () {
+        initAd();
+        $('.shutter').shutter({
+            shutterW: 1300, // 容器宽度
+            shutterH: 458, // 容器高度
+            isAutoPlay: true, // 是否自动播放
+            playInterval: 3000, // 自动播放时间
+            curDisplay: 3, // 当前显示页
+            fullPage: false // 是否全屏展示
+        });
+    });
+
+    function initAd(){
+        $.ajax({
+            url:'../login/getAdList',
+            type:'post',
+            data:{},
+            async:false,
+            success:function(result){
+                var html = '';
+                for (var i =0;i<result.length;i++){
+
+                    html+='<a href="'+result[i].compName+'" data-shutter-title="'+result[i].advName+'"><img src="'+result[i].advUrl+'" alt="#"></a>'
+                }
+
+                $(".shutter-img").html(html);
+            }
+        })
     }
 </script>
 </body>

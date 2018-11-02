@@ -197,6 +197,10 @@ public class MoneyController {
     @ResponseBody
     public String alipay(String subject, String total_amount, String body, Integer id, Integer status, HttpServletRequest request) throws AlipayApiException {
 
+        request.getSession().setAttribute("id",id);
+
+        request.getSession().setAttribute("status",status);
+
 
         AlipayBean alipayBean = new AlipayBean();
 
