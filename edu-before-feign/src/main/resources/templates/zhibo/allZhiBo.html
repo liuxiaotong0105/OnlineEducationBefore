@@ -1,31 +1,32 @@
-﻿<!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<!DOCTYPE html>
+<html  xmlns:th="http://www.thymeleaf.org" >
 <head>
-    <title></title>
+    <title>首页</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
     <meta name="author" content="Themeum">
 
     <!-- Include All Css -->
-    <link rel="stylesheet" href="../css/font-awesome.min.css">
-    <link rel="stylesheet" href="../css/bootstrap.min.css">
-    <link rel="stylesheet" href="../css/magnific-popup.css">
-    <link rel="stylesheet" href="../css/animate.css">
-    <link rel="stylesheet" href="../css/fonts.css">
-    <link rel="stylesheet" href="../css/preset.css">
-    <link rel="stylesheet" href="../css/style.css">
-    <link rel="stylesheet" href="../css/responsive.css">
+    <link rel="stylesheet" href="/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/magnific-popup.css">
+    <link rel="stylesheet" href="/css/animate.css">
+    <link rel="stylesheet" href="/css/fonts.css">
+    <link rel="stylesheet" href="/css/preset.css">
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/responsive.css">
+    <link rel="stylesheet" href="/css/shutter.css">
 
     <!--[if lt IE 9]>
-        <script src="../js/html5shive.js"></script>
-
-
-        <![endif]-->
+    <script src="/js/html5shive.js"></script>
+    <![endif]-->
 
 </head>
 <body>
 <!-- Header Area -->
+<!--未登录导航-->
+
 <header class="header-area inner-page">
     <!-- Header Top Area -->
     <ul th:if="${status}==''">
@@ -206,69 +207,91 @@
 </header>
 <!-- /.header-area -->
 
-<!-- Breadcrumb  -->
-<section class="breadcrumb-section">
-    <div class="container">
-        <div class="row">
-            <div class="col-sm-12 col-xs-12 text-center">
-                <div class="breadcrumb-content">
-                    <h2>生命不息,奔腾不止,孩纸努力学吧</h2>
-                    <ul>
 
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
 <!-- /.breadcrumb-section  -->
 
 <!-- Classes Section -->
-<section class="classes-section-3">
+<section class="classes-section-2">
     <div class="container">
         <div class="row">
             <div class="col-sm-12 col-xs-12">
                 <div class="class-sort-btn-section">
                     <ul class="sort-btn pull-left">
-                        <li><a href="../money/tobuy">课程套餐</a></li>
-                        <li><a href="../money/tovideo">视屏</a></li>
-
+                        <li class="active filter" data-filter="mix"><a href="#" onclick="searchBtn(0)">所有</a></li>
+                        <li class="filter" data-filter="kinder" id="kinder"><a href="#" onclick="searchBtn(1)">小学</a></li>
+                        <li class="filter" data-filter="play" id="play"><a href="#" onclick="searchBtn(2)">初中</a></li>
+                        <li class="filter" data-filter="primary" id="primary"><a href="#" onclick="searchBtn(3)">高中</a></li>
                     </ul>
-                    <form method="post" action="#" class="class-search pull-right">
-                        <input type="search" name="search" placeholder="Search classes">
-                        <button type="submit"><i class="fa fa-search"></i></button>
+                    <form  class="class-search pull-right">
+                        <input type="search"  id="searchName" placeholder="搜索课程">
+                        <button type="submit" onclick="searchBtn(0)"><i class="fa fa-search"></i></button>
                     </form>
-                    <div class="clearfix"></div>
+                    <div class="clearfix">
+
+                    </div>
                 </div>
             </div>
         </div>
         <div class="row">
-			<span th:each="course : ${course}">
-			<div class="col-sm-6 col-md-3 col-xs-12 text-center">
-				<div class="single-team">
-					<div class="team-img">
-						<img alt="" src="../images/home1/staff1.jpg">
-						<ul class="team-social">
-							<li><a href="#" class="facebook"><i class="fa fa-facebook"></i></a></li>
-							<li><a href="#" class="twitter"><i class="fa fa-twitter"></i></a></li>
-							<li><a href="#" class="gplus"><i class="fa fa-google-plus"></i></a></li>
-							<li><a href="#" class="instagram"><i class="fa fa-instagram"></i></a></li>
-						</ul>
-					</div>
-					<h3><p th:text="${course.courseType}"></p></h3>
-					<p th:text="${course.courseName}"></p>
-					<p><a th:href="@{'../money/tobuycourse?id='+${course.id}+'&name='+${course.courseName}}"
-                          class="primary-btn pull-right"><span>现在去学习</span></a></p>
-				</div>
-			</div>
-			</span>
+            <div id="mixer">
+                <div th:each="courses : ${list}">
+                    <div class="col-sm-4 col-xs-12 mix kinder play">
+                        <!--<div th:each="courses : ${list}">-->
+                            <div class="single-class">
+
+                                    <div class="class-img">
+                                        <img alt="" src="/images/class1/class8.jpg">
+                                    </div>
+                                    <div class="class-details">
+                                        <h3><a href="#" th:href="@{../login/returnThisWs(name=${courses.name},phone=${courses.phone})}"><span th:text="${courses.name}"></span></a></h3>
+                                        <!--<p>化学</p>-->
+                                        <div class="clearfix">
+                                            <!--<div class="class-meta pull-left">-->
+                                                <!--<span>所属阶段</span>-->
+                                                <!--<p>初三</p>-->
+                                            <!--</div>-->
+                                            <!--<div class="class-meta pull-left">-->
+                                                <!--<span>讲课老师</span>-->
+                                                <!--<center><p>李老师</p></center>-->
+                                            <!--</div>-->
+                                            <!--<div class="class-meta pull-left">-->
+                                                <!--<span>课程费用</span>-->
+                                                <!--<center><p>免费</p></center>-->
+                                            <!--</div>-->
+                                        </div>
+
+                                    </div>
+
+                            </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </section>
-<!-- /.classes-section-2 -->
+<!-- Breadcrumb  -->
+<section class="header-top">
+    <div class="col-sm-12 col-xs-12">
+        <div class="shutter">
+            <div class="shutter-img">
+                <a href="#" data-shutter-title="Iron Man"><img src="/images/lunbo/images/shutter_1.jpg" alt="#"></a>
+                <a href="#" data-shutter-title="Super Man"><img src="/images/lunbo/images/shutter_2.jpg" alt="#"></a>
+                <a href="#" data-shutter-title="The Hulk"><img src="/images/lunbo/images/shutter_3.jpg" alt="#"></a>
+                <a href="#" data-shutter-title="The your"><img src="/images/lunbo/images/shutter_4.jpg" alt="#"></a>
+            </div>
+            <ul class="shutter-btn">
+                <li class="prev"></li>
+                <li class="next"></li>
+            </ul>
+            <div class="shutter-desc">
+                <p>Iron Man</p>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- /.classes-section -->
 
-<
-<!-- Footer Section -->
+<!-- Facilities Section -->
 <section class="footer-section">
     <div class="container">
         <div class="row">
@@ -332,18 +355,49 @@
         </div>
     </div>
 </section>
+<script src="/js/jquery.min.js"></script>
+<script src="/js/bootstrap.min.js"></script>
+<script src="/js/mixIt.js"></script>
+<script src="/js/jquery.magnific-popup.min.js"></script>
+<script src="/js/main.js"></script>
+<script src="/js/lunbo/velocity.js"></script>
+<script src="/js/lunbo/shutter.js"></script>
+<script >
+    function searchBtn(x) {
+        var movieName = $("#searchName").val();
+        var movieType=x;
+        $.ajax({
+            url:'../login/getMovieList',
+            type:'post',
+            data:{
+                movieName:movieName,
+                movieType:movieType
+            },
 
+            success:function(result){
+                var html="";
 
-<!-- Include All JavaScript -->
-<script src="../js/jquery.min.js"></script>
-<script src="../js/bootstrap.min.js"></script>
-<script src="../js/mixIt.js"></script>
-<script src="../js/jquery.magnific-popup.min.js"></script>
-<script src="../js/main.js"></script>
-<script>
+                for(var i = 0;i <result.size;i++){
+                    html+=''
+                }
+
+            }
+        })
+    }
+    $(function () {
+        $('.shutter').shutter({
+            shutterW: 1300, // 容器宽度
+            shutterH: 458, // 容器高度
+            isAutoPlay: true, // 是否自动播放
+            playInterval: 3000, // 自动播放时间
+            curDisplay: 3, // 当前显示页
+            fullPage: false // 是否全屏展示
+        });
+    });
 
 
 </script>
+
 </body>
 </html>
 

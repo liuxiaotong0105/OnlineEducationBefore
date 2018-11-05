@@ -38,4 +38,14 @@ public class UserServiceImpl {
 
         return userMapper.getAdList();
     }
+    public List<UserBean> queryAllZhiBo() {
+        return  userMapper.queryAllZhiBo();
+    }
+
+    public void updateZbStatus(int zbstatus, Integer id) {
+        UserBean userBean = new UserBean();
+        userBean.setZbstatus(zbstatus);
+        userBean.setId(id);
+        userMapper.updateZbStatus(userBean);
+    }
 }

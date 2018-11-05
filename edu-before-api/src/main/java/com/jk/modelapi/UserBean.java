@@ -25,7 +25,15 @@ public class UserBean implements Serializable {
 
 
     private String photo;
+    private int zbstatus;
 
+    public int getZbstatus() {
+        return zbstatus;
+    }
+
+    public void setZbstatus(int zbstatus) {
+        this.zbstatus = zbstatus;
+    }
     public String getPhoto() {
         return photo;
     }

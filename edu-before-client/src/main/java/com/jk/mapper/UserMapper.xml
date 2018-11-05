@@ -20,6 +20,12 @@
 	<select id="getAdList" resultType="com.jk.modelapi.AdBean">
 		select * from t_advertisiang where advAdd = 1
 	</select>
+    <select id="queryAllZhiBo" resultType="com.jk.modelapi.UserBean">
+		select * from t_login_user where zbstatus=1
+	</select>
+    <update id="updateZbStatus" parameterType="com.jk.modelapi.UserBean">
+	  	update t_login_user set zbstatus = #{zbstatus} where id=#{id}
+	</update>
 
 
 </mapper>

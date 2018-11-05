@@ -56,5 +56,22 @@ public class LoginController {
         List<AdBean> list = userServiceImpl.getAdList();
         return list;
     }
+    @RequestMapping("queryAllZhiBo")
+    @ResponseBody
+    public List<UserBean> queryAllZhiBo(){
+        return  userServiceImpl.queryAllZhiBo();
+    }
+
+    @RequestMapping("updateZbStatus")
+    @ResponseBody
+    public Boolean updateZbStatus(int zbstatus,Integer id){
+        try {
+            userServiceImpl.updateZbStatus(zbstatus,id);
+            return true;
+        }catch (Exception e){
+            System.out.print("修改出错了！");
+            return false;
+        }
+    }
 
 }

@@ -33,28 +33,28 @@
 <header class="header-area inner-page">
     <!-- Header Top Area -->
     <ul th:if="${status}==''">
-    <section class="header-top">
-        <div class="container">
-            <div class="row">
-                <div class="col-sm-12 col-xs-12" background-color="red">
-                    <div class="header-elements pull-right">
-                        <ul class="social-icon pull-left">
-                            <li>
-                                <a target="_blank" href="http://wpa.qq.com/msgrd?v=3&uin=2218050300&site=qq&menu=yes"><i class="fa fa-qq"></i></a>
-                            </li>
-                        </ul>
-                        <div class="login-or-signup pull-left">
-                            <a href="../login/toLogin"><span>注册/登录</span></a>
+        <section class="header-top">
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-12 col-xs-12" background-color="red">
+                        <div class="header-elements pull-right">
+                            <ul class="social-icon pull-left">
+                                <li>
+                                    <a target="_blank" href="http://wpa.qq.com/msgrd?v=3&uin=2218050300&site=qq&menu=yes"><i class="fa fa-qq"></i></a>
+                                </li>
+                            </ul>
+                            <div class="login-or-signup pull-left">
+                                <a href="../login/toLogin"><span>注册/登录</span></a>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
     </ul>
-<!--登录后-->
-        <!-- Header Top Area -->
-        <ul th:if="${status}==1">
+    <!--登录后-->
+    <!-- Header Top Area -->
+    <ul th:if="${status}==1">
         <section class="header-top">
             <div class="container">
                 <div class="row">
@@ -69,20 +69,23 @@
                                     <span id="photo">
                                              <img  src="/images/rebc.gif" width="25px">
                                         </span>
-                                    <a  class="nick"  >
-                                        <span th:text="${user.name}"></span>
-                                        <em class="arrow"></em>
-                                    </a>
-                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                    <a href="../login/removeUser">注销</a>
+                                <a  class="nick"  >
+                                    <span th:text="${user.name}"></span>
+                                    <em class="arrow"></em>
+                                </a>
+                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                <a href="../money/tovideo">已购买视频</a>
+                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                <a href="../login/removeUser">注销</a>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
-</ul>
+    </ul>
 
     <!-- Header Top Area -->
     <ul th:if="${status}==2">
@@ -110,10 +113,10 @@
                                 <a href="../movie/shangchuan">上传视频</a>
                                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                <a href="#">去直播</a>
+                                <a href="../login/toWs">去直播</a>
                                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                <a href="../money/tobuy">已购买视频</a>
+                                <a href="../money/tovideo">已购买视频</a>
                                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -185,7 +188,7 @@
                             <a href="#">教学视频</a>
                         </li>
                         <li>
-                            <a href="#">正在直播</a>
+                            <a href="../login/returnAllZhiBo">正在直播</a>
                         </li>
                         <li>
                             <a href="#">官方博客</a>
@@ -402,16 +405,18 @@
             data:{},
             async:false,
             success:function(result){
-                var html = '';
+                var html = '<a href="#" data-shutter-title="The Hulk"><img src="/shou/tu3.jpg" alt="#"></a>';
                 for (var i =0;i<result.length;i++){
 
-                    html+='<a href="'+result[i].compName+'" data-shutter-title="'+result[i].advName+'"><img src="'+result[i].advUrl+'" alt="#"></a>'
-                }
 
-                 $(".shutter-img").html(html);
+                        html+='<a href="'+result[i].compName+'" data-shutter-title="'+result[i].advName+'"><img src="'+result[i].advUrl+'" alt="#"></a>'
+
+                }
+                $(".shutter-img").html(html);
             }
         })
     }
+
 
 
 </script>

@@ -180,7 +180,7 @@ public class MoneyController {
         }
         moneyService.addcv(courseid, videoid, user.getId());
 
-        return "redirect:tobuy";
+        return "redirect:tovideo";
     }
 
 

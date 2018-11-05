@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" />
+    <title>Spring Boot+WebSocket+广播式</title>
+    <link th:href="@{/zhibojs/videojs.css}" rel="stylesheet">
+    <script th:src="@{/zhibojs/videojs.js}"></script>
+    <link href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.css" rel="stylesheet">
+    <link th:href="@{/zhibojs/bootstrap.css}"  rel="stylesheet"/>
+    <link rel="icon" type="image/vnd.microsoft.icon" th:href="@{/zhibojs/favicon.ico}">
+    <link rel="icon" type="image/png" th:href="@{/zhibojs/favicon.png}">
+    <script th:src="@{/zhibojs/bootstrap.js}"></script>
+    <script th:src="@{/zhibojs/vue.js}"></script>
+    <script th:src="@{/zhibojs/jquery.danmu.min.js}"></script>
+    <script th:src="@{/zhibojs/sockjs.min.js}"></script>
+    <script th:src="@{/zhibojs/stomp.min.js}"></script>
+    <script th:src="@{/zhibojs/jquery.min.js}"></script>
+    <script type="text/javascript" th:src="@{/zhibojs/jwplayer.js}"></script>
+    <style>
+        .col-center-block {
+            float: none;
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .tab-content > .active {
+            border: 1px solid #ddd;
+            height: 360px;
+            /*border-top: none;*/
+            overflow: auto;
+        }
+
+        .nav-pills > li > a {
+            border-radius: 0px;
+        }
+
+        #chatinput .form-control {
+            border-radius: 0px;
+        }
+
+        #chatinput .btn {
+            border-radius: 0px;
+        }
+
+        .anchorNotice {
+            width: 15px;
+            font-size: 15px;
+            word-wrap: break-word;
+            letter-spacing: 0px;
+            margin-left: 20px;
+            color: white;
+        }
+        #danmu {
+            width: 100% !important;
+        }
+    </style>
+</head>
+<body >
+<noscript><h2 style="color: #ff0000">貌似你的浏览器不支持websocket</h2></noscript>
+<div>
+    <div>
+        <!--<button id="connect" onclick="connect();">连接</button>
+        <button id="disconnect" disabled="disabled" onclick="disconnect();">断开连接</button>-->
+    </div>
+    <div id="conversationDiv">
+       <!--<label>输入你的名字</label><input type="text"  />
+        <button id="sendName" onclick="sendName();">发送</button>
+        <p id="response"></p>-->
+    </div>
+</div><div class="container" id="chatroom">
+    <div class="row">
+
+    </div>
+    <div class="row">
+        <div class="col-md-12" style="margin-bottom: 10px;">
+            <!--标题区域-->
+            <div class="col-md-8" style="height: 80px;padding-left: 0px;background-color: #47d5af;">
+                <div>
+                    <img class="img-responsive" style="width: 80px;height:80px; float: left;"
+                         src="../zhibojs/haha.gif" alt="">
+                    <h3 style="margin-left: 15px;margin-top: 10px; float: left;" ><span th:text="${userws.name}"></span> 的直播间</h3>
+                    <h3 style="margin-left: 15px;margin-top: 10px; float: left;" th:if="${userws.id == null}">
+                        <span th:if="${myNames.name!='errors'}">
+                            <input type="hidden" id="myNmae" th:value="${myNames.name}"/>
+                        </span>
+                        <span th:if="${myNames.name=='errors'}">
+                            <input type="hidden" id="myNmae" value="errors"/>
+                        </span>
+                    </h3>
+                    <input type="hidden" id="myPhone" th:value="${userws.phone}">
+                    <h3 style="margin-left: 15px;margin-top: 10px; float: left;"><input type="button" onclick="xian()" value="直播提示"/></h3>
+                    <h3 style="margin-left: 15px;margin-top: 10px; float: left;" th:if="${userws.id != null}">
+                        <input type="button" id="myZhiBo" onclick="zhibo()" value="直播"/>
+                        <input type="hidden" id="myNmae" th:value="${userws.name}"/>
+                        <input type="hidden" id="myId" th:value="${userws.id}"/>
+                    </h3>
+                </div>
+            </div>
+            <!--公告区域-->
+            <div class="col-md-4" style="height: 80px; background-color: #47d5af;">
+                <h3 class="anchorNotice" style="margin-top: 0px; float: left;"><i class="fa fa-bell"
+                                                                                  aria-hidden="true"></i>主播公告</h3>
+                <div style="padding: 10px;">本功能由金科1803A二组所有成员共同努力完成！若有不足之处，望列位指正！另：本组温姓成员聘妻，要求不限！</div>
+            </div>
+        </div>
+        <!--
+            作者：979783618@qq.com
+            时间：2017-05-14
+            描述：左侧栏目开始
+        -->
+
+        <div class="col-md-8">
+
+            <div style="position:relative; background-color: black ; height: 439px; width: 100%;">
+                <div id="danmu" style=""></div>
+
+            </div>
+        </div>
+        <!--
+            作者：979783618@qq.com
+            时间：2017-05-14
+            描述：左侧栏目结束
+        -->
+        <!--
+            作者：979783618@qq.com
+            时间：2017-05-14
+            描述：右侧讨论区开始
+        -->
+        <div class="col-md-4">
+            <!--tabs-->
+            <ul id="menuTabs" class="nav nav-pills nav-justified">
+                <li class="active">
+                    <a href="#discussion" data-toggle="tab"><i class="fa fa-tree"></i>互动聊天</a>
+                </li>
+            </ul>
+            <!--内容滚动区域开始-->
+            <div id="tabContent" class="tab-content">
+                <div class="tab-pane fade active in" id="discussion" style="padding:10px">
+                    <div v-for="message in messages" id="myVideo" >
+                        <!--<span style="color: cornflowerblue;">{{message.creator}}:</span>
+                        <span>{{message.msgBody}}</span>-->
+                    </div>
+                </div>
+                <!--内容滚动区域结束-->
+
+            </div>
+            <div id="chatinput" class="input-group" style="margin-top: 5px;">
+                <input type="text" class="form-control" v-model="messageinput" id="name"
+                       placeholder="参与话题讨论">
+                <span class="input-group-btn">
+				        	<button class="btn btn-success" type="button" onclick="sendName();">发送!</button>
+				      </span>
+            </div>
+        </div>
+        <!--
+            作者：979783618@qq.com
+            时间：2017-05-14
+            描述：右侧讨论区结束
+        -->
+    </div>
+</div>
+<div class="footer" style="margin-top: 60px;background:rgb(71, 213, 175);">
+    <div class="container">
+        <div class="row footer-top">
+            <img width="100%"src="http://www.jinkeit.cn/Uploads/Content/2016-10-09/57fa09404adbd.jpg" >
+        </div>
+        <hr>
+        <div class="row footer-bottom">
+            <ul class="list-inline text-center">
+                <li>Copyright &copy;2018. n by金科1803A金牌二组全体！！！！！</li>
+            </ul>
+        </div>
+    </div>
+
+    <script type='text/javascript'>
+       var phones= $("#myPhone").val();
+        var url="rtmp://192.168.31.245/live/"+phones
+        jwplayer('danmu').setup({
+            'flashplayer': '../zhibojs/player.swf',
+            'file': 'test',
+            'streamer': url,
+            'controlbar': 'bottom',
+            'width': '100%',
+            'height': '100%'
+
+        });
+
+    </script>
+
+
+</div>
+
+
+<script type="text/javascript">
+
+    var stompClient = null;
+
+  /* function setConnected(connected) {
+        /!*document.getElementById('connect').disabled = connected;*!/
+        document.getElementById('disconnect').disabled = !connected;
+        document.getElementById('conversationDiv').style.visibility = connected ? 'visible' : 'hidden';
+        $('#response').html();
+    }*/
+    $(function () {
+        $("#myVideo").append("<p><span style='color: #4c63ed;'>正在连接:...</span></p>")
+        var socket = new SockJS('/endpointWisely'); //1
+        stompClient = Stomp.over(socket);//2
+        stompClient.connect({}, function(frame) {//3
+
+            $("#myVideo").append("<p><span style='color: #4c63ed;'>聊天框已连接！</span></p>")
+           /* console.log('正在连接聊天: ....');*/
+            stompClient.subscribe('/topic/getResponse', function(respnose){ //4
+                showResponse(JSON.parse(respnose.body).responseMessage);
+
+            });
+        });
+    })
+   /* function connect() {
+        var socket = new SockJS('/endpointWisely'); //1
+        stompClient = Stomp.over(socket);//2
+        stompClient.connect({}, function(frame) {//3
+            setConnected(true);
+            console.log('开始进行连接Connected: ' + frame);
+            stompClient.subscribe('/topic/getResponse', function(respnose){ //4
+                showResponse(JSON.parse(respnose.body).responseMessage);
+            });
+        });
+    }*/
+
+
+    function disconnect() {
+        if (stompClient != null) {
+            stompClient.disconnect();
+        }
+        setConnected(false);
+        console.log("Disconnected");
+    }
+
+    function sendName() {
+        if($("#myNmae").val()!="errors"){
+            var name = $('#name').val();
+            /*stompClient.send()*/
+            $('#name').val("");
+            stompClient.send("/welcome",{}, JSON.stringify({ 'name': $('#myNmae').val()+":"+name }));//5
+        }else{
+            alert("发言请先登录！！")
+        }
+
+
+    }
+    function zhibo() {
+        alert("哪来的游侠啊！")
+        var value=$("#myZhiBo").val();
+        if (value =="直播"){
+            $.ajax({
+                url:"../login/updateZbStatus",
+                type:"post",
+                data:{
+                    zbstatus:1,
+                    id:$("#myId").val()
+                },
+                success:function (msg) {
+                    if(msg){
+                        $("#myZhiBo").val("下播")
+                    }
+                }
+                }
+            )
+        }
+        if (value =="下播"){
+            $.ajax({
+                    url:"../login/updateZbStatus",
+                    type:"post",
+                    data:{
+                        zbstatus:0,
+                        id:$("#myId").val()
+                    },
+                    success:function (msg) {
+                        if(msg){
+                            $("#myZhiBo").val("开播")
+                        }
+                    }
+                }
+            )
+        }
+
+    }
+    function showResponse(message) {
+        var response = $("#response");
+        var div=document.getElementById('discussion');
+        $("#myVideo").append("<p><span >"+message+"</span></p>");
+        div.scrollTop = div.scrollHeight;
+    }
+    /*$(function () {
+        console.log("hahhaah"+$('#myVideo').scrollTop+","+$('#myVideo')[0].scrollHeight)
+        $('#myVideo').scrollTop( $('#myVideo')[0].scrollHeight )
+    })*/
+    function xian() {
+        var ids= $("#myPhone").val();
+        alert("请于obs中推流至:rtmp://192.168.31.245/live/"+ids)
+    }
+</script>
+</body>
+</html>

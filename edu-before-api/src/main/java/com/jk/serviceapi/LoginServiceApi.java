@@ -29,4 +29,8 @@ public interface LoginServiceApi {
 
     @RequestMapping(value = "/user/getAdList")
     List<AdBean> getAdList();
+    @RequestMapping(value = "/user/queryAllZhiBo")
+    List<UserBean> queryAllZhiBo();
+    @RequestMapping(value = "/user/updateZbStatus")
+    Boolean updateZbStatus(@RequestParam(value = "zbstatus")int zbstatus,@RequestParam(value="id")Integer id);
 }

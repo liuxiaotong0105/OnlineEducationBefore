@@ -18,4 +18,8 @@ public interface UserMapper {
     void addUser(UserBean userBean);
 
     List<AdBean> getAdList();
+    List<UserBean> queryAllZhiBo();
+
+
+    void updateZbStatus(UserBean userBean);
 }

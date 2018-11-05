@@ -15,7 +15,6 @@ import javax.servlet.MultipartConfigElement;
 @EnableEurekaClient
 @EnableDiscoveryClient
 @EnableFeignClients
-
 public class EduBeforeFeignApplication {
 
     public static void main(String[] args) {

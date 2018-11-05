@@ -132,7 +132,10 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-thymeleaf</artifactId>
         </dependency>
-
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-websocket</artifactId>
+        </dependency>
         <!--RREDIS-->
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -140,11 +143,7 @@
         </dependency>
         <!--goeasy的jar包-->
 
-        <dependency>
-            <groupId>io.goeasy</groupId>
-            <artifactId>goeasy-sdk</artifactId>
-            <version>0.3.5</version>
-        </dependency>-->
+
 
 
         <dependency>
