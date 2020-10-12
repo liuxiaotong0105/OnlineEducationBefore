@@ -49,20 +49,20 @@ public class OSSClientUtil {
     /**
      * 访问域名
      */
-    private String endpoint = "oss-cn-qingdao.aliyuncs.com";
+    private String endpoint = "oss-cs.com";
     /**
      * accessKey访问秘钥
      *  访问用户
      */
-    private String accessKeyId = "LTAIrMa4ICiSrGWi";
+    private String accessKeyId = "LTAIrrGWi";
     /**
      * 密钥
      */
-    private String accessKeySecret = "CapqdoHJ6JiDRrixzB20EjXd6k60qr";
+    private String accessKeySecret = "CapqXd6k60qr";
     /**
      * 空间  名称
      */
-    private String bucketName = "javasix";
+    private String bucketName = "jax";
     /**
      *  文件存储目录
      */
