@@ -49,24 +49,24 @@ public class OSSClientUtil {
     /**
      * 访问域名
      */
-    private String endpoint = "oss-cs.com";
+    private String endpoint = "";
     /**
      * accessKey访问秘钥
      *  访问用户
      */
-    private String accessKeyId = "LTAIrrGWi";
+    private String accessKeyId = "";
     /**
      * 密钥
      */
-    private String accessKeySecret = "CapqXd6k60qr";
+    private String accessKeySecret = "";
     /**
      * 空间  名称
      */
-    private String bucketName = "jax";
+    private String bucketName = "";
     /**
      *  文件存储目录
      */
-    private String filedir = "java/";
+    private String filedir = "";
 
     private OSSClient ossClient;
 
